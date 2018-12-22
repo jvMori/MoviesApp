@@ -1,8 +1,9 @@
-package com.example.jvmori.moviesapp;
+package com.example.jvmori.moviesapp.view;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.Movie;
 import com.example.jvmori.moviesapp.viewModel.MovieViewModel;
 

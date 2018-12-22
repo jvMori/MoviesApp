@@ -1,7 +1,11 @@
-package com.example.jvmori.moviesapp.model;
+package com.example.jvmori.moviesapp.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
+
+import com.example.jvmori.moviesapp.model.Movie;
+import com.example.jvmori.moviesapp.model.MovieDao;
+import com.example.jvmori.moviesapp.model.MovieDatabase;
 
 import java.util.List;
 
