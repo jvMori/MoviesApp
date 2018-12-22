@@ -1,18 +1,11 @@
 package com.example.jvmori.moviesapp.model;
 
 import android.app.Application;
-
-import com.example.jvmori.moviesapp.util.DatabaseCallback;
+import android.os.AsyncTask;
 
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
-import io.reactivex.Completable;
-import io.reactivex.CompletableObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.schedulers.Schedulers;
 
 public class MovieRepository
 {
@@ -25,86 +18,56 @@ public class MovieRepository
         allMovies = movieDao.getAllMovies();
     }
 
-    public void Insert(final DatabaseCallback databaseCallback, final Movie movie){
-        Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                movieDao.insert(movie);
-            }
-        }).observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new CompletableObserver() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onComplete() {
-                databaseCallback.onMovieAdded();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                databaseCallback.onDataNotAvailable();
-            }
-        });
+    public void Insert(Movie movie){
+        new InsertAsyncTask(movieDao).execute(movie);
     }
 
-    public void Delete(final DatabaseCallback databaseCallback, final Movie movie){
-        Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                movieDao.delete(movie);
-            }
-        }).observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        databaseCallback.onMovieDeleted();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        databaseCallback.onDataNotAvailable();
-                    }
-                });
+    public void Delete( Movie movie){
+        new DeleteAsyncTask(movieDao).execute(movie);
     }
 
-    public void DeleteAll(final DatabaseCallback databaseCallback){
-        Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                movieDao.deleteAll();
-            }
-        }).observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        databaseCallback.onAllMoviesDeleted();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        databaseCallback.onDataNotAvailable();
-                    }
-                });
+    public void DeleteAll(){
+        new DeleteAllAsyncTask(movieDao).execute();
     }
 
     public LiveData<List<Movie>> getAllMovies(){
         return allMovies;
     }
+
+    private static class InsertAsyncTask extends AsyncTask<Movie, Void, Void>{
+        private MovieDao movieDao;
+        InsertAsyncTask(MovieDao movieDao){
+            this.movieDao = movieDao;
+        }
+        @Override
+        protected Void doInBackground(Movie... movies) {
+            movieDao.insert(movies[0]);
+            return null;
+        }
+    }
+    private static class DeleteAsyncTask extends AsyncTask<Movie, Void, Void>{
+        private MovieDao movieDao;
+        DeleteAsyncTask(MovieDao movieDao){
+            this.movieDao = movieDao;
+        }
+        @Override
+        protected Void doInBackground(Movie... movies) {
+            movieDao.delete(movies[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllAsyncTask extends AsyncTask<Void, Void, Void>{
+        private MovieDao movieDao;
+        DeleteAllAsyncTask(MovieDao movieDao){
+            this.movieDao = movieDao;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            movieDao.deleteAll();
+            return null;
+        }
+    }
+
 
 }
