@@ -2,6 +2,7 @@ package com.example.jvmori.moviesapp.model;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -18,5 +19,5 @@ public interface MovieDao
     void deleteAll();
 
     @Query("SELECT * FROM movie_table")
-    List<Movie> getAllMovies();
+    LiveData<List<Movie>> getAllMovies();
 }
