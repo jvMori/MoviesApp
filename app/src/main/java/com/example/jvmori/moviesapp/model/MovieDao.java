@@ -1,11 +1,10 @@
-package com.example.jvmori.moviesapp;
+package com.example.jvmori.moviesapp.model;
 
 import java.util.List;
 
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
 
 public interface MovieDao
 {

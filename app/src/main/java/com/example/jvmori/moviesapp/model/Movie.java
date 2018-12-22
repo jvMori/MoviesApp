@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp;
+package com.example.jvmori.moviesapp.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
