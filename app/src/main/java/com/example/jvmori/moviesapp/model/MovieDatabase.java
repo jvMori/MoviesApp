@@ -8,8 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {MovieDatabase.class}, version = 1)
-
+@Database(entities = {Movie.class}, version = 1)
 public abstract class MovieDatabase extends RoomDatabase {
 
     public static MovieDatabase instance;

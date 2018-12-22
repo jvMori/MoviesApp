@@ -18,15 +18,15 @@ public class MovieRepository
         allMovies = movieDao.getAllMovies();
     }
 
-    public void Insert(Movie movie){
+    public void insert(Movie movie){
         new InsertAsyncTask(movieDao).execute(movie);
     }
 
-    public void Delete( Movie movie){
+    public void delete(Movie movie){
         new DeleteAsyncTask(movieDao).execute(movie);
     }
 
-    public void DeleteAll(){
+    public void deleteAll(){
         new DeleteAllAsyncTask(movieDao).execute();
     }
 
