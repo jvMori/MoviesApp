@@ -74,13 +74,13 @@
         </LinearLayout>
 
 
-
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="225dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/round_outline"
             android:cropToPadding="false"
             android:elevation="@dimen/elevation"
@@ -122,7 +122,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="40dp"
-            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardBackgroundColor="@color/grayAccent"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
