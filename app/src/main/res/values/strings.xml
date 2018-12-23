@@ -2,5 +2,7 @@
     <string name="app_name">MoviesApp</string>
     <string name="title">My Title</string>
     <string name="year">2017</string>
+    <string name="category">Drama | Romance</string>
     <string name="rating">9.3</string>
+    <string name="review">Reviews 3500+</string>
 </resources>

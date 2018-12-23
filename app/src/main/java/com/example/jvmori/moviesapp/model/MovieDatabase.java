@@ -18,6 +18,7 @@ public abstract class MovieDatabase extends RoomDatabase {
         if (instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(), MovieDatabase.class, "movie_database")
                     .fallbackToDestructiveMigration()
+                    .addCallback(roomCallback)
                     .build();
         }
         return instance;
@@ -33,11 +34,9 @@ public abstract class MovieDatabase extends RoomDatabase {
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void>{
         private MovieDao movieDao;
-        Application application;
 
         private PopulateDbAsyncTask(MovieDatabase movieDatabase){
             movieDao = movieDatabase.movieDao();
-            this.application = application;
         }
         @Override
         protected Void doInBackground(Void... voids) {
@@ -49,7 +48,8 @@ public abstract class MovieDatabase extends RoomDatabase {
                     "Armie Hammer, Timothée Chalamet, Michael Stuhlbarg, Amira Casar",
                     "Call Me by Your Name is the story of a sudden and powerful romance that blossoms between an adolescent boy and a summer guest at his parents' cliffside mansion on the Italian Riviera. During the restless summer weeks, unrelenting but buried currents of obsession, fascination, and desire intensify their passion as they test the charged ground between them and verge toward the one thing both already fear they may never truly find again: total intimacy.",
                     "95%",
-                    "7.9"
+                    "7.9",
+                    "3899"
                     );
             movieDao.insert(exampleMovie);
             movieDao.insert(exampleMovie);

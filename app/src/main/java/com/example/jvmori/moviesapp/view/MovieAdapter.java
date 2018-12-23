@@ -3,6 +3,7 @@ package com.example.jvmori.moviesapp.view;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jvmori.moviesapp.R;
@@ -19,9 +20,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
 
     class MovieHolder extends RecyclerView.ViewHolder{
         private TextView title;
+        private ImageView icon;
+
         public MovieHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
+            icon = itemView.findViewById(R.id.icon);
         }
     }
 
@@ -35,6 +39,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
     @Override
     public void onBindViewHolder(MovieHolder holder, int position) {
         holder.title.setText(movies.get(position).getTitle());
+        holder.icon.setClipToOutline(true);
     }
 
     @Override

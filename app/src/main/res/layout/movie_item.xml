@@ -3,10 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginEnd="10dp"
+    app:cardBackgroundColor="@android:color/transparent"
     android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="20dp"
+    app:cardElevation="0dp"
+    android:background="@android:color/transparent"
     app:cardCornerRadius="10dp">
 
     <android.support.constraint.ConstraintLayout
@@ -18,45 +21,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_start"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:elevation="@dimen/elevation"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toBottomOf="@+id/year">
 
             <ImageView
                 android:id="@+id/ivStar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginEnd="@dimen/star_margin_end"
                 android:src="@drawable/ic_star" />
 
             <ImageView
                 android:id="@+id/ivStar2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginEnd="@dimen/star_margin_end"
                 android:src="@drawable/ic_star" />
 
             <ImageView
                 android:id="@+id/ivStar3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginEnd="@dimen/star_margin_end"
                 android:src="@drawable/ic_star" />
 
             <ImageView
                 android:id="@+id/ivStar4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginEnd="@dimen/star_margin_end"
                 android:src="@drawable/ic_star_half" />
 
             <ImageView
                 android:id="@+id/ivStar5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginEnd="@dimen/star_margin_end"
                 android:src="@drawable/ic_star_border" />
 
@@ -69,22 +72,22 @@
                 android:text="@string/rating"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
-                android:textSize="24sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
 
         <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:id="@+id/icon"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="15dp"
             android:background="@drawable/round_outline"
             android:cropToPadding="false"
             android:elevation="@dimen/elevation"
-            android:scaleType="center"
+            android:foreground="@drawable/gradient"
+            android:scaleType="centerCrop"
             android:src="@drawable/poster"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,12 +98,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_start"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:elevation="@dimen/elevation"
             android:text="@string/title"
             android:textColor="@color/textPrimary"
             android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toTopOf="@+id/cardView" />
 
         <TextView
@@ -113,23 +116,53 @@
             android:padding="2dp"
             android:text="@string/year"
             android:textColor="@color/textGrayed"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginTop="2dp"
+            android:elevation="@dimen/elevation"
+            android:padding="2dp"
+            android:text="@string/category"
+            android:textColor="@color/textGrayed"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/icon"
+            app:layout_constraintTop_toBottomOf="@+id/layoutStars" />
+
+        <TextView
+            android:id="@+id/review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginTop="2dp"
+            android:elevation="@dimen/elevation"
+            android:padding="2dp"
+            android:text="@string/review"
+            android:textColor="@color/textGrayed"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon"
+            app:layout_constraintTop_toBottomOf="@+id/category" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="40dp"
-            app:cardBackgroundColor="@color/grayAccent"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="0.0">
 
         </androidx.cardview.widget.CardView>
 

@@ -16,9 +16,11 @@ public class Movie
     private String actors;
     private String description;
     private String ratingRT;
-    private  String ratingImdb;
+    private String ratingImdb;
+    private String voteCount;
 
-    public Movie(String title, String year, String genre, String director, String actors, String description, String ratingRT, String ratingImdb) {
+
+    public Movie(String title, String year, String genre, String director, String actors, String description, String ratingRT, String ratingImdb, String voteCount) {
         this.title = title;
         //this.poster = poster;
         this.year = year;
@@ -28,6 +30,11 @@ public class Movie
         this.description = description;
         this.ratingRT = ratingRT;
         this.ratingImdb = ratingImdb;
+        this.voteCount = voteCount;
+
+    }
+    public String getVoteCount() {
+        return voteCount;
     }
 
     public void setId(int id) {
