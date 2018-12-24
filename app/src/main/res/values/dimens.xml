@@ -2,5 +2,5 @@
 <resources>
     <dimen name="elevation">5dp</dimen>
     <dimen name="star_margin_end">3dp</dimen>
-    <dimen name="margin_start">20dp</dimen>
+    <dimen name="margin_start">15dp</dimen>
 </resources>
