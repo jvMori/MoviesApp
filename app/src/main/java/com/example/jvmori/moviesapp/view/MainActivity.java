@@ -1,6 +1,7 @@
 package com.example.jvmori.moviesapp.view;
 
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.jvmori.moviesapp.R;
