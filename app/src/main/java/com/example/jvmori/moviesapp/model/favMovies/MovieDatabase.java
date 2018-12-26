@@ -1,6 +1,5 @@
-package com.example.jvmori.moviesapp.model;
+package com.example.jvmori.moviesapp.model.favMovies;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 import androidx.room.Database;

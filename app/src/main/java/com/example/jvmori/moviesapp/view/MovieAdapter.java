@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.Movie;
+import com.example.jvmori.moviesapp.model.favMovies.Movie;
 
 import java.util.ArrayList;
 import java.util.List;

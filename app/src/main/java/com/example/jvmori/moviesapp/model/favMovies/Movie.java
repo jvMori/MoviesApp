@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.model;
+package com.example.jvmori.moviesapp.model.favMovies;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

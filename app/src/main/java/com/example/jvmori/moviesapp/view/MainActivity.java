@@ -1,12 +1,13 @@
 package com.example.jvmori.moviesapp.view;
 
+import android.app.Application;
 import android.os.Bundle;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.Movie;
+import com.example.jvmori.moviesapp.model.favMovies.Movie;
+import com.example.jvmori.moviesapp.repository.PopularMoviesRepository;
 import com.example.jvmori.moviesapp.viewModel.MovieViewModel;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -39,5 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 movieAdapter.setMovies(movies);
             }
         });
+
+        PopularMoviesRepository repo = new PopularMoviesRepository(this.getApplication());
+        repo.getData();
     }
 }
