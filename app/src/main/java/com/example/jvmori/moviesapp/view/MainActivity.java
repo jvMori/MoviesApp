@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        PopularMoviesRepository repo = new PopularMoviesRepository(this.getApplication());
-        repo.getData();
+
+        PopularMoviesRepository.getInstance().getData();
     }
 }

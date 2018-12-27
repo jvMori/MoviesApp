@@ -1,9 +1,5 @@
 package com.example.jvmori.moviesapp.model.popularMovies;
-
-import android.graphics.Bitmap;
-
 import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class PopularItem
@@ -14,7 +10,7 @@ public class PopularItem
     private String title;
 
     @SerializedName(("poster_path"))
-    private Bitmap poster;
+    private String poster;
 
     @SerializedName(("release_date"))
     private String year;
@@ -36,7 +32,7 @@ public class PopularItem
         return title;
     }
 
-    public Bitmap getPoster() {
+    public String getPoster() {
         return poster;
     }
 
@@ -64,7 +60,7 @@ public class PopularItem
         this.title = title;
     }
 
-    public void setPoster(Bitmap poster) {
+    public void setPoster(String poster) {
         this.poster = poster;
     }
 
