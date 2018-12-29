@@ -23,9 +23,9 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 
         public PopularMovieHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.findViewById(R.id.title);
-            itemView.findViewById(R.id.year);
-            itemView.findViewById(R.id.rating);
+            title = itemView.findViewById(R.id.title);
+            year = itemView.findViewById(R.id.year);
+            rating = itemView.findViewById(R.id.rating);
         }
     }
 
