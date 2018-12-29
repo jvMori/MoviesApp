@@ -5,13 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.favMovies.Movie;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {

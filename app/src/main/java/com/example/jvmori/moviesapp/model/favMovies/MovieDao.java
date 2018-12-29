@@ -15,7 +15,7 @@ public interface MovieDao
     void insert(Movie movie);
 
     @Delete
-    void delete(Movie mOvie);
+    void delete(Movie movie);
 
     @Query("DELETE FROM movie_table")
     void deleteAll();

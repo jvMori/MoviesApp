@@ -20,20 +20,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PopularMoviesRepository
 {
-    private static PopularMoviesRepository instance;
     private MutableLiveData<List<PopularItem>> allPopularMovies;
-    public static synchronized PopularMoviesRepository getInstance(){
-        if (instance == null){
-            instance = new PopularMoviesRepository();
-        }
-        return instance;
-    }
 
-    public LiveData<List<PopularItem>> getAllPopularMovies() {
-        return allPopularMovies;
-    }
+    public LiveData<List<PopularItem>> getData(){
+        allPopularMovies = new MutableLiveData<>();
 
-    public void getData(){
         Map<String, String> parameters = new HashMap<>();
         parameters.put("api_key", Consts.api_key);
         parameters.put("sort_by", "popularity.desc");
@@ -45,6 +36,7 @@ public class PopularMoviesRepository
         TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
 
         Call<PopularMoviesJsonObj> callApi = tmdbApi.getPopularMovies(parameters);
+
         callApi.enqueue(new Callback<PopularMoviesJsonObj>() {
             @Override
             public void onResponse(Call<PopularMoviesJsonObj> call, Response<PopularMoviesJsonObj> response) {
@@ -52,7 +44,6 @@ public class PopularMoviesRepository
                     return;
                 }
                 assert response.body() != null;
-                allPopularMovies = new MutableLiveData<>();
                 allPopularMovies.setValue(response.body().getResults());
             }
 
@@ -61,5 +52,7 @@ public class PopularMoviesRepository
                 Log.i("ITEM", "Fail");
             }
         });
+
+        return allPopularMovies;
     }
 }

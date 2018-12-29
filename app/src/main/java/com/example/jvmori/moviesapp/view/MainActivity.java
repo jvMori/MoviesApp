@@ -5,8 +5,10 @@ import android.os.Bundle;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.favMovies.Movie;
+import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
 import com.example.jvmori.moviesapp.repository.PopularMoviesRepository;
 import com.example.jvmori.moviesapp.viewModel.MovieViewModel;
+import com.example.jvmori.moviesapp.viewModel.PopularMoviesViewModel;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -19,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MovieViewModel movieViewModel;
+    private PopularMoviesViewModel movieViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +32,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        final MovieAdapter movieAdapter = new MovieAdapter();
-        recyclerView.setAdapter(movieAdapter);
+        //final MovieAdapter movieAdapter = new MovieAdapter();
+        final PopularMovieAdapter popularMovieAdapter = new PopularMovieAdapter();
+        recyclerView.setAdapter(popularMovieAdapter);
 
-        movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
-        movieViewModel.getAllMovies().observe(this, new Observer<List<Movie>>() {
+        movieViewModel = ViewModelProviders.of(this).get(PopularMoviesViewModel.class);
+        movieViewModel.getAllPopularMovies().observe(this, new Observer<List<PopularItem>>() {
             @Override
-            public void onChanged(List<Movie> movies) {
-                movieAdapter.setMovies(movies);
+            public void onChanged(List<PopularItem> movies) {
+                if (movies == null)
+                    return;
+                popularMovieAdapter.setPopularMovies(movies);
             }
         });
 
 
-        PopularMoviesRepository.getInstance().getData();
+        //PopularMoviesRepository.getInstance().getData();
     }
 }
