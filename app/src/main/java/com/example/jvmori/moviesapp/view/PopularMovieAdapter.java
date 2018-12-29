@@ -42,20 +42,9 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
     public void onBindViewHolder(@NonNull PopularMovieHolder holder, int position) {
         PopularItem currentItem = popularMovies.get(position);
         String reviews = "Reviews: " + currentItem.getReviews();
-        List<String> txtGenres = new ArrayList<>();
         StringBuilder categories = new StringBuilder();
-        for (Genre genre: genres) {
-            for (int i = 0; i < currentItem.getCategories().size(); i++) {
-                if (currentItem.getCategories().get(i).equals(genre.getId()))
-                    txtGenres.add(genre.getName());
-            }
-        }
-        for (String txtGenre: txtGenres) {
-            categories.append(txtGenre);
-            if (!txtGenre.equals(txtGenres.get(txtGenres.size()-1)))
-                categories.append(" | ");
+        categoryTxtSetup(currentItem, categories);
 
-        }
         holder.title.setText(currentItem.getTitle());
         holder.year.setText(currentItem.getYear());
         holder.rating.setText(currentItem.getRating());
@@ -76,6 +65,21 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
     public void setPopularMovies(List<PopularItem> movies){
         popularMovies = movies;
         notifyDataSetChanged();
+    }
+
+    private void categoryTxtSetup(PopularItem currentItem, StringBuilder categories){
+        List<String> txtGenres = new ArrayList<>();
+        for (Genre genre: genres) {
+            for (int i = 0; i < currentItem.getCategories().size(); i++) {
+                if (currentItem.getCategories().get(i).equals(genre.getId()))
+                    txtGenres.add(genre.getName());
+            }
+        }
+        for (String txtGenre: txtGenres) {
+            categories.append(txtGenre);
+            if (!txtGenre.equals(txtGenres.get(txtGenres.size()-1)))
+                categories.append(" | ");
+        }
     }
 
 }
