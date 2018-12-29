@@ -1,6 +1,8 @@
 package com.example.jvmori.moviesapp.repository;
 
 import android.util.Log;
+
+import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
 import com.example.jvmori.moviesapp.model.popularMovies.PopularMoviesJsonObj;
 import com.example.jvmori.moviesapp.util.Consts;
@@ -36,7 +38,6 @@ public class PopularMoviesRepository
         TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
 
         Call<PopularMoviesJsonObj> callApi = tmdbApi.getPopularMovies(parameters);
-
         callApi.enqueue(new Callback<PopularMoviesJsonObj>() {
             @Override
             public void onResponse(Call<PopularMoviesJsonObj> call, Response<PopularMoviesJsonObj> response) {

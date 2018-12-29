@@ -1,6 +1,5 @@
 package com.example.jvmori.moviesapp.util;
-
-import com.example.jvmori.moviesapp.model.popularMovies.Genre;
+import com.example.jvmori.moviesapp.model.genre.GenreJsonObj;
 import com.example.jvmori.moviesapp.model.popularMovies.PopularMoviesJsonObj;
 import java.util.Map;
 
@@ -15,5 +14,5 @@ public interface TmdbApi
     Call<PopularMoviesJsonObj> getPopularMovies(@QueryMap Map<String, String> parameters);
 
     @GET("genre/movie/list")
-    Call<Genre> getGenres(@Query("api_key") String api_key);
+    Call<GenreJsonObj> getGenres(@Query("api_key") String api_key);
 }
