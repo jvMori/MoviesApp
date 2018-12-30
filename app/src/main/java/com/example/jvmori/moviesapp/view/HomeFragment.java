@@ -40,20 +40,20 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
+        setPopularMovieAdapter();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setPopularMovieAdapter();
         setGenreViewModel();
         setPopularMovieViewModel();
     }
 
     private void setPopularMovieAdapter(){
         final RecyclerView recyclerView = view.findViewById(R.id.movieRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
         popularMovieAdapter = new PopularMovieAdapter();
         recyclerView.setAdapter(popularMovieAdapter);
