@@ -1,20 +1,11 @@
 package com.example.jvmori.moviesapp.view;
-
-import android.app.Application;
 import android.os.Bundle;
-
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.favMovies.Movie;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
-import com.example.jvmori.moviesapp.repository.PopularMoviesRepository;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
-import com.example.jvmori.moviesapp.viewModel.MovieViewModel;
 import com.example.jvmori.moviesapp.viewModel.PopularMoviesViewModel;
-import com.google.gson.Gson;
-
 import java.util.List;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -23,23 +14,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private PopularMoviesViewModel movieViewModel;
-    private GenreViewModel genreViewModel;
+    private PopularMovieAdapter popularMovieAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setPopularMovieAdapter();
+        setGenreViewModel();
+        setPopularMovieViewModel();
+    }
+
+    private void setPopularMovieAdapter(){
         final RecyclerView recyclerView = findViewById(R.id.movieRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
-        //final MovieAdapter movieAdapter = new MovieAdapter();
-        final PopularMovieAdapter popularMovieAdapter = new PopularMovieAdapter();
+        popularMovieAdapter = new PopularMovieAdapter();
         recyclerView.setAdapter(popularMovieAdapter);
+    }
 
-        genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
+    private void setGenreViewModel(){
+        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
         genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
             @Override
             public void onChanged(List<Genre> genres) {
@@ -48,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 popularMovieAdapter.setGenres(genres);
             }
         });
+    }
 
-        movieViewModel = ViewModelProviders.of(this).get(PopularMoviesViewModel.class);
+    private void setPopularMovieViewModel(){
+        PopularMoviesViewModel movieViewModel = ViewModelProviders.of(this).get(PopularMoviesViewModel.class);
         movieViewModel.getAllPopularMovies().observe(this, new Observer<List<PopularItem>>() {
             @Override
             public void onChanged(List<PopularItem> movies) {
