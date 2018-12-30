@@ -3,5 +3,11 @@
     <item android:id="@+id/destination_home"
         android:title="@string/home"
         android:icon="@drawable/ic_home"/>
+    <item android:id="@+id/destination_discover"
+        android:title="@string/discover"
+        android:icon="@drawable/ic_visibility"/>
+    <item android:id="@+id/destination_profile"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_person"/>
 
 </menu>
