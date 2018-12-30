@@ -9,11 +9,14 @@ import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import jp.wasabeef.picasso.transformations.ColorFilterTransformation;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapter.PopularMovieHolder>
 {
@@ -56,6 +59,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         holder.rating.setText(currentItem.getRating());
         holder.reviews.setText(reviews);
         holder.categories.setText(categories.toString());
+        holder.poster.setClipToOutline(true);
         loadImage(holder.poster, Consts.base_poster_url + currentItem.getPoster());
     }
 
