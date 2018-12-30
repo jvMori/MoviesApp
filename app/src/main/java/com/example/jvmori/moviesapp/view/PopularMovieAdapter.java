@@ -2,10 +2,14 @@ package com.example.jvmori.moviesapp.view;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
+import com.example.jvmori.moviesapp.util.Consts;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.NonNull;
@@ -19,6 +23,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 
     public class PopularMovieHolder extends RecyclerView.ViewHolder {
         TextView title, year, rating, reviews, categories;
+        ImageView poster;
 
         public PopularMovieHolder(@NonNull View itemView) {
             super(itemView);
@@ -27,6 +32,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
             rating = itemView.findViewById(R.id.rating);
             reviews = itemView.findViewById(R.id.review);
             categories = itemView.findViewById(R.id.category);
+            poster = itemView.findViewById(R.id.icon);
         }
     }
 
@@ -50,7 +56,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         holder.rating.setText(currentItem.getRating());
         holder.reviews.setText(reviews);
         holder.categories.setText(categories.toString());
-
+        loadImage(holder.poster, Consts.base_poster_url + currentItem.getPoster());
     }
 
     @Override
@@ -80,6 +86,13 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
             if (!txtGenre.equals(txtGenres.get(txtGenres.size()-1)))
                 categories.append(" | ");
         }
+    }
+
+    private static void loadImage(ImageView view, String imageUrl) {
+        Picasso.get()
+                .load(imageUrl)
+                .placeholder(R.drawable.rounded_bg)
+                .into(view);
     }
 
 }
