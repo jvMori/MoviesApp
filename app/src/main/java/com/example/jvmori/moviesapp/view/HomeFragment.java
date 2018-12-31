@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
@@ -30,6 +31,8 @@ public class HomeFragment extends Fragment {
 
     private View view;
     private PopularMovieAdapter popularMovieAdapter;
+    private RelativeLayout loadingScreen;
+    private RecyclerView recyclerView;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -40,6 +43,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
+        loadingScreen = view.findViewById(R.id.loadingPanel);
         setPopularMovieAdapter();
         return view;
     }
@@ -52,7 +56,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setPopularMovieAdapter(){
-        final RecyclerView recyclerView = view.findViewById(R.id.movieRecyclerView);
+        recyclerView = view.findViewById(R.id.movieRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
         popularMovieAdapter = new PopularMovieAdapter();
@@ -79,6 +83,8 @@ public class HomeFragment extends Fragment {
                 if (movies == null)
                     return;
                 popularMovieAdapter.setPopularMovies(movies);
+                loadingScreen.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
             }
         });
     }
