@@ -3,6 +3,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
@@ -18,11 +20,12 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 {
     private List<PopularItem> popularMovies = new ArrayList<>();
     private List<Genre> genres = new ArrayList<>();
-
+    View item;
 
     public class PopularMovieHolder extends RecyclerView.ViewHolder {
         TextView title, year, rating, reviews, categories;
         ImageView poster;
+        LinearLayout starsLayout;
 
         public PopularMovieHolder(@NonNull View itemView) {
             super(itemView);
@@ -32,13 +35,14 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
             reviews = itemView.findViewById(R.id.review);
             categories = itemView.findViewById(R.id.category);
             poster = itemView.findViewById(R.id.icon);
+            starsLayout = itemView.findViewById(R.id.layoutStars);
         }
     }
 
     @NonNull
     @Override
     public PopularMovieHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent, false);
+        item = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent, false);
         return new PopularMovieHolder(item);
     }
 
@@ -56,6 +60,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         holder.categories.setText(categories.toString());
         holder.poster.setClipToOutline(true);
         loadImage(holder.poster, Consts.base_poster_url + currentItem.getPoster());
+        setupStars(holder, currentItem);
     }
 
     @Override
@@ -92,6 +97,40 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
                 .load(imageUrl)
                 .placeholder(R.drawable.rounded_bg)
                 .into(view);
+    }
+
+    private void setupStars(PopularMovieHolder holder, PopularItem currentItem) {
+        float rating = Float.parseFloat(currentItem.getRating()) / 2;
+        double starsCount = Math.floor(rating);
+        double halfStar = rating - starsCount;
+        if (holder.starsLayout.getChildCount() <= 0 ){
+            for (int i = 0; i < starsCount; i++) {
+                ImageView imageView = new ImageView(item.getContext());
+                imageView.setImageResource(R.drawable.ic_star);
+                setParamsAndAddToView(imageView, holder);
+            }
+            if (halfStar >= 0.5){
+                ImageView imageView = new ImageView(item.getContext());
+                imageView.setImageResource(R.drawable.ic_star_half);
+                setParamsAndAddToView(imageView, holder);
+                starsCount++;
+            }
+            if (starsCount < Consts.number_of_stars){
+                double diff = Consts.number_of_stars - starsCount;
+                for (int i = 0; i < diff; i++) {
+                    ImageView imageView = new ImageView(item.getContext());
+                    imageView.setImageResource(R.drawable.ic_star_border);
+                    setParamsAndAddToView(imageView, holder);
+                }
+            }
+        }
+    }
+
+    private void setParamsAndAddToView(ImageView imageView, PopularMovieHolder holder){
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(70, 70);
+        lp.setMarginEnd(3);
+        imageView.setLayoutParams(lp);
+        holder.starsLayout.addView(imageView);
     }
 
 }

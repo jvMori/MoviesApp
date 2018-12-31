@@ -44,7 +44,7 @@
             android:textColor="@color/textGrayed"
             android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/icon"
-            app:layout_constraintTop_toBottomOf="@+id/layoutStars" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutStarsOutside" />
 
         <TextView
             android:id="@+id/title"
@@ -79,7 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/category" />
 
         <LinearLayout
-            android:id="@+id/layoutStars"
+            android:id="@+id/layoutStarsOutside"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_start"
@@ -89,41 +89,17 @@
             app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toBottomOf="@+id/year">
 
-            <ImageView
-                android:id="@+id/ivStar"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="@dimen/star_margin_end"
-                android:src="@drawable/ic_star" />
+            <LinearLayout
+                android:id="@+id/layoutStars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/elevation"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/icon"
+                app:layout_constraintTop_toBottomOf="@+id/year">
 
-            <ImageView
-                android:id="@+id/ivStar2"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="@dimen/star_margin_end"
-                android:src="@drawable/ic_star" />
-
-            <ImageView
-                android:id="@+id/ivStar3"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="@dimen/star_margin_end"
-                android:src="@drawable/ic_star" />
-
-            <ImageView
-                android:id="@+id/ivStar4"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="@dimen/star_margin_end"
-                android:src="@drawable/ic_star_half" />
-
-            <ImageView
-                android:id="@+id/ivStar5"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="@dimen/star_margin_end"
-                android:src="@drawable/ic_star_border" />
-
+            </LinearLayout>
             <TextView
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
@@ -135,7 +111,9 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="17sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
+
 
         <TextView
             android:id="@+id/year"
@@ -149,7 +127,8 @@
             android:textColor="@color/textGrayed"
             android:textSize="9sp"
             app:layout_constraintStart_toEndOf="@+id/icon"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title"
+           />
 
         <ImageView
             android:id="@+id/heart"
