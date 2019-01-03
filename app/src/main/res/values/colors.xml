@@ -3,9 +3,9 @@
     <color name="colorPrimary">#352F3A</color>
     <color name="colorPrimaryDark">#1E1923</color>
     <color name="colorAccent">#E5AB3A</color>
-    <color name="redAccent">#DE3C4B</color>
+    <color name="redAccent">#de3c4b</color>
     <color name="redAccentTransparent">#80DE3C4B</color>
     <color name="grayAccent">#656256</color>
     <color name="textPrimary">#E4E8F4</color>
-    <color name="textGrayed">#BFBEC8</color>
+    <color name="textGrayed">#bfbec8</color>
 </resources>

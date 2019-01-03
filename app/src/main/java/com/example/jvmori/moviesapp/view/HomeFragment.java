@@ -22,6 +22,7 @@ import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import com.example.jvmori.moviesapp.viewModel.PopularMoviesViewModel;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class HomeFragment extends Fragment {
     private View view;
     private PopularItemsAdapter popularItemsAdapter;
     private ViewPager viewPager;
+    TabLayout tabLayout;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -44,6 +46,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager = view.findViewById(R.id.popularItemViewPager);
+        tabLayout = view.findViewById(R.id.tabLayout);
         return view;
     }
 
@@ -52,5 +55,6 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         popularItemsAdapter = new PopularItemsAdapter(this.getFragmentManager());
         viewPager.setAdapter(popularItemsAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

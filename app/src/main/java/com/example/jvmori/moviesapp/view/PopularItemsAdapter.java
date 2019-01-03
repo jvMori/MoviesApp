@@ -1,12 +1,13 @@
 package com.example.jvmori.moviesapp.view;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 public class PopularItemsAdapter extends FragmentPagerAdapter {
-    private static int COUNT = 2;
 
+    private String tabTitles[] = new String[] { "Movies", "TV Shows"};
     public PopularItemsAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -24,6 +25,12 @@ public class PopularItemsAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return COUNT;
+        return 2;
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return tabTitles[position];
     }
 }
