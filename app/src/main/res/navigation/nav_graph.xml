@@ -21,10 +21,24 @@
         android:id="@+id/destination_discover"
         android:name="com.example.jvmori.moviesapp.view.DiscoverFragment"
         android:label="fragment_discover"
-        tools:layout="@layout/fragment_discover" />
+        tools:layout="@layout/fragment_discover" >
+        <action
+            android:id="@+id/destination_discover_to_destination_home"
+            app:destination="@id/destination_home" />
+        <action
+            android:id="@+id/action_destination_discover_to_destination_profile"
+            app:destination="@id/destination_profile" />
+    </fragment>
     <fragment
         android:id="@+id/destination_profile"
         android:name="com.example.jvmori.moviesapp.view.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_destination_profile_to_destination_home"
+            app:destination="@id/destination_home" />
+        <action
+            android:id="@+id/action_destination_profile_to_destination_discover"
+            app:destination="@id/destination_discover" />
+    </fragment>
 </navigation>

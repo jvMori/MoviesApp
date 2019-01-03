@@ -54,6 +54,8 @@ public class PopularMovieFragment extends Fragment {
         setPopularMovieViewModel();
     }
 
+
+
     private void setPopularMovieAdapter(){
         recyclerView = view.findViewById(R.id.movieRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

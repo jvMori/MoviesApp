@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        popularItemsAdapter = new PopularItemsAdapter(this.getFragmentManager());
+        popularItemsAdapter = new PopularItemsAdapter(this.getChildFragmentManager());
         viewPager.setAdapter(popularItemsAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
