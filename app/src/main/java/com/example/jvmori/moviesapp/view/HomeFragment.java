@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,9 +31,8 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private View view;
-    private PopularMovieAdapter popularMovieAdapter;
-    private RelativeLayout loadingScreen;
-    private RecyclerView recyclerView;
+    private PopularItemsAdapter popularItemsAdapter;
+    private ViewPager viewPager;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -43,49 +43,14 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
-        loadingScreen = view.findViewById(R.id.loadingPanel);
-        setPopularMovieAdapter();
+        viewPager = view.findViewById(R.id.popularItemViewPager);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setGenreViewModel();
-        setPopularMovieViewModel();
-    }
-
-    private void setPopularMovieAdapter(){
-        recyclerView = view.findViewById(R.id.movieRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setHasFixedSize(true);
-        popularMovieAdapter = new PopularMovieAdapter();
-        recyclerView.setAdapter(popularMovieAdapter);
-    }
-
-    private void setGenreViewModel(){
-        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
-        genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
-            @Override
-            public void onChanged(List<Genre> genres) {
-                if (genres == null)
-                    return;
-                popularMovieAdapter.setGenres(genres);
-            }
-        });
-    }
-
-    private void setPopularMovieViewModel(){
-        PopularMoviesViewModel movieViewModel = ViewModelProviders.of(this).get(PopularMoviesViewModel.class);
-        movieViewModel.getAllPopularMovies().observe(this, new Observer<List<PopularItem>>() {
-            @Override
-            public void onChanged(List<PopularItem> movies) {
-                if (movies == null)
-                    return;
-                popularMovieAdapter.setPopularMovies(movies);
-                loadingScreen.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
-            }
-        });
+        popularItemsAdapter = new PopularItemsAdapter(this.getFragmentManager());
+        viewPager.setAdapter(popularItemsAdapter);
     }
 }
