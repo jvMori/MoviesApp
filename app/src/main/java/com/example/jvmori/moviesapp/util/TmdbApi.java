@@ -1,6 +1,7 @@
 package com.example.jvmori.moviesapp.util;
 import com.example.jvmori.moviesapp.model.genre.GenreJsonObj;
 import com.example.jvmori.moviesapp.model.popularMovies.PopularMoviesJsonObj;
+
 import java.util.Map;
 
 import retrofit2.Call;
@@ -15,4 +16,7 @@ public interface TmdbApi
 
     @GET("genre/movie/list")
     Call<GenreJsonObj> getGenres(@Query("api_key") String api_key);
+
+    @GET("discover/tv")
+    Call<PopularMoviesJsonObj> getPopularShows(@QueryMap Map<String, String> parameters);
 }

@@ -4,7 +4,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
@@ -18,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapter.PopularMovieHolder>
 {
-    private List<PopularItem> popularMovies = new ArrayList<>();
+    private List<PopularItem> popularItems = new ArrayList<>();
     private List<Genre> genres = new ArrayList<>();
     View item;
 
@@ -48,7 +47,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PopularMovieHolder holder, int position) {
-        PopularItem currentItem = popularMovies.get(position);
+        PopularItem currentItem = popularItems.get(position);
         String reviews = "Reviews: " + currentItem.getReviews();
         StringBuilder categories = new StringBuilder();
         categoryTxtSetup(currentItem, categories);
@@ -65,15 +64,15 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 
     @Override
     public int getItemCount() {
-        return popularMovies.size();
+        return popularItems.size();
     }
 
     public void setGenres(List<Genre> genres){
         this.genres = genres;
     }
 
-    public void setPopularMovies(List<PopularItem> movies){
-        popularMovies = movies;
+    public void setPopularItems(List<PopularItem> movies){
+        popularItems = movies;
         notifyDataSetChanged();
     }
 

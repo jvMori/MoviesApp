@@ -7,12 +7,13 @@ public class PopularItem
     @SerializedName("id")
     private String tmdbId;
 
+    @SerializedName(value="title", alternate = "name")
     private String title;
 
     @SerializedName(("poster_path"))
     private String poster;
 
-    @SerializedName(("release_date"))
+    @SerializedName(value = "release_date", alternate = "first_air_date")
     private String year;
 
     @SerializedName(("vote_average"))

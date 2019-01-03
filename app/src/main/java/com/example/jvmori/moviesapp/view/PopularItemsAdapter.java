@@ -18,7 +18,7 @@ public class PopularItemsAdapter extends FragmentPagerAdapter {
         switch (position){
             case 0: fragment = new PopularMovieFragment();
             break;
-            case 1: fragment = new PopularMovieFragment();
+            case 1: fragment = new PopularShowFragment();
         }
         return fragment;
     }

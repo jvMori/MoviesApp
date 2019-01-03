@@ -71,6 +71,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_destination_profile_to_destination_discover">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_destination_profile_to_destination_home">
                               <value>
                                 <LayoutPositions />

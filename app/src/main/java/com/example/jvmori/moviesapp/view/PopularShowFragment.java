@@ -1,16 +1,6 @@
 package com.example.jvmori.moviesapp.view;
 
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,21 +10,26 @@ import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
-import com.example.jvmori.moviesapp.viewModel.PopularMoviesViewModel;
+import com.example.jvmori.moviesapp.viewModel.PopularShowsViewModel;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class PopularMovieFragment extends Fragment {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class PopularShowFragment extends Fragment {
 
     private View view;
     private PopularMovieAdapter popularMovieAdapter;
     private RelativeLayout loadingScreen;
     private RecyclerView recyclerView;
 
-    public PopularMovieFragment() {
+    public PopularShowFragment() {
         // Required empty public constructor
     }
 
@@ -51,7 +46,7 @@ public class PopularMovieFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setGenreViewModel();
-        setPopularMovieViewModel();
+        setPopularShowViewModel();
     }
 
     private void setPopularMovieAdapter(){
@@ -74,9 +69,9 @@ public class PopularMovieFragment extends Fragment {
         });
     }
 
-    private void setPopularMovieViewModel(){
-        PopularMoviesViewModel movieViewModel = ViewModelProviders.of(this).get(PopularMoviesViewModel.class);
-        movieViewModel.getAllPopularMovies().observe(this, new Observer<List<PopularItem>>() {
+    private void setPopularShowViewModel(){
+        PopularShowsViewModel showsViewModel = ViewModelProviders.of(this).get(PopularShowsViewModel.class);
+        showsViewModel.getAllPopularShows().observe(this, new Observer<List<PopularItem>>() {
             @Override
             public void onChanged(List<PopularItem> movies) {
                 if (movies == null)
@@ -87,5 +82,4 @@ public class PopularMovieFragment extends Fragment {
             }
         });
     }
-
 }
