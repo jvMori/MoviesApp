@@ -12,14 +12,14 @@ import androidx.room.Query;
 public interface MovieDao
 {
     @Insert
-    void insert(Movie movie);
+    void insert(FavMovie favMovie);
 
     @Delete
-    void delete(Movie movie);
+    void delete(FavMovie favMovie);
 
-    @Query("DELETE FROM movie_table")
+    @Query("DELETE FROM FavMovie")
     void deleteAll();
 
-    @Query("SELECT * FROM movie_table")
-    LiveData<List<Movie>> getAllMovies();
+    @Query("SELECT * FROM FavMovie")
+    LiveData<List<FavMovie>> getAllMovies();
 }

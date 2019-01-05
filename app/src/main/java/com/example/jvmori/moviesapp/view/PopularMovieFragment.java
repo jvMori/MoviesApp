@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
-import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
+import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import com.example.jvmori.moviesapp.viewModel.PopularMoviesViewModel;
 
@@ -76,12 +76,12 @@ public class PopularMovieFragment extends Fragment {
 
     private void setPopularMovieViewModel(){
         PopularMoviesViewModel movieViewModel = ViewModelProviders.of(this).get(PopularMoviesViewModel.class);
-        movieViewModel.getAllPopularMovies().observe(this, new Observer<List<PopularItem>>() {
+        movieViewModel.getAllPopularMovies().observe(this, new Observer<List<MovieItem>>() {
             @Override
-            public void onChanged(List<PopularItem> movies) {
+            public void onChanged(List<MovieItem> movies) {
                 if (movies == null)
                     return;
-                popularMovieAdapter.setPopularItems(movies);
+                popularMovieAdapter.setMovieItems(movies);
                 loadingScreen.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
             }

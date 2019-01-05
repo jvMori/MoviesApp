@@ -2,7 +2,7 @@ package com.example.jvmori.moviesapp.model.popularMovies;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
-public class PopularItem
+public class MovieItem
 {
     @SerializedName("id")
     private String tmdbId;

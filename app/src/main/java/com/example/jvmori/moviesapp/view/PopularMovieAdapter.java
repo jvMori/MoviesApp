@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
-import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
+import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapter.PopularMovieHolder>
 {
-    private List<PopularItem> popularItems = new ArrayList<>();
+    private List<MovieItem> movieItems = new ArrayList<>();
     private List<Genre> genres = new ArrayList<>();
     View item;
 
@@ -47,7 +47,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PopularMovieHolder holder, int position) {
-        PopularItem currentItem = popularItems.get(position);
+        MovieItem currentItem = movieItems.get(position);
         String reviews = "Reviews: " + currentItem.getReviews();
         StringBuilder categories = new StringBuilder();
         categoryTxtSetup(currentItem, categories);
@@ -64,19 +64,19 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 
     @Override
     public int getItemCount() {
-        return popularItems.size();
+        return movieItems.size();
     }
 
     public void setGenres(List<Genre> genres){
         this.genres = genres;
     }
 
-    public void setPopularItems(List<PopularItem> movies){
-        popularItems = movies;
+    public void setMovieItems(List<MovieItem> movies){
+        movieItems = movies;
         notifyDataSetChanged();
     }
 
-    private void categoryTxtSetup(PopularItem currentItem, StringBuilder categories){
+    private void categoryTxtSetup(MovieItem currentItem, StringBuilder categories){
         List<String> txtGenres = new ArrayList<>();
         for (Genre genre: genres) {
             for (int i = 0; i < currentItem.getCategories().size(); i++) {
@@ -98,7 +98,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
                 .into(view);
     }
 
-    private void setupStars(PopularMovieHolder holder, PopularItem currentItem) {
+    private void setupStars(PopularMovieHolder holder, MovieItem currentItem) {
         float rating = Float.parseFloat(currentItem.getRating()) / 2;
         double starsCount = Math.floor(rating);
         double halfStar = rating - starsCount;

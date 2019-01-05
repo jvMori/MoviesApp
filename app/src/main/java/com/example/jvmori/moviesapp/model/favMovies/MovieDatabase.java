@@ -2,12 +2,13 @@ package com.example.jvmori.moviesapp.model.favMovies;
 
 import android.content.Context;
 import android.os.AsyncTask;
+
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Movie.class}, version = 1)
+@Database(entities = {FavMovie.class}, version = 1)
 public abstract class MovieDatabase extends RoomDatabase {
 
     public static MovieDatabase instance;
@@ -39,7 +40,7 @@ public abstract class MovieDatabase extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            Movie exampleMovie = new Movie(
+            FavMovie exampleFavMovie = new FavMovie(
                     "Call Me by Your Name",
                     "2017",
                     "Drama, Romance",
@@ -50,8 +51,8 @@ public abstract class MovieDatabase extends RoomDatabase {
                     "7.9",
                     "3899"
                     );
-            movieDao.insert(exampleMovie);
-            movieDao.insert(exampleMovie);
+            movieDao.insert(exampleFavMovie);
+            movieDao.insert(exampleFavMovie);
             return null;
         }
     }

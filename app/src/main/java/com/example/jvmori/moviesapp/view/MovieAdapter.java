@@ -6,14 +6,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.favMovies.Movie;
+import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
+
 import java.util.ArrayList;
 import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
 
-    private List<Movie> movies = new ArrayList<>();
+    private List<FavMovie> favMovies = new ArrayList<>();
 
     class MovieHolder extends RecyclerView.ViewHolder{
         private TextView title;
@@ -35,17 +36,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
 
     @Override
     public void onBindViewHolder(MovieHolder holder, int position) {
-        holder.title.setText(movies.get(position).getTitle());
+        holder.title.setText(favMovies.get(position).getTitle());
         holder.icon.setClipToOutline(true);
     }
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return favMovies.size();
     }
 
-    public void setMovies(List<Movie> movies ){
-        this.movies = movies;
+    public void setFavMovies(List<FavMovie> favMovies){
+        this.favMovies = favMovies;
         notifyDataSetChanged();
     }
 }

@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "movie_table")
-public class Movie
+public class FavMovie
 {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -20,7 +20,7 @@ public class Movie
     private String voteCount;
 
 
-    public Movie(String title, String year, String genre, String director, String actors, String description, String ratingRT, String ratingImdb, String voteCount) {
+    public FavMovie(String title, String year, String genre, String director, String actors, String description, String ratingRT, String ratingImdb, String voteCount) {
         this.title = title;
         //this.poster = poster;
         this.year = year;

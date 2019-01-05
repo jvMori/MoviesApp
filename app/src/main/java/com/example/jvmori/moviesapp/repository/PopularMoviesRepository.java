@@ -2,8 +2,8 @@ package com.example.jvmori.moviesapp.repository;
 
 import android.util.Log;
 
-import com.example.jvmori.moviesapp.model.popularMovies.PopularItem;
-import com.example.jvmori.moviesapp.model.popularMovies.PopularMoviesJsonObj;
+import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.popularMovies.MovieJsonObj;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.TmdbApi;
 
@@ -21,9 +21,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PopularMoviesRepository
 {
-    private MutableLiveData<List<PopularItem>> allPopularMovies;
+    private MutableLiveData<List<MovieItem>> allPopularMovies;
 
-    public LiveData<List<PopularItem>> getData(){
+    public LiveData<List<MovieItem>> getData(){
         allPopularMovies = new MutableLiveData<>();
 
         Map<String, String> parameters = new HashMap<>();
@@ -36,10 +36,10 @@ public class PopularMoviesRepository
                 .build();
         TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
 
-        Call<PopularMoviesJsonObj> callApi = tmdbApi.getPopularMovies(parameters);
-        callApi.enqueue(new Callback<PopularMoviesJsonObj>() {
+        Call<MovieJsonObj> callApi = tmdbApi.getPopularMovies(parameters);
+        callApi.enqueue(new Callback<MovieJsonObj>() {
             @Override
-            public void onResponse(Call<PopularMoviesJsonObj> call, Response<PopularMoviesJsonObj> response) {
+            public void onResponse(Call<MovieJsonObj> call, Response<MovieJsonObj> response) {
                 if (!response.isSuccessful()){
                     return;
                 }
@@ -48,7 +48,7 @@ public class PopularMoviesRepository
             }
 
             @Override
-            public void onFailure(Call<PopularMoviesJsonObj> call, Throwable t) {
+            public void onFailure(Call<MovieJsonObj> call, Throwable t) {
                 Log.i("ITEM", "Fail");
             }
         });
