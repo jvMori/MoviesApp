@@ -11,12 +11,12 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 
-public class MovieRepository
+public class FavMovieRepository
 {
     private MovieDao movieDao;
     private LiveData<List<FavMovie>> allMovies;
 
-    public MovieRepository(Application application){
+    public FavMovieRepository(Application application){
         MovieDatabase movieDatabase = MovieDatabase.getInstance(application);
         movieDao = movieDatabase.movieDao();
         allMovies = movieDao.getAllMovies();

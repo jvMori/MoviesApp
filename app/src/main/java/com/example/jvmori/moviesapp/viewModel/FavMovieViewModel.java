@@ -3,20 +3,20 @@ package com.example.jvmori.moviesapp.viewModel;
 import android.app.Application;
 
 import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
-import com.example.jvmori.moviesapp.repository.MovieRepository;
+import com.example.jvmori.moviesapp.repository.FavMovieRepository;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-public class MovieViewModel extends AndroidViewModel {
-    private MovieRepository repository;
+public class FavMovieViewModel extends AndroidViewModel {
+    private FavMovieRepository repository;
     private LiveData<List<FavMovie>> allMovies;
 
-    public MovieViewModel(@NonNull Application application) {
+    public FavMovieViewModel(@NonNull Application application) {
         super(application);
-        repository = new MovieRepository(application);
+        repository = new FavMovieRepository(application);
         allMovies = repository.getAllMovies();
     }
 
