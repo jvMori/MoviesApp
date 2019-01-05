@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.view;
+package com.example.jvmori.moviesapp.view.fragments;
 
 
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jvmori.moviesapp.R;
+import com.example.jvmori.moviesapp.view.adapters.PopularItemsAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 /**

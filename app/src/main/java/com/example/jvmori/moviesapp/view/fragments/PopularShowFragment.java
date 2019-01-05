@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.view;
+package com.example.jvmori.moviesapp.view.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import com.example.jvmori.moviesapp.viewModel.PopularShowsViewModel;
 

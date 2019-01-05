@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.view;
+package com.example.jvmori.moviesapp.view.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

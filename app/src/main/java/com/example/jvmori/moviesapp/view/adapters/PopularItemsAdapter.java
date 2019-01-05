@@ -1,4 +1,7 @@
-package com.example.jvmori.moviesapp.view;
+package com.example.jvmori.moviesapp.view.adapters;
+
+import com.example.jvmori.moviesapp.view.fragments.PopularMovieFragment;
+import com.example.jvmori.moviesapp.view.fragments.PopularShowFragment;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.view;
+package com.example.jvmori.moviesapp.view.fragments;
 
 
 import android.os.Bundle;
@@ -10,17 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.movie.Movie;
-import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieDetailsFragment extends Fragment {
-    private Movie movie;
-    private MovieItem movieItem;
+public class ProfileFragment extends Fragment {
 
-    public MovieDetailsFragment() {
+
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -29,7 +26,7 @@ public class MovieDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_details, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
 }
