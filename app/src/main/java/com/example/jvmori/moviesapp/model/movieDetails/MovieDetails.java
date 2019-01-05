@@ -32,9 +32,9 @@ public class MovieDetails
 
     private String overview;
 
-    private String runtime;
-
+    @SerializedName(value = "tagline", alternate = "homepage")
     private String tagline;
+
     public String getTmdbId() {
         return tmdbId;
     }
@@ -105,14 +105,6 @@ public class MovieDetails
 
     public void setOverview(String overview) {
         this.overview = overview;
-    }
-
-    public String getRuntime() {
-        return runtime;
-    }
-
-    public void setRuntime(String runtime) {
-        this.runtime = runtime;
     }
 
     public String getTagline() {
