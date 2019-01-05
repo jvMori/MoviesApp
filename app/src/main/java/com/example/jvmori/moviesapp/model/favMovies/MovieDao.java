@@ -17,9 +17,9 @@ public interface MovieDao
     @Delete
     void delete(FavMovie favMovie);
 
-    @Query("DELETE FROM FavMovie")
+    @Query("DELETE FROM movie_table")
     void deleteAll();
 
-    @Query("SELECT * FROM FavMovie")
+    @Query("SELECT * FROM movie_table")
     LiveData<List<FavMovie>> getAllMovies();
 }

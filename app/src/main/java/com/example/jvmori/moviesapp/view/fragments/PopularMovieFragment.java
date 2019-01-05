@@ -1,6 +1,7 @@
 package com.example.jvmori.moviesapp.view.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,8 @@ import android.widget.RelativeLayout;
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.util.Consts;
+import com.example.jvmori.moviesapp.view.activities.MovieDetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import com.example.jvmori.moviesapp.viewModel.PopularMoviesViewModel;
@@ -53,6 +56,15 @@ public class PopularMovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setGenreViewModel();
         setPopularMovieViewModel();
+
+        popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
+            @Override
+            public void onItemClicked(MovieItem movieItem) {
+                Intent intent = new Intent(getContext(), MovieDetailsActivity.class);
+                intent.putExtra(Consts.item_clicked_id, movieItem.getTmdbId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void setPopularMovieAdapter(){

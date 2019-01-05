@@ -19,6 +19,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 {
     private List<MovieItem> movieItems = new ArrayList<>();
     private List<Genre> genres = new ArrayList<>();
+    private OnItemClickedListener onItemClickedListener;
     View item;
 
     public class PopularMovieHolder extends RecyclerView.ViewHolder {
@@ -35,8 +36,27 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
             categories = itemView.findViewById(R.id.category);
             poster = itemView.findViewById(R.id.icon);
             starsLayout = itemView.findViewById(R.id.layoutStars);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (onItemClickedListener != null && position != RecyclerView.NO_POSITION)
+                        onItemClickedListener.onItemClicked(movieItems.get(position));
+                }
+            });
         }
+
     }
+
+    public interface OnItemClickedListener{
+        void onItemClicked(MovieItem movieItem);
+    }
+
+    public void setOnItemClickedListener(OnItemClickedListener onItemClickedListener){
+        this.onItemClickedListener = onItemClickedListener;
+    }
+
 
     @NonNull
     @Override

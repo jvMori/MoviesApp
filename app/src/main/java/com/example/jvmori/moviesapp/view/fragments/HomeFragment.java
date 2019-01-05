@@ -46,5 +46,7 @@ public class HomeFragment extends Fragment {
         popularItemsAdapter = new PopularItemsAdapter(this.getChildFragmentManager());
         viewPager.setAdapter(popularItemsAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+
     }
 }

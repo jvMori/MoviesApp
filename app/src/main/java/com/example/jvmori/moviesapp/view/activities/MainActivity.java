@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.view;
+package com.example.jvmori.moviesapp.view.activities;
 import android.os.Bundle;
 import com.example.jvmori.moviesapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

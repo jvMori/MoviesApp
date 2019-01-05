@@ -7,6 +7,24 @@ import java.util.List;
 
 public class MovieDetails
 {
+    @SerializedName("id")
+    private String tmdbId;
+
+    @SerializedName(value="title", alternate = "name")
+    private String title;
+
+    @SerializedName(("poster_path"))
+    private String poster;
+
+    @SerializedName(value = "release_date", alternate = "first_air_date")
+    private String year;
+
+    @SerializedName(("vote_average"))
+    private String rating;
+
+    @SerializedName(("vote_count"))
+    private String reviews;
+
     @SerializedName("backdrop_path")
     private String backdropUrl;
 
@@ -17,6 +35,53 @@ public class MovieDetails
     private String runtime;
 
     private String tagline;
+    public String getTmdbId() {
+        return tmdbId;
+    }
+
+    public void setTmdbId(String tmdbId) {
+        this.tmdbId = tmdbId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(String reviews) {
+        this.reviews = reviews;
+    }
 
     public String getBackdropUrl() {
         return backdropUrl;

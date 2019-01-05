@@ -1,16 +1,19 @@
-package com.example.jvmori.moviesapp.view;
+package com.example.jvmori.moviesapp.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.movie.Movie;
 import com.example.jvmori.moviesapp.model.movieDetails.Cast;
 import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.viewModel.CastViewModel;
 import com.example.jvmori.moviesapp.viewModel.MovieDetailsViewModel;
 import com.example.jvmori.moviesapp.viewModel.SimilarMoviesViewModel;
@@ -19,17 +22,19 @@ import java.util.List;
 
 public class MovieDetailsActivity extends AppCompatActivity {
     private Movie movie;
-    private MovieItem movieItem;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
         movie = new Movie();
-        setMovieDetailsViewModel(movieItem.getTmdbId());
-        setCastViewModel(movieItem.getTmdbId());
-        setSimilarMoviesViewModel(movieItem.getTmdbId());
+        Intent intent = getIntent();
+        if (intent.hasExtra(Consts.item_clicked_id)) {
+            String id = intent.getStringExtra(Consts.item_clicked_id);
+            setMovieDetailsViewModel(id);
+            setCastViewModel(id);
+            setSimilarMoviesViewModel(id);
+        }
     }
 
     private void setMovieDetailsViewModel(String movieId){

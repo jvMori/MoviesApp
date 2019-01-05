@@ -5,4 +5,5 @@ public class Consts {
     public static final String base_url = "https://api.themoviedb.org/3/";
     public static final String base_poster_url = "http://image.tmdb.org/t/p/w185/";
     public static final int number_of_stars = 5;
+    public static final String item_clicked_id = "ItemId";
 }
