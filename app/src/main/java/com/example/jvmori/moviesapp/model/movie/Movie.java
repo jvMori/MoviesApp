@@ -11,7 +11,7 @@ public class Movie
     private MovieDetails movieDetails;
     private List<Cast> cast;
     private List<MovieItem> similarMovies;
-    
+
     public MovieDetails getMovieDetails() {
         return movieDetails;
     }
