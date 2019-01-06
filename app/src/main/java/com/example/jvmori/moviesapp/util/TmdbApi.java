@@ -32,4 +32,7 @@ public interface TmdbApi
 
     @GET("movie/{id}/similar")
     Call<MovieJsonObj> getSimilarMovies(@Path ("id") String movieId, @Query("api_key") String api_key);
+
+    @GET("tv/{id}/recommendations")
+    Call<MovieJsonObj> getSimilarTvShows(@Path ("id") String movieId, @Query("api_key") String api_key);
 }

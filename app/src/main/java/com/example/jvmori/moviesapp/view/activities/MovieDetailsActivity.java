@@ -17,6 +17,7 @@ import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.viewModel.CastViewModel;
 import com.example.jvmori.moviesapp.viewModel.MovieDetailsViewModel;
 import com.example.jvmori.moviesapp.viewModel.SimilarMoviesViewModel;
+import com.example.jvmori.moviesapp.viewModel.SimilarShowsViewModel;
 
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
             setMovieDetailsViewModel(id);
             setCastViewModel(id);
             setSimilarMoviesViewModel(id);
+            if (movie.getSimilarMovies() == null)
+                setSimilarShowsViewModel(id);
         }
     }
 
@@ -64,6 +67,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
     private void setSimilarMoviesViewModel(String movieId){
         SimilarMoviesViewModel similarMoviesViewModel = ViewModelProviders.of(this).get(SimilarMoviesViewModel.class);
         similarMoviesViewModel.getAllSimilarMovies(movieId).observe(this, new Observer<List<MovieItem>>() {
+            @Override
+            public void onChanged(List<MovieItem> movieItems) {
+                movie.setSimilarMovies(movieItems);
+                //TODO: recycler view adapter
+                //TODO: loading screen disable
+            }
+        });
+    }
+
+    private void setSimilarShowsViewModel(String showId){
+        SimilarShowsViewModel similarShowsViewModel = ViewModelProviders.of(this).get(SimilarShowsViewModel.class);
+        similarShowsViewModel.getSimilarShows(showId).observe(this, new Observer<List<MovieItem>>() {
             @Override
             public void onChanged(List<MovieItem> movieItems) {
                 movie.setSimilarMovies(movieItems);

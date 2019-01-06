@@ -1,7 +1,5 @@
 package com.example.jvmori.moviesapp.repository;
 
-import android.util.Log;
-
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieJsonObj;
 import com.example.jvmori.moviesapp.util.Consts;
@@ -17,33 +15,33 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SimilarMoviesRepository
+public class SimilarShowsRepository
 {
-    private MutableLiveData<List<MovieItem>> similarMovies;
+    private MutableLiveData<List<MovieItem>> similarShows;
 
-    public LiveData<List<MovieItem>> getSimilarMovies(String movieId){
-        similarMovies = new MutableLiveData<>();
+    public LiveData<List<MovieItem>> getSimilarShows(String showId){
+        similarShows = new MutableLiveData<>();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Consts.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getSimilarMovies(movieId, Consts.api_key).enqueue(new Callback<MovieJsonObj>() {
+        tmdbApi.getSimilarTvShows(showId, Consts.api_key).enqueue(new Callback<MovieJsonObj>() {
             @Override
             public void onResponse(Call<MovieJsonObj> call, Response<MovieJsonObj> response) {
                 if (!response.isSuccessful())
                     return;
                 if(response.body() != null)
-                    similarMovies.setValue(response.body().getResults());
+                    similarShows.postValue(response.body().getResults());
             }
 
             @Override
             public void onFailure(Call<MovieJsonObj> call, Throwable t) {
-                Log.i("Fail", "Failed to download similar movies");
+
             }
         });
 
-        return similarMovies;
+        return similarShows;
     }
-
 }

@@ -8,19 +8,10 @@ import java.util.List;
 
 public class Movie
 {
-    private MovieItem movieItem;
     private MovieDetails movieDetails;
     private List<Cast> cast;
     private List<MovieItem> similarMovies;
-
-    public MovieItem getMovieItem() {
-        return movieItem;
-    }
-
-    public void setMovieItem(MovieItem movieItem) {
-        this.movieItem = movieItem;
-    }
-
+    
     public MovieDetails getMovieDetails() {
         return movieDetails;
     }

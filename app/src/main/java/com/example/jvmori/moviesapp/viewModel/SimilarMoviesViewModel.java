@@ -20,8 +20,8 @@ public class SimilarMoviesViewModel extends AndroidViewModel {
 
     public SimilarMoviesViewModel(@NonNull Application application) {
         super(application);
-        allSimilarMovies = new MediatorLiveData<>();
         similarMoviesRepository = new SimilarMoviesRepository();
+        allSimilarMovies = new MediatorLiveData<>();
     }
 
     public LiveData<List<MovieItem>> getAllSimilarMovies(String movieId){
@@ -33,4 +33,5 @@ public class SimilarMoviesViewModel extends AndroidViewModel {
         });
         return allSimilarMovies;
     }
+
 }
