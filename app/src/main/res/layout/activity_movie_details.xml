@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/backdropImg"
             android:layout_width="0dp"
-            android:layout_height="152dp"
+            android:layout_height="165dp"
             android:foreground="@drawable/gradient_no_round"
             android:scaleType="centerCrop"
             android:src="@drawable/backdrop"
