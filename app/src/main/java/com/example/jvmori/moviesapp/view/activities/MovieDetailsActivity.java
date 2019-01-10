@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,7 +57,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
             public void onChanged(MovieDetails movieDetails) {
                 movie.setMovieDetails(movieDetails);
                 setDetailViewUI();
-                //TODO: display data
                 //TODO: loading screen disable
             }
         });
@@ -124,8 +125,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 categoryTxt.append(" | ");
         }
         category.setText(categoryTxt);
-        tagline.setText(movie.getMovieDetails().getTagline());
+        tagline.setText(movie.getMovieDetails().getTagline()); //TODO: do something when tagline is empty
         overview.setText(movie.getMovieDetails().getOverview());
+
+    }
+
+    private void setCastAdapter(){
 
     }
 
