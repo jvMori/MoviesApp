@@ -18,7 +18,7 @@
             android:layout_height="165dp"
             android:foreground="@drawable/gradient_no_round"
             android:scaleType="centerCrop"
-            android:src="@drawable/backdrop"
+            android:src="@color/redAccent"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/poster" />
+            app:srcCompat="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -45,7 +45,6 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:gravity="bottom"
-            android:text="Call Me By Your Name"
             android:textColor="@color/textPrimary"
             android:textSize="23sp"
             android:textStyle="bold"
@@ -55,7 +54,7 @@
             app:layout_constraintTop_toTopOf="@+id/backdropImg" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/category"
             android:layout_width="262dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -64,6 +63,8 @@
             android:text="Romance | Drama"
             android:textColor="@color/textGrayed"
             android:textSize="15sp"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/posterImg"
@@ -88,7 +89,7 @@
         android:id="@+id/overviewLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/tagline"
@@ -107,7 +108,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="Elio Perlman is spending the summer with his family at their vacation home in Lombardy, Italy. When his father hires a handsome doctoral student, the curious 17-year-old finds himself developing a growing attraction to the young man."
             android:textAlignment="viewStart"
@@ -116,13 +117,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tagline" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/creditsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/title"
@@ -165,7 +167,7 @@
         android:id="@+id/similarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/titleSimilar"
