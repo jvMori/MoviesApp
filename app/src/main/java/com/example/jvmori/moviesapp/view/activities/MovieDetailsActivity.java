@@ -3,6 +3,8 @@ package com.example.jvmori.moviesapp.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +21,8 @@ import com.example.jvmori.moviesapp.model.movieDetails.Cast;
 import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
+import com.example.jvmori.moviesapp.util.LoadImage;
+import com.example.jvmori.moviesapp.view.adapters.CastAdapter;
 import com.example.jvmori.moviesapp.viewModel.CastViewModel;
 import com.example.jvmori.moviesapp.viewModel.MovieDetailsViewModel;
 import com.example.jvmori.moviesapp.viewModel.SimilarMoviesViewModel;
@@ -31,12 +35,14 @@ import java.util.List;
 
 public class MovieDetailsActivity extends AppCompatActivity {
     private Movie movie;
+    private CastAdapter castAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
         movie = new Movie();
+        setCastAdapter();
         Intent intent = getIntent();
         if (intent.hasExtra(Consts.item_clicked_id)) {
             String id = intent.getStringExtra(Consts.item_clicked_id);
@@ -68,6 +74,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Cast> casts) {
                 movie.setCast(casts);
+                castAdapter.setCastItems(casts);
                 //TODO: recycler view adapter
                 //TODO: loading screen disable
             }
@@ -98,12 +105,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private static void loadImage(ImageView view, String imageUrl) {
-        Picasso.get()
-                .load(imageUrl)
-                .placeholder(R.drawable.rounded_bg)
-                .into(view);
-    }
     private void setDetailViewUI(){
         ImageView backdrop = findViewById(R.id.backdropImg);
         ImageView posterImg = findViewById(R.id.posterImg);
@@ -112,8 +113,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
         TextView tagline = findViewById(R.id.tagline);
         TextView overview = findViewById(R.id.overview);
 
-        loadImage(backdrop, Consts.base_backdrop_url + movie.getMovieDetails().getBackdropUrl());
-        loadImage(posterImg, Consts.base_poster_url + movie.getMovieDetails().getPoster());
+        LoadImage.loadImage(backdrop, Consts.base_backdrop_url + movie.getMovieDetails().getBackdropUrl());
+        LoadImage.loadImage(posterImg, Consts.base_poster_url + movie.getMovieDetails().getPoster());
         titleTextView.setText(movie.getMovieDetails().getTitle());
 
         StringBuilder categoryTxt= new StringBuilder();
@@ -131,7 +132,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
     private void setCastAdapter(){
-
+        RecyclerView recyclerView = findViewById(R.id.creditsRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setHasFixedSize(true);
+        castAdapter = new CastAdapter();
+        recyclerView.setAdapter(castAdapter);
     }
 
 }

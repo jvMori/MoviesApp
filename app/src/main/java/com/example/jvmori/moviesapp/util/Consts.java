@@ -7,4 +7,5 @@ public class Consts {
     public static final String base_backdrop_url = "http://image.tmdb.org/t/p/w500/";
     public static final int number_of_stars = 5;
     public static final String item_clicked_id = "ItemId";
+    public static int cast_recyclerView_size = 10;
 }

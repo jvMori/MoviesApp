@@ -9,6 +9,7 @@ import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
+import com.example.jvmori.moviesapp.util.LoadImage;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         holder.reviews.setText(reviews);
         holder.categories.setText(categories.toString());
         holder.poster.setClipToOutline(true);
-        loadImage(holder.poster, Consts.base_poster_url + currentItem.getPoster());
+        LoadImage.loadImage(holder.poster, Consts.base_poster_url + currentItem.getPoster());
         setupStars(holder, currentItem);
     }
 
@@ -109,13 +110,6 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
             if (!txtGenre.equals(txtGenres.get(txtGenres.size()-1)))
                 categories.append(" | ");
         }
-    }
-
-    private static void loadImage(ImageView view, String imageUrl) {
-        Picasso.get()
-                .load(imageUrl)
-                .placeholder(R.drawable.rounded_bg)
-                .into(view);
     }
 
     private void setupStars(PopularMovieHolder holder, MovieItem currentItem) {
