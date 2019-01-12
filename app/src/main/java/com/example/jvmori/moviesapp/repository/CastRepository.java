@@ -21,7 +21,7 @@ public class CastRepository
 {
     private MutableLiveData<List<Cast>> allCasts;
 
-    public LiveData<List<Cast>> getAllCasts(String movieId){
+    public LiveData<List<Cast>> getAllCasts(String type, String movieId){
         allCasts = new MutableLiveData<>();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -30,7 +30,7 @@ public class CastRepository
                 .build();
 
         TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getCredits(Consts.movie, movieId, Consts.api_key).enqueue(new Callback<CreditsJsonObj>() {
+        tmdbApi.getCredits(type , movieId, Consts.api_key).enqueue(new Callback<CreditsJsonObj>() {
             @Override
             public void onResponse(Call<CreditsJsonObj> call, Response<CreditsJsonObj> response) {
                 if(!response.isSuccessful())

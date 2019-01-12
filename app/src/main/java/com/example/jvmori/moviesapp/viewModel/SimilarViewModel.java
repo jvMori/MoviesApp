@@ -3,7 +3,7 @@ package com.example.jvmori.moviesapp.viewModel;
 import android.app.Application;
 
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
-import com.example.jvmori.moviesapp.repository.SimilarMoviesRepository;
+import com.example.jvmori.moviesapp.repository.SimilarRepository;
 
 import java.util.List;
 
@@ -13,19 +13,19 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
 
-public class SimilarMoviesViewModel extends AndroidViewModel {
+public class SimilarViewModel extends AndroidViewModel {
 
     private MediatorLiveData<List<MovieItem>> allSimilarMovies;
-    private SimilarMoviesRepository similarMoviesRepository;
+    private SimilarRepository similarMoviesRepository;
 
-    public SimilarMoviesViewModel(@NonNull Application application) {
+    public SimilarViewModel(@NonNull Application application) {
         super(application);
-        similarMoviesRepository = new SimilarMoviesRepository();
+        similarMoviesRepository = new SimilarRepository();
         allSimilarMovies = new MediatorLiveData<>();
     }
 
-    public LiveData<List<MovieItem>> getAllSimilarMovies(String movieId){
-        allSimilarMovies.addSource(similarMoviesRepository.getSimilarMovies(movieId), new Observer<List<MovieItem>>() {
+    public LiveData<List<MovieItem>> getAllSimilarMovies(String type, String movieId){
+        allSimilarMovies.addSource(similarMoviesRepository.getSimilarMovies(type,movieId), new Observer<List<MovieItem>>() {
             @Override
             public void onChanged(List<MovieItem> movieItems) {
                 allSimilarMovies.postValue(movieItems);

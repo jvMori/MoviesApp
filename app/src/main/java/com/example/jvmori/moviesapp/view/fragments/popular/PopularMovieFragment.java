@@ -1,7 +1,6 @@
-package com.example.jvmori.moviesapp.view.fragments;
+package com.example.jvmori.moviesapp.view.fragments.popular;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,25 +19,20 @@ import android.widget.RelativeLayout;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
-import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
-import com.example.jvmori.moviesapp.view.activities.MovieDetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
+import com.example.jvmori.moviesapp.view.fragments.HomeFragmentDirections;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
-import com.example.jvmori.moviesapp.viewModel.PopularMoviesViewModel;
+import com.example.jvmori.moviesapp.viewModel.PopularItemsViewModel;
 
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularMovieFragment extends Fragment {
+public class PopularMovieFragment extends PopularFragment {
 
-    private View view;
-    private PopularMovieAdapter popularMovieAdapter;
-    private RelativeLayout loadingScreen;
-    private RecyclerView recyclerView;
 
     public PopularMovieFragment() {
         // Required empty public constructor
@@ -57,7 +51,7 @@ public class PopularMovieFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setGenreViewModel();
-        setPopularMovieViewModel();
+        setPopularMovieViewModel(Consts.movie);
 
         popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
             @Override
@@ -69,38 +63,5 @@ public class PopularMovieFragment extends Fragment {
         });
     }
 
-    private void setPopularMovieAdapter(){
-        recyclerView = view.findViewById(R.id.movieRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setHasFixedSize(true);
-        popularMovieAdapter = new PopularMovieAdapter();
-        recyclerView.setAdapter(popularMovieAdapter);
-    }
-
-    private void setGenreViewModel(){
-        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
-        genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
-            @Override
-            public void onChanged(List<Genre> genres) {
-                if (genres == null)
-                    return;
-                popularMovieAdapter.setGenres(genres);
-            }
-        });
-    }
-
-    private void setPopularMovieViewModel(){
-        PopularMoviesViewModel movieViewModel = ViewModelProviders.of(this).get(PopularMoviesViewModel.class);
-        movieViewModel.getAllPopularMovies().observe(this, new Observer<List<MovieItem>>() {
-            @Override
-            public void onChanged(List<MovieItem> movies) {
-                if (movies == null)
-                    return;
-                popularMovieAdapter.setMovieItems(movies);
-                loadingScreen.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
-            }
-        });
-    }
 
 }

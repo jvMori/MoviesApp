@@ -13,6 +13,9 @@
         <action
             android:id="@+id/homeToMovieDetails"
             app:destination="@id/homeToMovieDetails" />
+        <action
+            android:id="@+id/action_home_to_showDetailsFragment"
+            app:destination="@id/showDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/destination_discover"
@@ -26,11 +29,21 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/homeToMovieDetails"
-        android:name="com.example.jvmori.moviesapp.view.fragments.MovieDetailsFragment"
+        android:name="com.example.jvmori.moviesapp.view.fragments.details.MovieDetailsFragment"
         android:label="activity_movie_details"
         tools:layout="@layout/fragment_movie_details" >
         <argument
             android:name="movieId"
+            android:defaultValue="0"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/showDetailsFragment"
+        android:name="com.example.jvmori.moviesapp.view.fragments.details.ShowDetailsFragment"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details" >
+        <argument
+            android:name="showId"
             android:defaultValue="0"
             app:argType="string" />
     </fragment>

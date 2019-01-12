@@ -23,8 +23,8 @@ public class CastViewModel extends AndroidViewModel {
         castRepository = new CastRepository();
     }
 
-    public LiveData<List<Cast>> getAllCast(String movieId){
-        allCast.addSource(castRepository.getAllCasts(movieId), new Observer<List<Cast>>() {
+    public LiveData<List<Cast>> getAllCast(String type, String movieId){
+        allCast.addSource(castRepository.getAllCasts(type, movieId), new Observer<List<Cast>>() {
             @Override
             public void onChanged(List<Cast> casts) {
                 allCast.postValue(casts);

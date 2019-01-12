@@ -1,7 +1,7 @@
 package com.example.jvmori.moviesapp.viewModel;
 import android.app.Application;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
-import com.example.jvmori.moviesapp.repository.PopularMoviesRepository;
+import com.example.jvmori.moviesapp.repository.PopularItemsRepository;
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,19 +10,19 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
 
 
-public class PopularMoviesViewModel extends AndroidViewModel {
+public class PopularItemsViewModel extends AndroidViewModel {
 
     private MediatorLiveData<List<MovieItem>> allPopularMovies;
-    private PopularMoviesRepository popularMoviesRepository;
+    private PopularItemsRepository popularMoviesRepository;
 
-    public PopularMoviesViewModel(@NonNull Application application) {
+    public PopularItemsViewModel(@NonNull Application application) {
         super(application);
         allPopularMovies = new MediatorLiveData<>();
-        popularMoviesRepository = new PopularMoviesRepository();
+        popularMoviesRepository = new PopularItemsRepository();
     }
 
-    public LiveData<List<MovieItem>> getAllPopularMovies() {
-       allPopularMovies.addSource(popularMoviesRepository.getData(), new Observer<List<MovieItem>>() {
+    public LiveData<List<MovieItem>> getAllPopularItems(String type) {
+       allPopularMovies.addSource(popularMoviesRepository.getData(type), new Observer<List<MovieItem>>() {
            @Override
            public void onChanged(List<MovieItem> movieItems) {
                allPopularMovies.postValue(movieItems);
