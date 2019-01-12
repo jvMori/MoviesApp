@@ -62,10 +62,6 @@ public class PopularMovieFragment extends Fragment {
         popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(MovieItem movieItem) {
-//                Intent intent = new Intent(getContext(), MovieDetailsActivity.class);
-//                intent.putExtra(Consts.item_clicked_id, movieItem.getTmdbId());
-//                startActivity(intent);
-                //Navigation.findNavController(view).navigate(R.id.action_destination_home_to_movieDetailsFragment);
                 HomeFragmentDirections.HomeToMovieDetails action = HomeFragmentDirections.homeToMovieDetails();
                 action.setMovieId(movieItem.getTmdbId());
                 Navigation.findNavController(view).navigate(action);

@@ -8,4 +8,6 @@ public class Consts {
     public static final int number_of_stars = 5;
     public static final String item_clicked_id = "ItemId";
     public static int cast_recyclerView_size = 10;
+    public static final String tvShow = "tv";
+    public static final String movie = "movie";
 }

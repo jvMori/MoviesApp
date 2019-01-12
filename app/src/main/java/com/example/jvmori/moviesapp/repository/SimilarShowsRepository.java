@@ -27,7 +27,7 @@ public class SimilarShowsRepository
                 .build();
 
         TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getSimilarTvShows(showId, Consts.api_key).enqueue(new Callback<MovieJsonObj>() {
+        tmdbApi.getSimilar(Consts.tvShow, showId, Consts.api_key).enqueue(new Callback<MovieJsonObj>() {
             @Override
             public void onResponse(Call<MovieJsonObj> call, Response<MovieJsonObj> response) {
                 if (!response.isSuccessful())

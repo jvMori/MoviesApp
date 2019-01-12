@@ -1,31 +1,23 @@
-package com.example.jvmori.moviesapp.repository;
+package com.example.jvmori.moviesapp.util;
 
 import android.util.Log;
 
+import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieJsonObj;
-import com.example.jvmori.moviesapp.util.Consts;
-import com.example.jvmori.moviesapp.util.TmdbApi;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PopularMoviesRepository
-{
-    private MutableLiveData<List<MovieItem>> allPopularMovies;
-
-    public LiveData<List<MovieItem>> getData(){
-        allPopularMovies = new MutableLiveData<>();
-
+public class ApiGetPopular {
+    public static void getRequest(String type, final OnDataDownloaded onDataDownloaded){
         Map<String, String> parameters = new HashMap<>();
         parameters.put("api_key", Consts.api_key);
         parameters.put("sort_by", "popularity.desc");
@@ -36,7 +28,7 @@ public class PopularMoviesRepository
                 .build();
         TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
 
-        Call<MovieJsonObj> callApi = tmdbApi.getPopular(Consts.movie, parameters);
+        Call<MovieJsonObj> callApi = tmdbApi.getPopular(type, parameters);
         callApi.enqueue(new Callback<MovieJsonObj>() {
             @Override
             public void onResponse(Call<MovieJsonObj> call, Response<MovieJsonObj> response) {
@@ -44,7 +36,7 @@ public class PopularMoviesRepository
                     return;
                 }
                 assert response.body() != null;
-                allPopularMovies.setValue(response.body().getResults());
+                onDataDownloaded.callback(response.body().getResults());
             }
 
             @Override
@@ -52,7 +44,9 @@ public class PopularMoviesRepository
                 Log.i("ITEM", "Fail");
             }
         });
+    }
 
-        return allPopularMovies;
+    public interface OnDataDownloaded{
+        void callback(List<MovieItem> response);
     }
 }

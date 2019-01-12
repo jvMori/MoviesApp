@@ -28,7 +28,7 @@ public class SimilarMoviesRepository
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getSimilarMovies(movieId, Consts.api_key).enqueue(new Callback<MovieJsonObj>() {
+        tmdbApi.getSimilar(Consts.movie, movieId, Consts.api_key).enqueue(new Callback<MovieJsonObj>() {
             @Override
             public void onResponse(Call<MovieJsonObj> call, Response<MovieJsonObj> response) {
                 if (!response.isSuccessful())

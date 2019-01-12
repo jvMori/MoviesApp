@@ -30,7 +30,7 @@ public class CastRepository
                 .build();
 
         TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getCredits(movieId, Consts.api_key).enqueue(new Callback<CreditsJsonObj>() {
+        tmdbApi.getCredits(Consts.movie, movieId, Consts.api_key).enqueue(new Callback<CreditsJsonObj>() {
             @Override
             public void onResponse(Call<CreditsJsonObj> call, Response<CreditsJsonObj> response) {
                 if(!response.isSuccessful())
