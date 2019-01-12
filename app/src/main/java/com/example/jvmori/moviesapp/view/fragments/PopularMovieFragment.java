@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,7 @@ import android.widget.RelativeLayout;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
+import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.MovieDetailsActivity;
@@ -52,7 +54,7 @@ public class PopularMovieFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setGenreViewModel();
         setPopularMovieViewModel();
@@ -60,9 +62,13 @@ public class PopularMovieFragment extends Fragment {
         popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(MovieItem movieItem) {
-                Intent intent = new Intent(getContext(), MovieDetailsActivity.class);
-                intent.putExtra(Consts.item_clicked_id, movieItem.getTmdbId());
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), MovieDetailsActivity.class);
+//                intent.putExtra(Consts.item_clicked_id, movieItem.getTmdbId());
+//                startActivity(intent);
+                //Navigation.findNavController(view).navigate(R.id.action_destination_home_to_movieDetailsFragment);
+                HomeFragmentDirections.HomeToMovieDetails action = HomeFragmentDirections.homeToMovieDetails();
+                action.setMovieId(movieItem.getTmdbId());
+                Navigation.findNavController(view).navigate(action);
             }
         });
     }

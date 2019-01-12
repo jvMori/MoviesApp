@@ -1,13 +1,19 @@
-package com.example.jvmori.moviesapp.view.activities;
+package com.example.jvmori.moviesapp.view.fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,26 +33,51 @@ import com.example.jvmori.moviesapp.viewModel.SimilarShowsViewModel;
 
 import java.util.List;
 
-public class MovieDetailsActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class MovieDetailsFragment extends Fragment {
+
     private Movie movie;
     private CastAdapter castAdapter;
+    private View view;
+
+    private ImageView backdrop;
+    private ImageView posterImg;
+    private TextView titleTextView;
+    private TextView category;
+    private TextView tagline;
+    private TextView overview;
+    private RecyclerView recyclerView;
+
+    public MovieDetailsFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_movie_details);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_movie_details, container, false);
+        backdrop = view.findViewById(R.id.backdropImg);
+        posterImg = view.findViewById(R.id.posterImg);
+        titleTextView = view.findViewById(R.id.titleTextView);
+        category = view.findViewById(R.id.category);
+        tagline = view.findViewById(R.id.tagline);
+        overview = view.findViewById(R.id.overview);
+        recyclerView = view.findViewById(R.id.creditsRecyclerView);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         movie = new Movie();
         setCastAdapter();
-        Intent intent = getIntent();
-        if (intent.hasExtra(Consts.item_clicked_id)) {
-            String id = intent.getStringExtra(Consts.item_clicked_id);
-            setMovieDetailsViewModel(id);
-            setCastViewModel(id);
-            setSimilarMoviesViewModel(id);
-            if (movie.getSimilarMovies() == null)
-                setSimilarShowsViewModel(id);
-        }
-
+        String id = MovieDetailsFragmentArgs.fromBundle(getArguments()).getMovieId();
+        setMovieDetailsViewModel(id);
+        setCastViewModel(id);
+        setSimilarMoviesViewModel(id);
     }
 
 
@@ -100,13 +131,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
     private void setDetailViewUI(){
-        ImageView backdrop = findViewById(R.id.backdropImg);
-        ImageView posterImg = findViewById(R.id.posterImg);
-        TextView titleTextView = findViewById(R.id.titleTextView);
-        TextView category = findViewById(R.id.category);
-        TextView tagline = findViewById(R.id.tagline);
-        TextView overview = findViewById(R.id.overview);
-
         LoadImage.loadImage(backdrop, Consts.base_backdrop_url + movie.getMovieDetails().getBackdropUrl());
         LoadImage.loadImage(posterImg, Consts.base_poster_url + movie.getMovieDetails().getPoster());
         titleTextView.setText(movie.getMovieDetails().getTitle());
@@ -126,11 +150,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
     private void setCastAdapter(){
-        RecyclerView recyclerView = findViewById(R.id.creditsRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
         castAdapter = new CastAdapter();
         recyclerView.setAdapter(castAdapter);
     }
-
 }
