@@ -7,7 +7,7 @@ import com.example.jvmori.moviesapp.util.ApiGetDetails;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-public class MovieDetailsRepository
+public class DetailsMovieRepository
 {
     private MutableLiveData<MovieDetails> movieDetails;
 

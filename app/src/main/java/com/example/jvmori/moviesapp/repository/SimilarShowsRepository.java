@@ -2,6 +2,7 @@ package com.example.jvmori.moviesapp.repository;
 
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieJsonObj;
+import com.example.jvmori.moviesapp.util.ApiGetSimilar;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.TmdbApi;
 
@@ -21,24 +22,10 @@ public class SimilarShowsRepository
 
     public LiveData<List<MovieItem>> getSimilarShows(String showId){
         similarShows = new MutableLiveData<>();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Consts.base_url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getSimilar(Consts.tvShow, showId, Consts.api_key).enqueue(new Callback<MovieJsonObj>() {
+        ApiGetSimilar.getRequest(Consts.movie, showId, new ApiGetSimilar.OnDataDownloaded() {
             @Override
-            public void onResponse(Call<MovieJsonObj> call, Response<MovieJsonObj> response) {
-                if (!response.isSuccessful())
-                    return;
-                if(response.body() != null)
-                    similarShows.postValue(response.body().getResults());
-            }
-
-            @Override
-            public void onFailure(Call<MovieJsonObj> call, Throwable t) {
-
+            public void callback(List<MovieItem> response) {
+                similarShows.setValue(response);
             }
         });
 

@@ -7,7 +7,7 @@ import com.example.jvmori.moviesapp.util.Consts;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-public class ShowDetailsRepository {
+public class DetailsShowRepository {
 
     private MutableLiveData<MovieDetails> showDetails;
 

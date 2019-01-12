@@ -2,7 +2,7 @@ package com.example.jvmori.moviesapp.viewModel;
 
 import android.app.Application;
 import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
-import com.example.jvmori.moviesapp.repository.MovieDetailsRepository;
+import com.example.jvmori.moviesapp.repository.DetailsMovieRepository;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -12,12 +12,12 @@ import androidx.lifecycle.Observer;
 public class MovieDetailsViewModel extends AndroidViewModel {
 
     private MediatorLiveData<MovieDetails> allMovieDetails;
-    private MovieDetailsRepository movieDetailsRepository;
+    private DetailsMovieRepository movieDetailsRepository;
 
     public MovieDetailsViewModel(@NonNull Application application) {
         super(application);
         allMovieDetails = new MediatorLiveData<>();
-        movieDetailsRepository = new MovieDetailsRepository();
+        movieDetailsRepository = new DetailsMovieRepository();
     }
 
     public LiveData<MovieDetails> getMovieDetails(String movieId){
