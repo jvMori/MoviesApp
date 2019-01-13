@@ -55,6 +55,8 @@ public class PopularShowFragment extends PopularFragment {
                 Navigation.findNavController(view).navigate(action);
             }
         });
+
+
     }
 
 }

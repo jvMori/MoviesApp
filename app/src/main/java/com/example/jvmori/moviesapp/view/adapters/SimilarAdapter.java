@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarHolder>
 {
     private List<MovieItem> similarItems = new ArrayList<>();
+    private OnSimilarItemClicked onSimilarItemClicked;
 
     @NonNull
     @Override
@@ -49,11 +50,28 @@ public class SimilarAdapter extends RecyclerView.Adapter<SimilarAdapter.SimilarH
             super(itemView);
             poster = itemView.findViewById(R.id.icon);
             title = itemView.findViewById(R.id.title);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (onSimilarItemClicked != null && position != RecyclerView.NO_POSITION)
+                        onSimilarItemClicked.onClick(similarItems.get(position));
+                }
+            });
         }
     }
 
     public void setSimilarItems(List<MovieItem> items){
         similarItems = items;
         notifyDataSetChanged();
+    }
+
+    public interface OnSimilarItemClicked{
+        void onClick(MovieItem item);
+    }
+
+    public void setOnSimilarItemClicked(OnSimilarItemClicked onSimilarItemClicked){
+        this.onSimilarItemClicked = onSimilarItemClicked;
     }
 }

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.jvmori.moviesapp.R;
@@ -38,8 +39,9 @@ public class DetailsFragment extends Fragment {
 
     protected Movie movie;
     protected CastAdapter castAdapter;
-    private SimilarAdapter similarAdapter;
+    protected SimilarAdapter similarAdapter;
     protected View view;
+    protected ScrollView detailsScrollView;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -50,7 +52,24 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_details, container, false);
+        view = inflater.inflate(R.layout.fragment_movie_details, container, false);
+        return view;
+    }
+
+    protected void createView(final String type, String id){
+        detailsScrollView.fullScroll(ScrollView.FOCUS_UP);
+        movie = new Movie();
+        setCastAdapter();
+        setSimilarAdapter();
+        setMovieDetailsViewModel(type, id);
+        setCastViewModel(type, id);
+        setSimilarMoviesViewModel(type,id);
+        similarAdapter.setOnSimilarItemClicked(new SimilarAdapter.OnSimilarItemClicked() {
+            @Override
+            public void onClick(MovieItem item) {
+                createView(type, item.getTmdbId());
+            }
+        });
     }
 
     protected void setMovieDetailsViewModel(String type, String movieId){

@@ -10,7 +10,7 @@ import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.LoadImage;
-import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.NonNull;
