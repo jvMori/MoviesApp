@@ -38,10 +38,11 @@ public class ShowDetailsFragment extends DetailsFragment {
         super.onViewCreated(view, savedInstanceState);
         movie = new Movie();
         setCastAdapter();
+        setSimilarAdapter();
         String id = ShowDetailsFragmentArgs.fromBundle(getArguments()).getShowId();
         setMovieDetailsViewModel(Consts.tvShow, id);
         setCastViewModel(Consts.tvShow, id);
-        setSimilarMoviesViewModel(Consts.movie,id);
+        setSimilarMoviesViewModel(Consts.tvShow,id);
 
     }
 

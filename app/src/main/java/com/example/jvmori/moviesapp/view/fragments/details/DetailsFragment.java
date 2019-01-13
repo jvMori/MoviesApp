@@ -24,6 +24,7 @@ import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.LoadImage;
 import com.example.jvmori.moviesapp.view.adapters.CastAdapter;
+import com.example.jvmori.moviesapp.view.adapters.SimilarAdapter;
 import com.example.jvmori.moviesapp.viewModel.CastViewModel;
 import com.example.jvmori.moviesapp.viewModel.DetailsViewModel;
 import com.example.jvmori.moviesapp.viewModel.SimilarViewModel;
@@ -37,6 +38,7 @@ public class DetailsFragment extends Fragment {
 
     protected Movie movie;
     protected CastAdapter castAdapter;
+    private SimilarAdapter similarAdapter;
     protected View view;
 
     public DetailsFragment() {
@@ -70,7 +72,6 @@ public class DetailsFragment extends Fragment {
             public void onChanged(List<Cast> casts) {
                 movie.setCast(casts);
                 castAdapter.setCastItems(casts);
-                //TODO: recycler view adapter
                 //TODO: loading screen disable
             }
         });
@@ -82,7 +83,7 @@ public class DetailsFragment extends Fragment {
             @Override
             public void onChanged(List<MovieItem> movieItems) {
                 movie.setSimilarMovies(movieItems);
-                //TODO: recycler view adapter
+                similarAdapter.setSimilarItems(movieItems);
                 //TODO: loading screen disable
             }
         });
@@ -95,6 +96,15 @@ public class DetailsFragment extends Fragment {
         castAdapter = new CastAdapter();
         recyclerView.setAdapter(castAdapter);
     }
+
+    protected void setSimilarAdapter(){
+        RecyclerView recyclerView = view.findViewById(R.id.similarRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setHasFixedSize(true);
+        similarAdapter = new SimilarAdapter();
+        recyclerView.setAdapter(similarAdapter);
+    }
+
 
     private void setDetailViewUI(View view, Movie movie){
         ImageView backdrop = view.findViewById(R.id.backdropImg);

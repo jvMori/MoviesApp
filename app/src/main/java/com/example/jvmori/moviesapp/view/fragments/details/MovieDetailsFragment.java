@@ -37,6 +37,7 @@ public class MovieDetailsFragment extends DetailsFragment {
         super.onViewCreated(view, savedInstanceState);
         movie = new Movie();
         setCastAdapter();
+        setSimilarAdapter();
         String id = MovieDetailsFragmentArgs.fromBundle(getArguments()).getMovieId();
         setMovieDetailsViewModel(Consts.movie, id);
         setCastViewModel(Consts.movie, id);
