@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="0dp"
+    android:layout_marginBottom="8dp"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
@@ -101,7 +101,7 @@
             <TextView
                 android:id="@+id/tagline"
                 android:layout_width="371dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:text='"Is it better to speak or to die?"'
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
@@ -180,7 +180,8 @@
             android:id="@+id/similarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp">
 
             <TextView
                 android:id="@+id/titleSimilar"
@@ -212,7 +213,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/similarRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
