@@ -17,7 +17,7 @@
             android:id="@+id/action_home_to_showDetailsFragment"
             app:destination="@id/showDetailsFragment" />
         <action
-            android:id="@+id/action_home_to_searchResultsFragment"
+            android:id="@+id/action_home_to_searchResultsFragment2"
             app:destination="@id/searchResultsFragment" />
     </fragment>
     <fragment
@@ -55,4 +55,9 @@
         android:name="com.example.jvmori.moviesapp.view.fragments.SearchResultsFragment"
         android:label="fragment_search_results"
         tools:layout="@layout/fragment_search_results" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.jvmori.moviesapp.view.activities.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

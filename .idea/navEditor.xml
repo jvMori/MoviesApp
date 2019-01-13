@@ -70,6 +70,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="mainActivity">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-484" />
+                            <option name="y" value="-626" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="searchResultsFragment">
                     <value>
                       <LayoutPositions>
