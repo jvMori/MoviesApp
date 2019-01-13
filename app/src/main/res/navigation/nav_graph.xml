@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_home_to_showDetailsFragment"
             app:destination="@id/showDetailsFragment" />
+        <action
+            android:id="@+id/action_home_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/destination_discover"
@@ -47,4 +50,9 @@
             android:defaultValue="0"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="com.example.jvmori.moviesapp.view.fragments.SearchResultsFragment"
+        android:label="fragment_search_results"
+        tools:layout="@layout/fragment_search_results" />
 </navigation>
