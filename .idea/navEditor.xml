@@ -43,6 +43,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_home_to_searchResultsFragment2">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_home_to_showDetailsFragment">
                               <value>
                                 <LayoutPositions />

@@ -9,7 +9,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
@@ -17,6 +19,7 @@ import androidx.navigation.ui.NavigationUI;
 public class MainActivity extends AppCompatActivity {
 
     private SearchView searchView;
+    NavController navController;
     private OnSearchCallback onSearchCallback;
     public Activity context;
 
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
         context = this;
 
-        NavController navController = Navigation.findNavController(this, R.id.my_nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.my_nav_host_fragment);
         setupBottomNav(navController);
 
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -35,14 +38,17 @@ public class MainActivity extends AppCompatActivity {
             public void onFocusChange(View view, boolean b) {
                 if (b){
                     //Toast.makeText(getContext(), "Focused", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(context, R.id.my_nav_host_fragment).navigate(R.id.action_home_to_searchResultsFragment2);
+                     navController.navigate(R.id.action_home_to_searchResultsFragment2);
                 }
             }
         });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                if (query.length() > 1 && onSearchCallback != null){
+                    onSearchCallback.onSearch(query);
+                }
+                return true;
             }
 
             @Override
@@ -58,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
     public interface OnSearchCallback{
         void onSearch(String query);
+    }
+
+    public void setOnSearchCallback(OnSearchCallback onSearchCallback){
+        this.onSearchCallback = onSearchCallback;
     }
 
     private void setupBottomNav(NavController navController){
