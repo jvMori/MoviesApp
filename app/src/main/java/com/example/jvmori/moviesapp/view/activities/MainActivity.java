@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                 if (b){
                     //Toast.makeText(getContext(), "Focused", Toast.LENGTH_SHORT).show();
                      navController.navigate(R.id.action_home_to_searchResultsFragment2);
+                }else{
+                    navController.navigateUp();
                 }
             }
         });
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     public void setOnSearchCallback(OnSearchCallback onSearchCallback){
         this.onSearchCallback = onSearchCallback;
     }
+
 
     private void setupBottomNav(NavController navController){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);

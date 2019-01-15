@@ -46,11 +46,6 @@ public class SearchResultsFragment extends Fragment implements MainActivity.OnSe
 
 }
 
-    @Override
-    public void onSearch(String query) {
-        createView(query);
-    }
-
     private void createView(String query){
         SearchResultsViewModel viewModel = ViewModelProviders.of(this).get(SearchResultsViewModel.class);
         viewModel.getResults(query).observe(this, new Observer<List<MovieItem>>() {
@@ -62,4 +57,8 @@ public class SearchResultsFragment extends Fragment implements MainActivity.OnSe
     }
 
 
+    @Override
+    public void onSearch(String query) {
+
+    }
 }
