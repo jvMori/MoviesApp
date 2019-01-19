@@ -9,4 +9,6 @@ public class Consts {
     public static int cast_recyclerView_size = 10;
     public static final String tvShow = "tv";
     public static final String movie = "movie";
+    public static final String id_parameter = "idParameter";
+    public static final String type_parameter = "typeParameter";
 }

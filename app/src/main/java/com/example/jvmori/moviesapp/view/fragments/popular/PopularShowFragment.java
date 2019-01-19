@@ -1,5 +1,6 @@
 package com.example.jvmori.moviesapp.view.fragments.popular;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
+import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
 import com.example.jvmori.moviesapp.view.fragments.HomeFragmentDirections;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
@@ -50,9 +52,13 @@ public class PopularShowFragment extends PopularFragment {
         popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(MovieItem movieItem) {
-                HomeFragmentDirections.ActionHomeToShowDetailsFragment action = HomeFragmentDirections.actionHomeToShowDetailsFragment();
-                action.setShowId(movieItem.getTmdbId());
-                Navigation.findNavController(view).navigate(action);
+//                HomeFragmentDirections.ActionHomeToShowDetailsFragment action = HomeFragmentDirections.actionHomeToShowDetailsFragment();
+//                action.setShowId(movieItem.getTmdbId());
+//                Navigation.findNavController(view).navigate(action);
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
+                intent.putExtra(Consts.type_parameter, Consts.tvShow);
+                startActivity(intent);
             }
         });
 

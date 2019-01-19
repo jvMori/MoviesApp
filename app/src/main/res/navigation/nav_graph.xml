@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/homeToMovieDetails"
-        android:name="com.example.jvmori.moviesapp.view.fragments.details.MovieDetailsFragment"
+        android:name="com.example.jvmori.moviesapp.view.fragments.details.MovieDetailsActivity"
         android:label="activity_movie_details"
         tools:layout="@layout/fragment_movie_details" >
         <argument
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/showDetailsFragment"
-        android:name="com.example.jvmori.moviesapp.view.fragments.details.ShowDetailsFragment"
+        android:name="com.example.jvmori.moviesapp.view.fragments.details.ShowDetailsActivity"
         android:label="fragment_movie_details"
         tools:layout="@layout/fragment_movie_details" >
         <argument
