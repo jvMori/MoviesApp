@@ -140,6 +140,6 @@ public class DetailsActivity extends AppCompatActivity {
         category.setText(categoryTxt);
         overview.setText(movie.getMovieDetails().getOverview());
         float rating = Float.parseFloat(movie.getMovieDetails().getRating()) * 10;
-        PopularMovieAdapter.setStars(rating, starsLayout, this, Consts.number_of_stars);
+       // PopularMovieAdapter.setStars(rating, starsLayout);
     }
 }
