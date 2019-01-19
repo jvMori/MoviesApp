@@ -5,12 +5,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -23,6 +20,7 @@ import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.LoadImage;
 import com.example.jvmori.moviesapp.view.adapters.CastAdapter;
+import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
 import com.example.jvmori.moviesapp.view.adapters.SimilarAdapter;
 import com.example.jvmori.moviesapp.viewModel.CastViewModel;
 import com.example.jvmori.moviesapp.viewModel.DetailsViewModel;
@@ -32,16 +30,18 @@ import java.util.List;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    protected Movie movie;
-    protected CastAdapter castAdapter;
-    protected SimilarAdapter similarAdapter;
-    protected ScrollView detailsScrollView;
+    private Movie movie;
+    private CastAdapter castAdapter;
+    private SimilarAdapter similarAdapter;
+    private ScrollView detailsScrollView;
+    private LinearLayout starsLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_movie_details);
         detailsScrollView = findViewById(R.id.detailsScrollView);
+        starsLayout = findViewById(R.id.starsLayout);
 
         String id = getIntent().getStringExtra(Consts.id_parameter);
         String type = getIntent().getStringExtra(Consts.type_parameter);
@@ -49,7 +49,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
 
-    protected void createView(final String type, String id){
+    private void createView(final String type, String id){
         detailsScrollView.fullScroll(ScrollView.FOCUS_UP);
         movie = new Movie();
         setCastAdapter();
@@ -65,7 +65,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
     }
 
-    protected void setMovieDetailsViewModel(String type, String movieId){
+    private void setMovieDetailsViewModel(String type, String movieId){
         DetailsViewModel movieDetailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
         movieDetailsViewModel.getMovieDetails(type, movieId).observe(this, new Observer<MovieDetails>() {
             @Override
@@ -77,7 +77,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
     }
 
-    protected void setCastViewModel(String type, String movieId){
+    private void setCastViewModel(String type, String movieId){
         CastViewModel castViewModel = ViewModelProviders.of(this).get(CastViewModel.class);
         castViewModel.getAllCast(type, movieId).observe(this, new Observer<List<Cast>>() {
             @Override
@@ -89,7 +89,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
     }
 
-    protected void setSimilarMoviesViewModel(String type, String movieId){
+    private void setSimilarMoviesViewModel(String type, String movieId){
         SimilarViewModel similarMoviesViewModel = ViewModelProviders.of(this).get(SimilarViewModel.class);
         similarMoviesViewModel.getAllSimilarMovies(type,movieId).observe(this, new Observer<List<MovieItem>>() {
             @Override
@@ -101,7 +101,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
     }
 
-    protected void setCastAdapter(){
+    private void setCastAdapter(){
         RecyclerView recyclerView = findViewById(R.id.creditsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
@@ -109,7 +109,7 @@ public class DetailsActivity extends AppCompatActivity {
         recyclerView.setAdapter(castAdapter);
     }
 
-    protected void setSimilarAdapter(){
+    private void setSimilarAdapter(){
         RecyclerView recyclerView = findViewById(R.id.similarRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
@@ -123,7 +123,6 @@ public class DetailsActivity extends AppCompatActivity {
         ImageView posterImg = findViewById(R.id.posterImg);
         TextView titleTextView = findViewById(R.id.titleTextView);
         TextView category = findViewById(R.id.category);
-        TextView tagline = findViewById(R.id.tagline);
         TextView overview = findViewById(R.id.overview);
 
         LoadImage.loadImage(backdrop, Consts.base_backdrop_url + movie.getMovieDetails().getBackdropUrl());
@@ -139,8 +138,8 @@ public class DetailsActivity extends AppCompatActivity {
                 categoryTxt.append(" | ");
         }
         category.setText(categoryTxt);
-        tagline.setText(movie.getMovieDetails().getTagline()); //TODO: do something when tagline is empty
         overview.setText(movie.getMovieDetails().getOverview());
-
+        float rating = Float.parseFloat(movie.getMovieDetails().getRating()) * 10;
+        PopularMovieAdapter.setStars(rating, starsLayout, this, Consts.number_of_stars);
     }
 }

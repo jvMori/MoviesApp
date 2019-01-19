@@ -1,4 +1,5 @@
 package com.example.jvmori.moviesapp.view.adapters;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +81,8 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         holder.categories.setText(categories.toString());
         holder.poster.setClipToOutline(true);
         LoadImage.loadImage(holder.poster, Consts.base_poster_url + currentItem.getPoster());
-        setupStars(holder, currentItem);
+        float rating = Float.parseFloat(currentItem.getRating()) * 10;
+        setStars(rating, holder.starsLayout, item.getContext(), 5);
     }
 
     @Override
@@ -112,38 +114,40 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         }
     }
 
-    private void setupStars(PopularMovieHolder holder, MovieItem currentItem) {
-        float rating = Float.parseFloat(currentItem.getRating()) / 2;
-        double starsCount = Math.floor(rating);
+
+    public static void setStars(float rating, LinearLayout starsLayout, Context context, int maxNumberOfStars){
+        float ratingFromPercentage = rating * maxNumberOfStars / 100;
+        double starsCount = Math.floor(ratingFromPercentage);
         double halfStar = rating - starsCount;
-        if (holder.starsLayout.getChildCount() <= 0 ){
+
+        if (starsLayout.getChildCount() <= 0 ){
             for (int i = 0; i < starsCount; i++) {
-                ImageView imageView = new ImageView(item.getContext());
+                ImageView imageView = new ImageView(context);
                 imageView.setImageResource(R.drawable.ic_star);
-                setParamsAndAddToView(imageView, holder);
+                setParamsAndAddToView(imageView, starsLayout);
             }
             if (halfStar >= 0.5){
-                ImageView imageView = new ImageView(item.getContext());
+                ImageView imageView = new ImageView(context);
                 imageView.setImageResource(R.drawable.ic_star_half);
-                setParamsAndAddToView(imageView, holder);
+                setParamsAndAddToView(imageView, starsLayout);
                 starsCount++;
             }
-            if (starsCount < Consts.number_of_stars){
-                double diff = Consts.number_of_stars - starsCount;
+            if (starsCount < maxNumberOfStars){
+                double diff = maxNumberOfStars - starsCount;
                 for (int i = 0; i < diff; i++) {
-                    ImageView imageView = new ImageView(item.getContext());
+                    ImageView imageView = new ImageView(context);
                     imageView.setImageResource(R.drawable.ic_star_border);
-                    setParamsAndAddToView(imageView, holder);
+                    setParamsAndAddToView(imageView, starsLayout);
                 }
             }
         }
     }
 
-    private void setParamsAndAddToView(ImageView imageView, PopularMovieHolder holder){
+    private static void setParamsAndAddToView(ImageView imageView, LinearLayout starsLayout){
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(70, 70);
         lp.setMarginEnd(3);
         imageView.setLayoutParams(lp);
-        holder.starsLayout.addView(imageView);
+        starsLayout.addView(imageView);
     }
 
 }
