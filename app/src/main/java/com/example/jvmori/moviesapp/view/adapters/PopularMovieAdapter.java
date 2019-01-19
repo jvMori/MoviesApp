@@ -81,10 +81,11 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         holder.categories.setText(categories.toString());
         holder.poster.setClipToOutline(true);
         LoadImage.loadImage(holder.poster, Consts.base_poster_url + currentItem.getPoster());
-        float rating = Float.parseFloat(currentItem.getRating()) * 10;
-        setStars(rating, holder.starsLayout, item.getContext(), 5);
+        //float rating = Float.parseFloat(currentItem.getRating()) * 10;
+        //setStars(rating, holder.starsLayout, item.getContext(), 5);
     }
 
+    
     @Override
     public int getItemCount() {
         return movieItems.size();
@@ -118,9 +119,16 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
     public static void setStars(float rating, LinearLayout starsLayout, Context context, int maxNumberOfStars){
         float ratingFromPercentage = rating * maxNumberOfStars / 100;
         double starsCount = Math.floor(ratingFromPercentage);
-        double halfStar = rating - starsCount;
+        double halfStar = ratingFromPercentage - starsCount;
 
-        if (starsLayout.getChildCount() <= 0 ){
+        if (starsLayout.getChildCount() > 0){
+            for (int i = 0; i < starsLayout.getChildCount(); i++) {
+                starsLayout.removeViewAt(i);
+            }
+        }
+
+//        if (starsLayout.getChildCount() <= 0 ){
+        {
             for (int i = 0; i < starsCount; i++) {
                 ImageView imageView = new ImageView(context);
                 imageView.setImageResource(R.drawable.ic_star);
