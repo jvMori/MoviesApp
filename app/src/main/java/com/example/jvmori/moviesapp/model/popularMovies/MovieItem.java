@@ -7,6 +7,9 @@ public class MovieItem
     @SerializedName("id")
     private String tmdbId;
 
+    @SerializedName("media_type")
+    private String mediaType;
+
     @SerializedName(value="title", alternate = "name")
     private String title;
 
@@ -79,5 +82,13 @@ public class MovieItem
 
     public void setReviews(String reviews) {
         this.reviews = reviews;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 }

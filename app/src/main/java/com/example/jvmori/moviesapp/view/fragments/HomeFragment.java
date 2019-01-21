@@ -72,6 +72,8 @@ public class HomeFragment extends Fragment {
         popularItemsAdapter = new PopularItemsAdapter(this.getChildFragmentManager());
         viewPager.setAdapter(popularItemsAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        popularItemsLayout.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
         setGenreViewModel();
         setPopularMovieAdapter();
 
@@ -111,7 +113,6 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-
     }
 
     private void searchTitles(String query){
@@ -151,7 +152,7 @@ public class HomeFragment extends Fragment {
             public void onItemClicked(MovieItem movieItem) {
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
                 intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
-                intent.putExtra(Consts.type_parameter, Consts.movie);
+                intent.putExtra(Consts.type_parameter, movieItem.getMediaType());
                 startActivity(intent);
             }
         });
