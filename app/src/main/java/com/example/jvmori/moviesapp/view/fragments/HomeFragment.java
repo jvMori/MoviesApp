@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (query.length() > 1){
+                if (query != null && query.length() > 1){
                     searchTitles(query);
                 }
                 return true;
@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText.length() > 1){
+                if (newText!= null && newText.length() > 1){
                     searchTitles(newText);
                 }
                 return true;
@@ -115,7 +115,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void searchTitles(String query){
-        createSearchViewModel(query);
+        if (query != null)
+            createSearchViewModel(query);
     }
 
     private void createSearchViewModel(String query){

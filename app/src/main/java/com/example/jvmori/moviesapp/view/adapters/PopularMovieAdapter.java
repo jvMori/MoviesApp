@@ -81,7 +81,9 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         holder.categories.setText(categories.toString());
         holder.poster.setClipToOutline(true);
         LoadImage.loadImage(holder.poster, Consts.base_poster_url + currentItem.getPoster());
-        float rating = Float.parseFloat(currentItem.getRating()) * 10;
+        float rating = 0;
+        if (currentItem.getRating() != null)
+             rating = Float.parseFloat(currentItem.getRating()) * 10;
         setStars(rating, holder.starsLayout);
     }
 
@@ -102,9 +104,11 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
     private void categoryTxtSetup(MovieItem currentItem, StringBuilder categories){
         List<String> txtGenres = new ArrayList<>();
         for (Genre genre: genres) {
-            for (int i = 0; i < currentItem.getCategories().size(); i++) {
-                if (currentItem.getCategories().get(i).equals(genre.getId()))
-                    txtGenres.add(genre.getName());
+            if (currentItem.getCategories() != null){
+                for (int i = 0; i < currentItem.getCategories().size(); i++) {
+                    if (currentItem.getCategories().get(i).equals(genre.getId()))
+                        txtGenres.add(genre.getName());
+                }
             }
         }
         for (String txtGenre: txtGenres) {
