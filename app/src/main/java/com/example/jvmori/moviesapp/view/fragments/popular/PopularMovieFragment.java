@@ -48,7 +48,6 @@ public class PopularMovieFragment extends PopularFragment {
                 intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
                 intent.putExtra(Consts.type_parameter, Consts.movie);
                 startActivity(intent);
-
             }
         });
     }

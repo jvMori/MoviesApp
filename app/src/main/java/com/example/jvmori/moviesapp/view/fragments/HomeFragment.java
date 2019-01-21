@@ -1,6 +1,7 @@
 package com.example.jvmori.moviesapp.view.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.util.Consts;
+import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.PopularItemsAdapter;
 import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
@@ -142,5 +145,14 @@ public class HomeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         popularMovieAdapter = new PopularMovieAdapter();
         recyclerView.setAdapter(popularMovieAdapter);
+        popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
+            @Override
+            public void onItemClicked(MovieItem movieItem) {
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
+                intent.putExtra(Consts.type_parameter, Consts.movie);
+                startActivity(intent);
+            }
+        });
     }
 }
