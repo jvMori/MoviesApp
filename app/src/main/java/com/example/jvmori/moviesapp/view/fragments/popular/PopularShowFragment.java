@@ -5,28 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
-import com.example.jvmori.moviesapp.view.fragments.HomeFragmentDirections;
-import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
-import com.example.jvmori.moviesapp.viewModel.PopularItemsViewModel;
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class PopularShowFragment extends PopularFragment {
 
