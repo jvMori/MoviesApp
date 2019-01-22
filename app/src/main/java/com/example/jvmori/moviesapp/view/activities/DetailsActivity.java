@@ -1,5 +1,6 @@
 package com.example.jvmori.moviesapp.view.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -27,6 +28,10 @@ import com.example.jvmori.moviesapp.view.adapters.SimilarAdapter;
 import com.example.jvmori.moviesapp.viewModel.CastViewModel;
 import com.example.jvmori.moviesapp.viewModel.DetailsViewModel;
 import com.example.jvmori.moviesapp.viewModel.SimilarViewModel;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerInitListener;
 
 import java.util.List;
 
@@ -48,7 +53,7 @@ public class DetailsActivity extends AppCompatActivity {
         String id = getIntent().getStringExtra(Consts.id_parameter);
         String type = getIntent().getStringExtra(Consts.type_parameter);
         createView(type, id);
-        setupVideoView();
+        setupVideoView("T1Zeoj3twHk");
     }
 
 
@@ -148,13 +153,20 @@ public class DetailsActivity extends AppCompatActivity {
         PopularMovieAdapter.setStars(rating, starsLayout);
     }
 
-    private void setupVideoView(){
-        VideoView videoView = findViewById(R.id.videoView);
-        String url = "https://www.youtube.com/watch?v=T1Zeoj3twHk";
-        MediaController mediaController = new MediaController(this);
+    private void setupVideoView(final String videoId){
+        YouTubePlayerView youtubePlayerView = findViewById(R.id.videoView);
+        getLifecycle().addObserver(youtubePlayerView);
 
-        videoView.setVideoPath(url);
-        videoView.setMediaController(mediaController);
-        mediaController.setAnchorView(videoView);
+        youtubePlayerView.initialize(new YouTubePlayerInitListener() {
+            @Override
+            public void onInitSuccess(@NonNull final YouTubePlayer youTubePlayer) {
+                youTubePlayer.addListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady() {
+                        youTubePlayer.cueVideo(videoId, 0);
+                    }
+                });
+            }
+        }, true);
     }
 }

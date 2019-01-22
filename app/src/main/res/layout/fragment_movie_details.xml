@@ -215,7 +215,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <VideoView
+        <com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
