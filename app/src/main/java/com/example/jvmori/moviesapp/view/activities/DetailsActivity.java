@@ -124,6 +124,7 @@ public class DetailsActivity extends AppCompatActivity {
         TextView titleTextView = findViewById(R.id.titleTextView);
         TextView category = findViewById(R.id.category);
         TextView overview = findViewById(R.id.overview);
+        TextView ratingTv = findViewById(R.id.rating);
 
         LoadImage.loadImage(backdrop, Consts.base_backdrop_url + movie.getMovieDetails().getBackdropUrl());
         LoadImage.loadImage(posterImg, Consts.base_poster_url + movie.getMovieDetails().getPoster());
@@ -139,7 +140,8 @@ public class DetailsActivity extends AppCompatActivity {
         }
         category.setText(categoryTxt);
         overview.setText(movie.getMovieDetails().getOverview());
+        ratingTv.setText(movie.getMovieDetails().getRating());
         float rating = Float.parseFloat(movie.getMovieDetails().getRating()) * 10;
-       // PopularMovieAdapter.setStars(rating, starsLayout);
+        PopularMovieAdapter.setStars(rating, starsLayout);
     }
 }
