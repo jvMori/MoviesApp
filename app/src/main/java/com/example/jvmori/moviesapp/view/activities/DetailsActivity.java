@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
@@ -46,6 +48,7 @@ public class DetailsActivity extends AppCompatActivity {
         String id = getIntent().getStringExtra(Consts.id_parameter);
         String type = getIntent().getStringExtra(Consts.type_parameter);
         createView(type, id);
+        setupVideoView();
     }
 
 
@@ -143,5 +146,15 @@ public class DetailsActivity extends AppCompatActivity {
         ratingTv.setText(movie.getMovieDetails().getRating());
         float rating = Float.parseFloat(movie.getMovieDetails().getRating()) * 10;
         PopularMovieAdapter.setStars(rating, starsLayout);
+    }
+
+    private void setupVideoView(){
+        VideoView videoView = findViewById(R.id.videoView);
+        String url = "https://www.youtube.com/watch?v=T1Zeoj3twHk";
+        MediaController mediaController = new MediaController(this);
+
+        videoView.setVideoPath(url);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
     }
 }

@@ -215,6 +215,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/creditsLayout"
             android:layout_width="match_parent"
