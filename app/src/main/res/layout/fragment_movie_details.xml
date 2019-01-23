@@ -52,7 +52,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="32dp"
                 android:gravity="bottom"
                 android:textColor="@color/textPrimary"
                 android:textSize="23sp"
@@ -80,23 +80,35 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
             <TextView
+                android:id="@+id/runtimeDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:text="132 min, 1994-09-23"
+                android:textColor="@color/textGrayed"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/posterImg"
+                app:layout_constraintTop_toBottomOf="@+id/category" />
+
+            <TextView
                 android:id="@+id/rating"
                 android:layout_width="36dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 android:gravity="bottom"
                 android:text="8.2"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/category" />
+                app:layout_constraintBottom_toBottomOf="@+id/starsLayout"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <LinearLayout
                 android:id="@+id/starsLayout"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -104,7 +116,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toStartOf="@+id/rating"
                 app:layout_constraintStart_toEndOf="@+id/posterImg"
-                app:layout_constraintTop_toBottomOf="@+id/category">
+                app:layout_constraintTop_toBottomOf="@+id/runtimeDate">
 
                 <ImageView
                     android:id="@+id/imageView7"
@@ -142,14 +154,14 @@
                     app:srcCompat="@drawable/ic_star_border" />
 
                 <ImageView
-                    android:id="@+id/imageView12"
+                    android:id="@+id/imageView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_star_border" />
 
                 <ImageView
-                    android:id="@+id/imageView13"
+                    android:id="@+id/imageView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -187,41 +199,95 @@
             android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/tagline"
-                android:layout_width="371dp"
+                android:id="@+id/overviewTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text='"Is it better to speak or to die?"'
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Overview"
+                android:textColor="@color/textPrimary"
                 android:textSize="18sp"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/lineOverview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/overviewTitle"
+                app:srcCompat="@drawable/line" />
 
             <TextView
                 android:id="@+id/overview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:lineSpacingExtra="2sp"
                 android:text="Elio Perlman is spending the summer with his family at their vacation home in Lombardy, Italy. When his father hires a handsome doctoral student, the curious 17-year-old finds himself developing a growing attraction to the young man."
                 android:textAlignment="viewStart"
                 android:textColor="@color/textPrimary"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tagline" />
+                app:layout_constraintTop_toBottomOf="@+id/lineOverview" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
-            android:id="@+id/videoView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/trailerLayout"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/trailer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Trailer"
+                android:textColor="@color/textPrimary"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/lineTrailer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/trailer"
+                app:srcCompat="@drawable/line" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
+                android:id="@+id/videoView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lineTrailer" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/creditsLayout"
@@ -284,7 +350,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Similar movies"
+                android:text="Similar"
                 android:textColor="@color/textPrimary"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"

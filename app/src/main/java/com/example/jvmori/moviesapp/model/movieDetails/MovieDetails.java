@@ -13,6 +13,9 @@ public class MovieDetails
     @SerializedName(value="title", alternate = "name")
     private String title;
 
+    @SerializedName("runtime")
+    private String runtime;
+
     @SerializedName(("poster_path"))
     private String poster;
 
@@ -113,5 +116,13 @@ public class MovieDetails
 
     public void setTagline(String tagline) {
         this.tagline = tagline;
+    }
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
     }
 }
