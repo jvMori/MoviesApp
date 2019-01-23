@@ -3,6 +3,7 @@ import com.example.jvmori.moviesapp.model.genre.GenreJsonObj;
 import com.example.jvmori.moviesapp.model.movieDetails.CreditsJsonObj;
 import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieJsonObj;
+import com.example.jvmori.moviesapp.model.video.VideoJsonObj;
 
 import java.util.Map;
 
@@ -28,6 +29,9 @@ public interface TmdbApi
 
     @GET("{type}/{id}/similar")
     Call<MovieJsonObj> getSimilar(@Path ("type") String type,@Path ("id") String movieId, @Query("api_key") String api_key);
+
+    @GET("{type}/{id}/videos")
+    Call<VideoJsonObj> getVideos (@Path ("type") String type,@Path ("id") String movieId, @Query("api_key") String api_key);
 
     @GET("search/multi")
     Call<MovieJsonObj> getSearchedItem(@QueryMap Map<String, String> parameters);

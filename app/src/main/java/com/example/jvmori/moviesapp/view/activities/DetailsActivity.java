@@ -9,10 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
@@ -20,6 +18,7 @@ import com.example.jvmori.moviesapp.model.movie.Movie;
 import com.example.jvmori.moviesapp.model.movieDetails.Cast;
 import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.video.Video;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.LoadImage;
 import com.example.jvmori.moviesapp.view.adapters.CastAdapter;
@@ -28,6 +27,7 @@ import com.example.jvmori.moviesapp.view.adapters.SimilarAdapter;
 import com.example.jvmori.moviesapp.viewModel.CastViewModel;
 import com.example.jvmori.moviesapp.viewModel.DetailsViewModel;
 import com.example.jvmori.moviesapp.viewModel.SimilarViewModel;
+import com.example.jvmori.moviesapp.viewModel.VideoViewModel;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
@@ -53,7 +53,7 @@ public class DetailsActivity extends AppCompatActivity {
         String id = getIntent().getStringExtra(Consts.id_parameter);
         String type = getIntent().getStringExtra(Consts.type_parameter);
         createView(type, id);
-        setupVideoView("T1Zeoj3twHk");
+        getVideoViewModel(type, id);
     }
 
 
@@ -171,5 +171,16 @@ public class DetailsActivity extends AppCompatActivity {
                 });
             }
         }, true);
+    }
+
+    private void getVideoViewModel(String type, String id){
+        VideoViewModel videoViewModel = ViewModelProviders.of(this).get(VideoViewModel.class);
+        videoViewModel.getAllVideos(type, id).observe(this, new Observer<List<Video>>() {
+            @Override
+            public void onChanged(List<Video> videos) {
+                if (!videos.get(0).getUrl().isEmpty())
+                    setupVideoView(videos.get(0).getUrl());
+            }
+        });
     }
 }
