@@ -42,6 +42,7 @@ public class DetailsActivity extends AppCompatActivity {
     private SimilarAdapter similarAdapter;
     private ScrollView detailsScrollView;
     private LinearLayout starsLayout;
+    private YouTubePlayerView youtubePlayerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,6 @@ public class DetailsActivity extends AppCompatActivity {
         String id = getIntent().getStringExtra(Consts.id_parameter);
         String type = getIntent().getStringExtra(Consts.type_parameter);
         createView(type, id);
-        getVideoViewModel(type, id);
     }
 
 
@@ -65,9 +65,11 @@ public class DetailsActivity extends AppCompatActivity {
         setMovieDetailsViewModel(type, id);
         setCastViewModel(type, id);
         setSimilarMoviesViewModel(type,id);
+        getVideoViewModel(type, id);
         similarAdapter.setOnSimilarItemClicked(new SimilarAdapter.OnSimilarItemClicked() {
             @Override
             public void onClick(MovieItem item) {
+                //youtubePlayerView.release();
                 createView(type, item.getTmdbId());
             }
         });
@@ -157,7 +159,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void setupVideoView(final String videoId){
-        YouTubePlayerView youtubePlayerView = findViewById(R.id.videoView);
+        youtubePlayerView = findViewById(R.id.videoView);
         getLifecycle().addObserver(youtubePlayerView);
 
         youtubePlayerView.initialize(new YouTubePlayerInitListener() {
