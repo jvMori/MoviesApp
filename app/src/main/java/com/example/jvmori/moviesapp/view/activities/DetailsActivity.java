@@ -138,8 +138,8 @@ public class DetailsActivity extends AppCompatActivity {
         LoadImage.loadImage(backdrop, Consts.base_backdrop_url + movie.getMovieDetails().getBackdropUrl());
         LoadImage.loadImage(posterImg, Consts.base_poster_url + movie.getMovieDetails().getPoster());
         titleTextView.setText(movie.getMovieDetails().getTitle());
-        String runtime = movie.getMovieDetails().getRuntime() != null ? movie.getMovieDetails().getRuntime() : "";
-        runtimeDate.setText(runtime.concat(" min, ").concat(movie.getMovieDetails().getYear()));
+        String runtime = movie.getMovieDetails().getRuntime() != null ? movie.getMovieDetails().getRuntime().concat(" min, ") : "";
+        runtimeDate.setText(runtime.concat(movie.getMovieDetails().getYear()));
 
         StringBuilder categoryTxt= new StringBuilder();
         for (Genre genre : movie.getMovieDetails().getGenres()) {
