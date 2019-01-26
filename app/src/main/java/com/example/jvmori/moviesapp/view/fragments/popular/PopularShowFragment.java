@@ -38,9 +38,6 @@ public class PopularShowFragment extends PopularFragment {
         popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(MovieItem movieItem) {
-//                HomeFragmentDirections.ActionHomeToShowDetailsFragment action = HomeFragmentDirections.actionHomeToShowDetailsFragment();
-//                action.setShowId(movieItem.getTmdbId());
-//                Navigation.findNavController(view).navigate(action);
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
                 intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
                 intent.putExtra(Consts.type_parameter, Consts.tvShow);
