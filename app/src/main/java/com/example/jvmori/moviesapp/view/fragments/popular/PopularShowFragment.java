@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 
 public class PopularShowFragment extends PopularFragment {
 
+    private String mediaType = Consts.tvShow;
+
     public PopularShowFragment() {
         // Required empty public constructor
     }
@@ -45,6 +47,12 @@ public class PopularShowFragment extends PopularFragment {
             }
         });
 
+        movieItemAdapter.setOnLikeClickedListener(new MovieItemAdapter.OnLikeClickedListener() {
+            @Override
+            public void onLikeClicked(MovieItem movieItem) {
+                addFavMovie(movieItem, mediaType);
+            }
+        });
 
     }
 

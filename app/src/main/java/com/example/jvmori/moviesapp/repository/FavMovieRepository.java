@@ -19,7 +19,7 @@ public class FavMovieRepository
     public FavMovieRepository(Application application){
         MovieDatabase movieDatabase = MovieDatabase.getInstance(application);
         movieDao = movieDatabase.movieDao();
-        allMovies = movieDao.getAllMovies();
+        allMovies = movieDao.getAllItems();
     }
 
     public void insert(FavMovie favMovie){
@@ -37,7 +37,9 @@ public class FavMovieRepository
     public LiveData<List<FavMovie>> getAllMovies(){
         return allMovies;
     }
-
+    public LiveData<List<FavMovie>> getAllItemsOfType(String type){
+        return movieDao.getAllItemsOfType(type); //do in background
+    }
     private static class InsertAsyncTask extends AsyncTask<FavMovie, Void, Void>{
         private MovieDao movieDao;
         InsertAsyncTask(MovieDao movieDao){

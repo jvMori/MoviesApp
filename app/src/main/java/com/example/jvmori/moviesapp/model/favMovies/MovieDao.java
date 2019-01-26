@@ -21,5 +21,9 @@ public interface MovieDao
     void deleteAll();
 
     @Query("SELECT * FROM movie_table")
-    LiveData<List<FavMovie>> getAllMovies();
+    LiveData<List<FavMovie>> getAllItems();
+
+    @Query("SELECT * FROM movie_table WHERE media_type LIKE :type")
+    LiveData<List<FavMovie>> getAllItemsOfType(String type);
+
 }

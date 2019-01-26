@@ -3,6 +3,8 @@ package com.example.jvmori.moviesapp.view.fragments.popular;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -15,9 +17,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.example.jvmori.moviesapp.R;
+import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
+import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import com.example.jvmori.moviesapp.viewModel.PopularItemsViewModel;
 
@@ -37,6 +41,10 @@ public class PopularFragment extends Fragment {
         // Required empty public constructor
     }
 
+    protected void addFavMovie(MovieItem movieItem, String mediaType){
+        FavMovieViewModel favMovieViewModel = ViewModelProviders.of(this).get(FavMovieViewModel.class);
+        favMovieViewModel.insert(new FavMovie(movieItem, mediaType));
+    }
 
     protected void setPopularMovieAdapter(){
         recyclerView = view.findViewById(R.id.movieRecyclerView);

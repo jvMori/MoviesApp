@@ -18,7 +18,6 @@ import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
-import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 
 
 /**
@@ -26,6 +25,7 @@ import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
  */
 public class PopularMovieFragment extends PopularFragment {
 
+    private String mediaType = Consts.movie;
 
     public PopularMovieFragment() {
         // Required empty public constructor
@@ -55,18 +55,13 @@ public class PopularMovieFragment extends PopularFragment {
                 startActivity(intent);
             }
         });
-
         movieItemAdapter.setOnLikeClickedListener(new MovieItemAdapter.OnLikeClickedListener() {
             @Override
             public void onLikeClicked(MovieItem movieItem) {
-                addFavMovie(movieItem);
+                addFavMovie(movieItem, mediaType);
             }
         });
 
     }
 
-    private void addFavMovie(MovieItem movieItem){
-        FavMovieViewModel favMovieViewModel = ViewModelProviders.of(this).get(FavMovieViewModel.class);
-        favMovieViewModel.insert(new FavMovie(movieItem));
-    }
 }
