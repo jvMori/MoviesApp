@@ -10,8 +10,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -20,7 +18,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
@@ -28,7 +25,7 @@ import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.PopularItemsAdapter;
-import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
+import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import com.example.jvmori.moviesapp.viewModel.SearchResultsViewModel;
 import com.google.android.material.tabs.TabLayout;
@@ -45,7 +42,7 @@ public class HomeFragment extends Fragment {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private SearchView searchView;
-    private PopularMovieAdapter popularMovieAdapter;
+    private MovieItemAdapter movieItemAdapter;
     private RecyclerView recyclerView;
     private LinearLayout popularItemsLayout;
 
@@ -125,7 +122,7 @@ public class HomeFragment extends Fragment {
         viewModel.getResults(query).observe(this, new Observer<List<MovieItem>>() {
             @Override
             public void onChanged(List<MovieItem> movieItems) {
-                popularMovieAdapter.setMovieItems(movieItems);
+                movieItemAdapter.setMovieItems(movieItems);
             }
         });
     }
@@ -137,7 +134,7 @@ public class HomeFragment extends Fragment {
             public void onChanged(List<Genre> genres) {
                 if (genres == null)
                     return;
-                popularMovieAdapter.setGenres(genres);
+                movieItemAdapter.setGenres(genres);
             }
         });
     }
@@ -145,9 +142,9 @@ public class HomeFragment extends Fragment {
     private void setPopularMovieAdapter(){
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
-        popularMovieAdapter = new PopularMovieAdapter();
-        recyclerView.setAdapter(popularMovieAdapter);
-        popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
+        movieItemAdapter = new MovieItemAdapter();
+        recyclerView.setAdapter(movieItemAdapter);
+        movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(MovieItem movieItem) {
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);

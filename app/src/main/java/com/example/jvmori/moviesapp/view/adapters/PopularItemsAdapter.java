@@ -22,6 +22,7 @@ public class PopularItemsAdapter extends FragmentPagerAdapter {
             case 0: fragment = new PopularMovieFragment();
             break;
             case 1: fragment = new PopularShowFragment();
+            break;
         }
         return fragment;
     }

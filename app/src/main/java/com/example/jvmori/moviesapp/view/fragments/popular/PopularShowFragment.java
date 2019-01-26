@@ -9,7 +9,7 @@ import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
-import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
+import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,7 +35,7 @@ public class PopularShowFragment extends PopularFragment {
         setGenreViewModel();
         setPopularMovieViewModel(Consts.tvShow);
 
-        popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
+        movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(MovieItem movieItem) {
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);

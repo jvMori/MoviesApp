@@ -1,12 +1,10 @@
 package com.example.jvmori.moviesapp.view.adapters;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
@@ -19,7 +17,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapter.PopularMovieHolder>
+public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.PopularMovieHolder>
 {
     private List<MovieItem> movieItems = new ArrayList<>();
     private List<Genre> genres = new ArrayList<>();

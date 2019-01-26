@@ -17,7 +17,7 @@ import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
-import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
+import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 
 
@@ -46,7 +46,7 @@ public class PopularMovieFragment extends PopularFragment {
         setGenreViewModel();
         setPopularMovieViewModel(Consts.movie);
 
-        popularMovieAdapter.setOnItemClickedListener(new PopularMovieAdapter.OnItemClickedListener() {
+        movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(MovieItem movieItem) {
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
@@ -56,7 +56,7 @@ public class PopularMovieFragment extends PopularFragment {
             }
         });
 
-        popularMovieAdapter.setOnLikeClickedListener(new PopularMovieAdapter.OnLikeClickedListener() {
+        movieItemAdapter.setOnLikeClickedListener(new MovieItemAdapter.OnLikeClickedListener() {
             @Override
             public void onLikeClicked(MovieItem movieItem) {
                 addFavMovie(movieItem);

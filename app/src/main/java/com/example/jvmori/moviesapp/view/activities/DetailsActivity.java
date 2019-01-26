@@ -22,7 +22,7 @@ import com.example.jvmori.moviesapp.model.video.Video;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.LoadImage;
 import com.example.jvmori.moviesapp.view.adapters.CastAdapter;
-import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
+import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 import com.example.jvmori.moviesapp.view.adapters.SimilarAdapter;
 import com.example.jvmori.moviesapp.viewModel.CastViewModel;
 import com.example.jvmori.moviesapp.viewModel.DetailsViewModel;
@@ -155,7 +155,7 @@ public class DetailsActivity extends AppCompatActivity {
         overview.setText(movie.getMovieDetails().getOverview());
         ratingTv.setText(movie.getMovieDetails().getRating());
         float rating = Float.parseFloat(movie.getMovieDetails().getRating()) * 10;
-        PopularMovieAdapter.setStars(rating, starsLayout);
+        MovieItemAdapter.setStars(rating, starsLayout);
     }
 
     private void setupVideoView(final String videoId){
