@@ -1,6 +1,6 @@
 package com.example.jvmori.moviesapp.util;
 
-import com.example.jvmori.moviesapp.model.movie.Movie;
+import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -13,17 +13,17 @@ public class MovieTypeConverter
     static Gson gson = new Gson();
 
     @TypeConverter
-    public static Movie stringToMovie(String data) {
+    public static MovieItem stringToMovie(String data) {
         if (data == null) {
-            new Movie();
+            new MovieItem();
         }
 
-        Type listType = new TypeToken<Movie>() {}.getType();
+        Type listType = new TypeToken<MovieItem>() {}.getType();
         return gson.fromJson(data, listType);
     }
 
     @TypeConverter
-    public static String movieToString(Movie movie) {
+    public static String movieToString(MovieItem movie) {
         return gson.toJson(movie);
     }
 }

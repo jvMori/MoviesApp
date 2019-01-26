@@ -6,14 +6,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.jvmori.moviesapp.R;
+import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.PopularMovieAdapter;
+import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 
 
 /**
@@ -50,7 +55,18 @@ public class PopularMovieFragment extends PopularFragment {
                 startActivity(intent);
             }
         });
+
+        popularMovieAdapter.setOnLikeClickedListener(new PopularMovieAdapter.OnLikeClickedListener() {
+            @Override
+            public void onLikeClicked(MovieItem movieItem) {
+                addFavMovie(movieItem);
+            }
+        });
+
     }
 
-
+    private void addFavMovie(MovieItem movieItem){
+        FavMovieViewModel favMovieViewModel = ViewModelProviders.of(this).get(FavMovieViewModel.class);
+        favMovieViewModel.insert(new FavMovie(movieItem));
+    }
 }

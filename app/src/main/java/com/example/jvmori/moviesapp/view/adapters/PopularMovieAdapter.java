@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
@@ -22,11 +24,12 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
     private List<MovieItem> movieItems = new ArrayList<>();
     private List<Genre> genres = new ArrayList<>();
     private OnItemClickedListener onItemClickedListener;
+    private OnLikeClickedListener onLikeClickedListener;
     View item;
 
     public class PopularMovieHolder extends RecyclerView.ViewHolder {
         TextView title, year, rating, reviews, categories;
-        ImageView poster;
+        ImageView poster, likeBtn;
         LinearLayout starsLayout;
 
         public PopularMovieHolder(@NonNull View itemView) {
@@ -38,6 +41,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
             categories = itemView.findViewById(R.id.category);
             poster = itemView.findViewById(R.id.icon);
             starsLayout = itemView.findViewById(R.id.layoutStars);
+            likeBtn = itemView.findViewById(R.id.heart);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -47,8 +51,26 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
                         onItemClickedListener.onItemClicked(movieItems.get(position));
                 }
             });
+
+            likeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (onLikeClickedListener != null && position != RecyclerView.NO_POSITION)
+                        onLikeClickedListener.onLikeClicked(movieItems.get(position));
+
+                }
+            });
         }
 
+    }
+
+    public interface OnLikeClickedListener{
+        void onLikeClicked(MovieItem movieItem);
+    }
+
+    public void setOnLikeClickedListener(OnLikeClickedListener onLikeClickedListener){
+        this.onLikeClickedListener = onLikeClickedListener;
     }
 
     public interface OnItemClickedListener{
