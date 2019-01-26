@@ -1,83 +1,36 @@
 package com.example.jvmori.moviesapp.model.favMovies;
 
+import com.example.jvmori.moviesapp.model.movie.Movie;
+import com.example.jvmori.moviesapp.util.MovieTypeConverter;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 @Entity(tableName = "movie_table")
 public class FavMovie
 {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String title;
-    //private Bitmap poster;
-    private String year;
-    private String genre;
-    private String director;
-    private String actors;
-    private String description;
-    private String ratingRT;
-    private String ratingImdb;
-    private String voteCount;
+    @TypeConverters(MovieTypeConverter.class)
+    private Movie movie;
 
-
-    public FavMovie(String title, String year, String genre, String director, String actors, String description, String ratingRT, String ratingImdb, String voteCount) {
-        this.title = title;
-        //this.poster = poster;
-        this.year = year;
-        this.genre = genre;
-        this.director = director;
-        this.actors = actors;
-        this.description = description;
-        this.ratingRT = ratingRT;
-        this.ratingImdb = ratingImdb;
-        this.voteCount = voteCount;
-
+    public Movie getMovie() {
+        return movie;
     }
-    public String getVoteCount() {
-        return voteCount;
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-//    public Bitmap getPoster() {
-//        return poster;
-//    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public String getActors() {
-        return actors;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getRatingRT() {
-        return ratingRT;
-    }
-
-    public String getRatingImdb() {
-        return ratingImdb;
-    }
 }

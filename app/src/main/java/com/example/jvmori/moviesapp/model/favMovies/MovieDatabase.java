@@ -18,43 +18,18 @@ public abstract class MovieDatabase extends RoomDatabase {
         if (instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(), MovieDatabase.class, "movie_database")
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
                     .build();
         }
         return instance;
     }
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
-        @Override
-        public void onCreate(SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDbAsyncTask(instance).execute();
-        }
-    };
+//    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
+//        @Override
+//        public void onCreate(SupportSQLiteDatabase db) {
+//            super.onCreate(db);
+//            new PopulateDbAsyncTask(instance).execute();
+//        }
+//    };
 
-    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void>{
-        private MovieDao movieDao;
-
-        private PopulateDbAsyncTask(MovieDatabase movieDatabase){
-            movieDao = movieDatabase.movieDao();
-        }
-        @Override
-        protected Void doInBackground(Void... voids) {
-            FavMovie exampleFavMovie = new FavMovie(
-                    "Call Me by Your Name",
-                    "2017",
-                    "Drama, Romance",
-                    "Luca Guadagnino",
-                    "Armie Hammer, Timothée Chalamet, Michael Stuhlbarg, Amira Casar",
-                    "Call Me by Your Name is the story of a sudden and powerful romance that blossoms between an adolescent boy and a summer guest at his parents' cliffside mansion on the Italian Riviera. During the restless summer weeks, unrelenting but buried currents of obsession, fascination, and desire intensify their passion as they test the charged ground between them and verge toward the one thing both already fear they may never truly find again: total intimacy.",
-                    "95%",
-                    "7.9",
-                    "3899"
-                    );
-            movieDao.insert(exampleFavMovie);
-            movieDao.insert(exampleFavMovie);
-            return null;
-        }
-    }
 
 }
