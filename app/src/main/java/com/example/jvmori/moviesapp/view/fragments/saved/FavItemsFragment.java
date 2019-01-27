@@ -6,6 +6,7 @@ import android.view.View;
 import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
+import com.example.jvmori.moviesapp.view.adapters.SetupMovieItemsAdapter;
 import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 
 import java.util.ArrayList;
@@ -22,8 +23,17 @@ public class FavItemsFragment extends SavedItemsFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setGenreViewModel();
-        setFavMovieViewModel();
+        //setGenreViewModel();
+        SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
+        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, new SetupMovieItemsAdapter.SetViewCallback() {
+            @Override
+            public void callback() {
+                setFavMovieViewModel();
+            }
+        });
+
+        movieItemAdapter = setupMovieItemsAdapter.getMovieItemAdapter();
+
     }
 
     private void setFavMovieViewModel(){

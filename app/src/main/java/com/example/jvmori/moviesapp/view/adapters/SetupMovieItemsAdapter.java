@@ -2,19 +2,14 @@ package com.example.jvmori.moviesapp.view.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-
-
 import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
-import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
-
 import java.util.List;
-
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
@@ -51,7 +46,8 @@ public class SetupMovieItemsAdapter
             public void onItemClicked(MovieItem movieItem) {
                 Intent intent = new Intent(activity, DetailsActivity.class);
                 intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
-                intent.putExtra(Consts.type_parameter, mediaType);
+                String type = movieItem.getMediaType() != null ? movieItem.getMediaType() : mediaType;
+                intent.putExtra(Consts.type_parameter, type);
                 activity.startActivity(intent);
             }
         });
@@ -84,6 +80,8 @@ public class SetupMovieItemsAdapter
 
     private void addFavMovie(MovieItem movieItem, String mediaType) {
         FavMovieViewModel favMovieViewModel = ViewModelProviders.of(fragment).get(FavMovieViewModel.class);
+        if (mediaType != null)
+            movieItem.setMediaType(mediaType);
         favMovieViewModel.insert(new FavMovie(movieItem, mediaType));
     }
 

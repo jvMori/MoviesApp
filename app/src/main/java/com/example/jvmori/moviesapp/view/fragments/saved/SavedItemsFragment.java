@@ -29,6 +29,7 @@ public class SavedItemsFragment extends Fragment {
 
     protected MovieItemAdapter movieItemAdapter;
     private View view;
+    protected RecyclerView recyclerView;
 
     public SavedItemsFragment() {
         // Required empty public constructor
@@ -40,33 +41,34 @@ public class SavedItemsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_saved_items, container, false);
+        recyclerView = view.findViewById(R.id.savedRecyclerView);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setMovieItemAdapter();
+        //setMovieItemAdapter();
     }
 
-    protected void setMovieItemAdapter(){
-        RecyclerView recyclerView = view.findViewById(R.id.savedRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setHasFixedSize(true);
-        movieItemAdapter = new MovieItemAdapter();
-        recyclerView.setAdapter(movieItemAdapter);
-    }
-
-    protected void setGenreViewModel(){
-        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
-        genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
-            @Override
-            public void onChanged(List<Genre> genres) {
-                if (genres == null)
-                    return;
-                movieItemAdapter.setGenres(genres);
-            }
-        });
-    }
+//    protected void setMovieItemAdapter(){
+//        RecyclerView recyclerView = view.findViewById(R.id.savedRecyclerView);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recyclerView.setHasFixedSize(true);
+//        movieItemAdapter = new MovieItemAdapter();
+//        recyclerView.setAdapter(movieItemAdapter);
+//    }
+//
+//    protected void setGenreViewModel(){
+//        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
+//        genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
+//            @Override
+//            public void onChanged(List<Genre> genres) {
+//                if (genres == null)
+//                    return;
+//                movieItemAdapter.setGenres(genres);
+//            }
+//        });
+//    }
 
 }
