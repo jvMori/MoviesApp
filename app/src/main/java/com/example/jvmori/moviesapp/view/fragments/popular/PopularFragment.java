@@ -46,25 +46,25 @@ public class PopularFragment extends Fragment {
         favMovieViewModel.insert(new FavMovie(movieItem, mediaType));
     }
 
-    protected void setPopularMovieAdapter(){
-        recyclerView = view.findViewById(R.id.movieRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setHasFixedSize(true);
-        movieItemAdapter = new MovieItemAdapter();
-        recyclerView.setAdapter(movieItemAdapter);
-    }
-
-    protected void setGenreViewModel(){
-        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
-        genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
-            @Override
-            public void onChanged(List<Genre> genres) {
-                if (genres == null)
-                    return;
-                movieItemAdapter.setGenres(genres);
-            }
-        });
-    }
+//    protected void setPopularMovieAdapter(){
+//        recyclerView = view.findViewById(R.id.movieRecyclerView);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recyclerView.setHasFixedSize(true);
+//        movieItemAdapter = new MovieItemAdapter();
+//        recyclerView.setAdapter(movieItemAdapter);
+//    }
+//
+//    protected void setGenreViewModel(){
+//        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
+//        genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
+//            @Override
+//            public void onChanged(List<Genre> genres) {
+//                if (genres == null)
+//                    return;
+//                movieItemAdapter.setGenres(genres);
+//            }
+//        });
+//    }
 
     protected void setPopularMovieViewModel(String type){
         PopularItemsViewModel movieViewModel = ViewModelProviders.of(this).get(PopularItemsViewModel.class);

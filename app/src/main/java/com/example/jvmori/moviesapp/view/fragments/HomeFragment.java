@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment {
         viewModel.getResults(query).observe(this, new Observer<List<MovieItem>>() {
             @Override
             public void onChanged(List<MovieItem> movieItems) {
-                movieItemAdapter.setMovieItems(movieItems);
+                movieItemAdapter.setMovieItems( movieItems);
             }
         });
     }

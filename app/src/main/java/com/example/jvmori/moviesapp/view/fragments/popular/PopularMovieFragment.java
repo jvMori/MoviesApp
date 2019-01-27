@@ -18,6 +18,7 @@ import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
+import com.example.jvmori.moviesapp.view.fragments.SetupMovieItemsAdapter;
 
 
 /**
@@ -36,15 +37,19 @@ public class PopularMovieFragment extends PopularFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_popular_item, container, false);
         loadingScreen = view.findViewById(R.id.loadingPanel);
-        setPopularMovieAdapter();
+        recyclerView = view.findViewById(R.id.movieRecyclerView);
+        //setPopularMovieAdapter();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setGenreViewModel();
+        //setGenreViewModel();
+        SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter();
+        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, this.getActivity(), this, this);
         setPopularMovieViewModel(Consts.movie);
+        movieItemAdapter = setupMovieItemsAdapter.getMovieItemAdapter();
 
         movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
             @Override

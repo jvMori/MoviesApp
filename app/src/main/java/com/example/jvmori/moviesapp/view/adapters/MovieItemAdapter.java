@@ -11,10 +11,15 @@ import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.LoadImage;
+import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.PopularMovieHolder>
