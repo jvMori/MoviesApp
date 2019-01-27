@@ -26,6 +26,7 @@ import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.adapters.PopularItemsAdapter;
 import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
+import com.example.jvmori.moviesapp.view.adapters.SetupMovieItemsAdapter;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import com.example.jvmori.moviesapp.viewModel.SearchResultsViewModel;
 import com.google.android.material.tabs.TabLayout;
@@ -71,8 +72,11 @@ public class HomeFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
         popularItemsLayout.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
-        setGenreViewModel();
-        setPopularMovieAdapter();
+        //setGenreViewModel();
+        //setPopularMovieAdapter();
+        SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
+        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, null, null);
+        movieItemAdapter = setupMovieItemsAdapter.getMovieItemAdapter();
 
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -127,31 +131,31 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void setGenreViewModel(){
-        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
-        genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
-            @Override
-            public void onChanged(List<Genre> genres) {
-                if (genres == null)
-                    return;
-                movieItemAdapter.setGenres(genres);
-            }
-        });
-    }
-
-    private void setPopularMovieAdapter(){
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setHasFixedSize(true);
-        movieItemAdapter = new MovieItemAdapter();
-        recyclerView.setAdapter(movieItemAdapter);
-        movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
-            @Override
-            public void onItemClicked(MovieItem movieItem) {
-                Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
-                intent.putExtra(Consts.type_parameter, movieItem.getMediaType());
-                startActivity(intent);
-            }
-        });
-    }
+//    private void setGenreViewModel(){
+//        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
+//        genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
+//            @Override
+//            public void onChanged(List<Genre> genres) {
+//                if (genres == null)
+//                    return;
+//                movieItemAdapter.setGenres(genres);
+//            }
+//        });
+//    }
+//
+//    private void setPopularMovieAdapter(){
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recyclerView.setHasFixedSize(true);
+//        movieItemAdapter = new MovieItemAdapter();
+//        recyclerView.setAdapter(movieItemAdapter);
+//        movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
+//            @Override
+//            public void onItemClicked(MovieItem movieItem) {
+//                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+//                intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
+//                intent.putExtra(Consts.type_parameter, movieItem.getMediaType());
+//                startActivity(intent);
+//            }
+//        });
+//    }
 }

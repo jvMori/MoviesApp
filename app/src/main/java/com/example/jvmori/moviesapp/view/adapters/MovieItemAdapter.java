@@ -1,9 +1,11 @@
 package com.example.jvmori.moviesapp.view.adapters;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jvmori.moviesapp.R;
@@ -16,6 +18,7 @@ import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
@@ -28,6 +31,8 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
     private List<Genre> genres = new ArrayList<>();
     private OnItemClickedListener onItemClickedListener;
     private OnLikeClickedListener onLikeClickedListener;
+    private ConstraintLayout layoutItem;
+    private RelativeLayout likeView;
     View item;
 
     public class PopularMovieHolder extends RecyclerView.ViewHolder {
@@ -35,7 +40,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
         ImageView poster, likeBtn;
         LinearLayout starsLayout;
 
-        public PopularMovieHolder(@NonNull View itemView) {
+        public PopularMovieHolder(@NonNull final View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             year = itemView.findViewById(R.id.year);
@@ -45,6 +50,8 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
             poster = itemView.findViewById(R.id.icon);
             starsLayout = itemView.findViewById(R.id.layoutStars);
             likeBtn = itemView.findViewById(R.id.heart);
+            likeView = itemView.findViewById(R.id.likeView);
+            layoutItem = itemView.findViewById(R.id.itemView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -58,6 +65,8 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
             likeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //itemView.setVisibility(View.GONE);
+                    //likeView.setVisibility(View.VISIBLE);
                     int position = getAdapterPosition();
                     if (onLikeClickedListener != null && position != RecyclerView.NO_POSITION)
                         onLikeClickedListener.onLikeClicked(movieItems.get(position));
