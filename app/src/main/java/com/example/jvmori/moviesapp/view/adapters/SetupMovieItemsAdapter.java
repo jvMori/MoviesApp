@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.view.fragments;
+package com.example.jvmori.moviesapp.view.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
