@@ -26,6 +26,7 @@ public class PopularFragment extends Fragment {
     protected MovieItemAdapter movieItemAdapter;
     private RelativeLayout loadingScreen;
     RecyclerView recyclerView;
+    protected View modal;
 
     public PopularFragment() {
         // Required empty public constructor

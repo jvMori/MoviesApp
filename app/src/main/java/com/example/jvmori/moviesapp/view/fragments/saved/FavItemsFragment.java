@@ -23,9 +23,9 @@ public class FavItemsFragment extends SavedItemsFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //setGenreViewModel();
+
         SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
-        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, new SetupMovieItemsAdapter.SetViewCallback() {
+        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, null, new SetupMovieItemsAdapter.SetViewCallback() {
             @Override
             public void callback() {
                 setFavMovieViewModel();
@@ -43,6 +43,8 @@ public class FavItemsFragment extends SavedItemsFragment {
             public void onChanged(List<FavMovie> favMovies) {
                 setMovieItems(favMovies);
                 movieItemAdapter.setMovieItems(movieItems);
+                loadingScreen.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
             }
         });
     }
