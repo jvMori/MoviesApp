@@ -83,10 +83,10 @@ public class SetupMovieItemsAdapter
     private void addFavMovie(MovieItem movieItem, String mediaType, View view) {
         if (view != null)
             view.setVisibility(View.VISIBLE);
-//        FavMovieViewModel favMovieViewModel = ViewModelProviders.of(fragment).get(FavMovieViewModel.class);
-//        if (mediaType != null)
-//            movieItem.setMediaType(mediaType);
-//        favMovieViewModel.insert(new FavMovie(movieItem, mediaType));
+        FavMovieViewModel favMovieViewModel = ViewModelProviders.of(fragment).get(FavMovieViewModel.class);
+        if (mediaType != null)
+            movieItem.setMediaType(mediaType);
+        favMovieViewModel.insert(new FavMovie(movieItem, mediaType));
     }
 
 
