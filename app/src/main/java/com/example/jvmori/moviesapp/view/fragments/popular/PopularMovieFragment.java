@@ -38,35 +38,21 @@ public class PopularMovieFragment extends PopularFragment {
         view = inflater.inflate(R.layout.fragment_popular_item, container, false);
         loadingScreen = view.findViewById(R.id.loadingPanel);
         recyclerView = view.findViewById(R.id.movieRecyclerView);
-        //setPopularMovieAdapter();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //setGenreViewModel();
-        SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter();
-        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, this.getActivity(), this, this);
-        setPopularMovieViewModel(Consts.movie);
+
+        SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
+        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, mediaType, new SetupMovieItemsAdapter.SetViewCallback() {
+            @Override
+            public void callback() {
+                setPopularMovieViewModel(mediaType);
+            }
+        });
         movieItemAdapter = setupMovieItemsAdapter.getMovieItemAdapter();
-
-        movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
-            @Override
-            public void onItemClicked(MovieItem movieItem) {
-                Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
-                intent.putExtra(Consts.type_parameter, Consts.movie);
-                startActivity(intent);
-            }
-        });
-        movieItemAdapter.setOnLikeClickedListener(new MovieItemAdapter.OnLikeClickedListener() {
-            @Override
-            public void onLikeClicked(MovieItem movieItem) {
-                addFavMovie(movieItem, mediaType);
-            }
-        });
-
     }
 
 }

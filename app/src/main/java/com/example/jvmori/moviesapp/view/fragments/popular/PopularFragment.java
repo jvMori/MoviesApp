@@ -41,10 +41,10 @@ public class PopularFragment extends Fragment {
         // Required empty public constructor
     }
 
-    protected void addFavMovie(MovieItem movieItem, String mediaType){
-        FavMovieViewModel favMovieViewModel = ViewModelProviders.of(this).get(FavMovieViewModel.class);
-        favMovieViewModel.insert(new FavMovie(movieItem, mediaType));
-    }
+//    protected void addFavMovie(MovieItem movieItem, String mediaType){
+//        FavMovieViewModel favMovieViewModel = ViewModelProviders.of(this).get(FavMovieViewModel.class);
+//        favMovieViewModel.insert(new FavMovie(movieItem, mediaType));
+//    }
 
 //    protected void setPopularMovieAdapter(){
 //        recyclerView = view.findViewById(R.id.movieRecyclerView);
