@@ -65,7 +65,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
             likeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //itemView.setVisibility(View.GONE);
+                    //layoutItem.setVisibility(View.GONE);
                     //likeView.setVisibility(View.VISIBLE);
                     int position = getAdapterPosition();
                     if (onLikeClickedListener != null && position != RecyclerView.NO_POSITION)
