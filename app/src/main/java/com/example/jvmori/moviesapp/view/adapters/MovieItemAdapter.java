@@ -64,7 +64,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
                     if (onLikeClickedListener != null && position != RecyclerView.NO_POSITION){
                         boolean fav = checkIfIsFav(movieItems.get(position), favMovies);
                         handleLikeBtn(fav,likeBtn);
-                        if(fav)
+                        if(!fav)
                             onLikeClickedListener.addCallback(movieItems.get(position));
                         else
                             onLikeClickedListener.removeCallback(movieItems.get(position));
