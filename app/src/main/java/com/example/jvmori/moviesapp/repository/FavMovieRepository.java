@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
 import com.example.jvmori.moviesapp.model.favMovies.MovieDao;
 import com.example.jvmori.moviesapp.model.favMovies.MovieDatabase;
+import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class FavMovieRepository
     public LiveData<List<FavMovie>> getAllMovies(){
         return allMovies;
     }
+
     public LiveData<List<FavMovie>> getAllItemsOfType(String type){
         return movieDao.getAllItemsOfType(type);
     }

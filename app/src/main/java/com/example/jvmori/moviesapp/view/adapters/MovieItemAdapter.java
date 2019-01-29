@@ -1,5 +1,4 @@
 package com.example.jvmori.moviesapp.view.adapters;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,20 +8,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jvmori.moviesapp.R;
+import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.LoadImage;
-import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.PopularMovieHolder>
@@ -33,11 +28,12 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
     private OnLikeClickedListener onLikeClickedListener;
     private ConstraintLayout layoutItem;
     private RelativeLayout likeView;
+    List<FavMovie> favMovies;
     View item;
 
     public class PopularMovieHolder extends RecyclerView.ViewHolder {
         TextView title, year, rating, reviews, categories;
-        ImageView poster, likeBtn;
+        ImageView poster, likeBtn, heart2;
         LinearLayout starsLayout;
 
         public PopularMovieHolder(@NonNull final View itemView) {
@@ -50,7 +46,6 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
             poster = itemView.findViewById(R.id.icon);
             starsLayout = itemView.findViewById(R.id.layoutStars);
             likeBtn = itemView.findViewById(R.id.heart);
-            likeView = itemView.findViewById(R.id.likeView);
             layoutItem = itemView.findViewById(R.id.itemView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -65,20 +60,39 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
             likeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //layoutItem.setVisibility(View.GONE);
-                    //likeView.setVisibility(View.VISIBLE);
                     int position = getAdapterPosition();
-                    if (onLikeClickedListener != null && position != RecyclerView.NO_POSITION)
-                        onLikeClickedListener.onLikeClicked(movieItems.get(position));
-
+                    if (onLikeClickedListener != null && position != RecyclerView.NO_POSITION){
+                        boolean fav = checkIfIsFav(movieItems.get(position), favMovies);
+                        handleLikeBtn(fav,likeBtn);
+                        if(fav)
+                            onLikeClickedListener.addCallback(movieItems.get(position));
+                        else
+                            onLikeClickedListener.removeCallback(movieItems.get(position));
+                    }
                 }
             });
         }
+    }
 
+    private boolean checkIfIsFav(MovieItem movieItem, List<FavMovie> favMovies){
+        for (FavMovie fav: favMovies) {
+            if (movieItem.getTmdbId().equals(fav.getMovie().getTmdbId()))
+                return true;
+        }
+        return false;
+    }
+
+    private void handleLikeBtn( boolean liked, ImageView likeBtn){
+        liked = !liked;
+        if(liked)
+            likeBtn.setImageResource(R.drawable.ic_favorite_full);
+        else
+            likeBtn.setImageResource(R.drawable.ic_favorite_empty);
     }
 
     public interface OnLikeClickedListener{
-        void onLikeClicked(MovieItem movieItem);
+        void addCallback(MovieItem movieItem);
+        void removeCallback(MovieItem movieItem);
     }
 
     public void setOnLikeClickedListener(OnLikeClickedListener onLikeClickedListener){
@@ -134,6 +148,8 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
         movieItems = movies;
         notifyDataSetChanged();
     }
+
+    public void setFavMovies(List<FavMovie> favMovies){this.favMovies = favMovies;}
 
     private void categoryTxtSetup(MovieItem currentItem, StringBuilder categories){
         List<String> txtGenres = new ArrayList<>();

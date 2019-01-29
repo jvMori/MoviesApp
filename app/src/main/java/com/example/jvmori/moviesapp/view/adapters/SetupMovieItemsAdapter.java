@@ -25,11 +25,13 @@ public class SetupMovieItemsAdapter
     private Activity activity;
     private Fragment fragment;
     private LifecycleOwner owner;
+    private FavMovieViewModel favMovieViewModel;
 
     public SetupMovieItemsAdapter(Activity activity, Fragment fragment, LifecycleOwner owner) {
         this.activity = activity;
         this.fragment = fragment;
         this.owner = owner;
+        favMovieViewModel = ViewModelProviders.of(fragment).get(FavMovieViewModel.class);
     }
 
     public void setMovieItemAdapter(RecyclerView recyclerView, String mediaType,View view, final SetViewCallback setViewCallback){
@@ -42,6 +44,12 @@ public class SetupMovieItemsAdapter
         recyclerView.setHasFixedSize(true);
         movieItemAdapter = new MovieItemAdapter();
         recyclerView.setAdapter(movieItemAdapter);
+        favMovieViewModel.getAllMovies().observe(owner, new Observer<List<FavMovie>>() {
+            @Override
+            public void onChanged(List<FavMovie> favMovies) {
+                movieItemAdapter.setFavMovies(favMovies);
+            }
+        });
 
         movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
             @Override
@@ -56,8 +64,13 @@ public class SetupMovieItemsAdapter
 
         movieItemAdapter.setOnLikeClickedListener(new MovieItemAdapter.OnLikeClickedListener() {
             @Override
-            public void onLikeClicked(MovieItem movieItem) {
-                addFavMovie(movieItem, mediaType, view);
+            public void addCallback(MovieItem movieItem) {
+                addFavMovie(movieItem, mediaType);
+            }
+
+            @Override
+            public void removeCallback(MovieItem movieItem) {
+
             }
         });
     }
@@ -80,10 +93,7 @@ public class SetupMovieItemsAdapter
         void callback();
     }
 
-    private void addFavMovie(MovieItem movieItem, String mediaType, View view) {
-        if (view != null)
-            view.setVisibility(View.VISIBLE);
-        FavMovieViewModel favMovieViewModel = ViewModelProviders.of(fragment).get(FavMovieViewModel.class);
+    private void addFavMovie(MovieItem movieItem, String mediaType) {
         if (mediaType != null)
             movieItem.setMediaType(mediaType);
         favMovieViewModel.insert(new FavMovie(movieItem, mediaType));

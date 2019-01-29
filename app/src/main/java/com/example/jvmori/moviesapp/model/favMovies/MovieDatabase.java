@@ -22,14 +22,4 @@ public abstract class MovieDatabase extends RoomDatabase {
         }
         return instance;
     }
-
-//    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
-//        @Override
-//        public void onCreate(SupportSQLiteDatabase db) {
-//            super.onCreate(db);
-//            new PopulateDbAsyncTask(instance).execute();
-//        }
-//    };
-
-
 }

@@ -2,6 +2,9 @@ package com.example.jvmori.moviesapp.model.popularMovies;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
+import androidx.room.Entity;
+
+//@Entity(tableName = "fav_movie_table")
 public class MovieItem
 {
     @SerializedName("id")
