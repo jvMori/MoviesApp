@@ -70,7 +70,7 @@ public class SetupMovieItemsAdapter
 
             @Override
             public void removeCallback(MovieItem movieItem) {
-
+                favMovieViewModel.deleteById(movieItem.getTmdbId());
             }
         });
     }
@@ -96,7 +96,7 @@ public class SetupMovieItemsAdapter
     private void addFavMovie(MovieItem movieItem, String mediaType) {
         if (mediaType != null)
             movieItem.setMediaType(mediaType);
-        favMovieViewModel.insert(new FavMovie(movieItem, mediaType));
+        favMovieViewModel.insert(new FavMovie(movieItem.getMediaType(), movieItem.getTmdbId(), movieItem));
     }
 
 

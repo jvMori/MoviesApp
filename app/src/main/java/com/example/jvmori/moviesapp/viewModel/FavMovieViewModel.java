@@ -28,6 +28,10 @@ public class FavMovieViewModel extends AndroidViewModel {
         repository.delete(favMovie);
     }
 
+    public void deleteById(String id){
+        repository.deleteById(id);
+    }
+
     public void deleteAll(){
         repository.deleteAll();
     }

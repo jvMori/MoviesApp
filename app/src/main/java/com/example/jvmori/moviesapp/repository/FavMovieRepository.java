@@ -31,6 +31,8 @@ public class FavMovieRepository
         new DeleteAsyncTask(movieDao).execute(favMovie);
     }
 
+    public void deleteById(String id){new DeleteByIdAsyncTask(movieDao).execute(id);}
+
     public void deleteAll(){
         new DeleteAllAsyncTask(movieDao).execute();
     }
@@ -61,6 +63,18 @@ public class FavMovieRepository
         @Override
         protected Void doInBackground(FavMovie... favMovies) {
             movieDao.delete(favMovies[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteByIdAsyncTask extends AsyncTask<String, Void, Void>{
+        private MovieDao movieDao;
+        DeleteByIdAsyncTask(MovieDao movieDao){
+            this.movieDao = movieDao;
+        }
+        @Override
+        protected Void doInBackground(String... strings) {
+            movieDao.deleteById(strings[0]);
             return null;
         }
     }

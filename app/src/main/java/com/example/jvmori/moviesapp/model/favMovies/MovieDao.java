@@ -7,6 +7,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import retrofit2.http.QueryMap;
 
 @Dao
 public interface MovieDao
@@ -16,6 +17,9 @@ public interface MovieDao
 
     @Delete
     void delete(FavMovie favMovie);
+
+    @Query("DELETE FROM movie_table WHERE tmdbId = :tmdbId")
+    void deleteById(String tmdbId);
 
     @Query("DELETE FROM movie_table")
     void deleteAll();
