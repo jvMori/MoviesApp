@@ -84,11 +84,16 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
 
     private void handleLikeBtn( boolean liked, ImageView likeBtn){
         liked = !liked;
+        setLikeImage(liked, likeBtn);
+    }
+
+    private void setLikeImage(boolean liked, ImageView likeBtn){
         if(liked)
             likeBtn.setImageResource(R.drawable.ic_favorite_full);
         else
             likeBtn.setImageResource(R.drawable.ic_favorite_empty);
     }
+
 
     public interface OnLikeClickedListener{
         void addCallback(MovieItem movieItem);
@@ -133,6 +138,8 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
         if (currentItem.getRating() != null)
              rating = Float.parseFloat(currentItem.getRating()) * 10;
         setStars(rating, holder.starsLayout);
+        boolean fav = checkIfIsFav(movieItems.get(position), favMovies);
+        setLikeImage(fav, holder.likeBtn);
     }
 
     @Override
