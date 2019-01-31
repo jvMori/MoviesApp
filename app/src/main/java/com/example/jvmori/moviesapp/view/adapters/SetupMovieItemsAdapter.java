@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 
+import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
 import com.example.jvmori.moviesapp.model.genre.Genre;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
+import com.example.jvmori.moviesapp.view.fragments.AddToLibraryFragment;
+import com.example.jvmori.moviesapp.view.fragments.HomeFragmentDirections;
 import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import java.util.List;
@@ -16,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -71,6 +76,16 @@ public class SetupMovieItemsAdapter
             @Override
             public void removeCallback(MovieItem movieItem) {
                 favMovieViewModel.deleteById(movieItem.getTmdbId());
+            }
+        });
+
+        movieItemAdapter.setOnAddClickedListener(new MovieItemAdapter.OnAddClickedListener() {
+            @Override
+            public void callback(String movieId) {
+                HomeFragmentDirections.AddToLibraryAction action = HomeFragmentDirections.addToLibraryAction();
+                action.setMovieId(movieId);
+                Navigation.findNavController(activity, R.id.my_nav_host_fragment).navigate(action);
+
             }
         });
     }

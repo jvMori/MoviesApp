@@ -72,8 +72,6 @@ public class HomeFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
         popularItemsLayout.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
-        //setGenreViewModel();
-        //setPopularMovieAdapter();
         SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
         setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, null, null);
         movieItemAdapter = setupMovieItemsAdapter.getMovieItemAdapter();
@@ -82,7 +80,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b){
-                    //Toast.makeText(getContext(), "Focused", Toast.LENGTH_SHORT).show();
                     popularItemsLayout.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
                 }
@@ -131,31 +128,4 @@ public class HomeFragment extends Fragment {
         });
     }
 
-//    private void setGenreViewModel(){
-//        GenreViewModel genreViewModel = ViewModelProviders.of(this).get(GenreViewModel.class);
-//        genreViewModel.getData().observe(this, new Observer<List<Genre>>() {
-//            @Override
-//            public void onChanged(List<Genre> genres) {
-//                if (genres == null)
-//                    return;
-//                movieItemAdapter.setGenres(genres);
-//            }
-//        });
-//    }
-//
-//    private void setPopularMovieAdapter(){
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recyclerView.setHasFixedSize(true);
-//        movieItemAdapter = new MovieItemAdapter();
-//        recyclerView.setAdapter(movieItemAdapter);
-//        movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
-//            @Override
-//            public void onItemClicked(MovieItem movieItem) {
-//                Intent intent = new Intent(getActivity(), DetailsActivity.class);
-//                intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
-//                intent.putExtra(Consts.type_parameter, movieItem.getMediaType());
-//                startActivity(intent);
-//            }
-//        });
-//    }
 }

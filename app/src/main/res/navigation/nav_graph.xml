@@ -9,7 +9,11 @@
         android:id="@+id/home"
         android:name="com.example.jvmori.moviesapp.view.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" ></fragment>
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/addToLibraryAction"
+            app:destination="@+id/addToLibraryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/destination_discover"
         android:name="com.example.jvmori.moviesapp.view.fragments.DiscoverFragment"
@@ -25,4 +29,14 @@
         android:name="com.example.jvmori.moviesapp.view.activities.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/addToLibraryFragment"
+        android:name="com.example.jvmori.moviesapp.view.fragments.AddToLibraryFragment"
+        android:label="fragment_add_to_library"
+        tools:layout="@layout/fragment_add_to_library" >
+        <argument
+            android:name="movieId"
+            android:defaultValue='"0"'
+            app:argType="string" />
+    </fragment>
 </navigation>

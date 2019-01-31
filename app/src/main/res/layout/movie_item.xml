@@ -61,7 +61,7 @@
             android:text="@string/title"
             android:textColor="@color/textPrimary"
             android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@id/heart"
+            app:layout_constraintEnd_toStartOf="@+id/addBtn"
             app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toTopOf="@+id/cardView" />
 
@@ -171,7 +171,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:clickable="true"
             android:elevation="20dp"
             android:src="@drawable/ic_favorite_empty"
@@ -179,17 +179,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/heart2"
+            android:id="@+id/addBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:clickable="true"
             android:elevation="20dp"
-            android:src="@drawable/ic_favorite_empty"
-            android:visibility="gone"
+            android:src="@drawable/ic_playlist_add"
+            android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/heart"
-            app:layout_constraintTop_toTopOf="@+id/icon" />
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -203,7 +203,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="1.0">
 
         </androidx.cardview.widget.CardView>
 
