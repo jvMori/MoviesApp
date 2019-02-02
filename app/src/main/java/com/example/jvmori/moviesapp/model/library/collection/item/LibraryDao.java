@@ -13,7 +13,7 @@ public interface LibraryDao
     void insert(LibraryItem item);
 
     @Delete
-    void Delete(LibraryItem item);
+    void delete(LibraryItem item);
 
     @Query("DELETE FROM libraryItems")
     void deleteAll();
