@@ -23,34 +23,69 @@ public class LibraryRepository
     }
 
     public void insert(LibraryItem libraryItem){
-        new InsertAsyncTask(libraryDao).execute(libraryItem);
+        new CustomAsyncTask(new OnAsyncTask() {
+            @Override
+            public void onAsyncTask(LibraryItem libraryItem) {
+                libraryDao.insert(libraryItem);
+            }
+        }).execute(libraryItem);
     }
 
     public void delete(LibraryItem libraryItem){
-        new DeleteAsyncTask(libraryDao).execute(libraryItem);
+        new CustomAsyncTask(new OnAsyncTask() {
+            @Override
+            public void onAsyncTask(LibraryItem libraryItem) {
+                libraryDao.delete(libraryItem);
+            }
+        }).execute(libraryItem);
+    }
+
+    public void update(LibraryItem libraryItem){
+        new CustomAsyncTask(new OnAsyncTask() {
+            @Override
+            public void onAsyncTask(LibraryItem libraryItem) {
+                libraryDao.update(libraryItem);
+            }
+        }).execute(libraryItem);
     }
 
     public LiveData<List<LibraryItem>> getAllItems(){return libraryDao.getAllItems();}
 
-    public static class InsertAsyncTask extends AsyncTask<LibraryItem, Void, Void>{
-        private LibraryDao libraryDao;
-        InsertAsyncTask(LibraryDao libraryDao){
-            this.libraryDao = libraryDao;
+//    public static class InsertAsyncTask extends AsyncTask<LibraryItem, Void, Void>{
+//        private LibraryDao libraryDao;
+//        InsertAsyncTask(LibraryDao libraryDao){
+//            this.libraryDao = libraryDao;
+//        }
+//        @Override
+//        protected Void doInBackground(LibraryItem... libraryItems) {
+//            libraryDao.insert(libraryItems[0]);
+//            return null;
+//        }
+//    }
+//
+//    public static class DeleteAsyncTask extends AsyncTask<LibraryItem, Void, Void>{
+//        private LibraryDao libraryDao;
+//        DeleteAsyncTask(LibraryDao libraryDao){this.libraryDao = libraryDao;}
+//        @Override
+//        protected Void doInBackground(LibraryItem... libraryItems) {
+//            libraryDao.delete(libraryItems[0]);
+//            return null;
+//        }
+//    }
+
+    public static class CustomAsyncTask extends AsyncTask<LibraryItem, Void, Void>{
+        OnAsyncTask callback;
+        CustomAsyncTask(OnAsyncTask callback){
+            this.callback = callback;
         }
         @Override
         protected Void doInBackground(LibraryItem... libraryItems) {
-            libraryDao.insert(libraryItems[0]);
+            callback.onAsyncTask(libraryItems[0]);
             return null;
         }
     }
 
-    public static class DeleteAsyncTask extends AsyncTask<LibraryItem, Void, Void>{
-        private LibraryDao libraryDao;
-        DeleteAsyncTask(LibraryDao libraryDao){this.libraryDao = libraryDao;}
-        @Override
-        protected Void doInBackground(LibraryItem... libraryItems) {
-            libraryDao.delete(libraryItems[0]);
-            return null;
-        }
+    public interface OnAsyncTask {
+        void onAsyncTask(LibraryItem libraryItem);
     }
 }
