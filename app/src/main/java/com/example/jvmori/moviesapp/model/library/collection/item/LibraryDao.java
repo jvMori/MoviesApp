@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 public interface LibraryDao
 {
@@ -17,6 +18,9 @@ public interface LibraryDao
 
     @Query("DELETE FROM libraryItems")
     void deleteAll();
+
+    @Update()
+    void update(LibraryItem item);
 
     @Query("SELECT * FROM libraryItems")
     LiveData<List<LibraryItem>> getAllItems();
