@@ -3,10 +3,9 @@ package com.example.jvmori.moviesapp.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
-import com.example.jvmori.moviesapp.model.favMovies.MovieDao;
-import com.example.jvmori.moviesapp.model.favMovies.MovieDatabase;
-import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.library.collection.favMovie.FavMovie;
+import com.example.jvmori.moviesapp.model.library.collection.favMovie.MovieDao;
+import com.example.jvmori.moviesapp.model.library.collection.favMovie.MovieDatabase;
 
 import java.util.List;
 

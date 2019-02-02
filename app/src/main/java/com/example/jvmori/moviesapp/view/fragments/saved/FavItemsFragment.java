@@ -3,9 +3,8 @@ package com.example.jvmori.moviesapp.view.fragments.saved;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
+import com.example.jvmori.moviesapp.model.library.collection.favMovie.FavMovie;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
-import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.adapters.SetupMovieItemsAdapter;
 import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 

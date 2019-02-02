@@ -2,7 +2,7 @@ package com.example.jvmori.moviesapp.viewModel;
 
 import android.app.Application;
 
-import com.example.jvmori.moviesapp.model.favMovies.FavMovie;
+import com.example.jvmori.moviesapp.model.library.collection.favMovie.FavMovie;
 import com.example.jvmori.moviesapp.repository.FavMovieRepository;
 import java.util.List;
 
