@@ -46,6 +46,13 @@ public class FavItemsFragment extends SavedItemsFragment {
                 recyclerView.setVisibility(View.VISIBLE);
             }
         });
+
+        favMovieViewModel.getAllItemsOfType("Favorites").observe(this, new Observer<List<FavMovie>>() {
+            @Override
+            public void onChanged(List<FavMovie> favMovies) {
+                List<FavMovie> favs = favMovies;
+            }
+        });
     }
 
     private void setMovieItems(List<FavMovie> favMovies){

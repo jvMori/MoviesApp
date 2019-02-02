@@ -43,6 +43,11 @@ public class FavMovieRepository
     public LiveData<List<FavMovie>> getAllItemsOfType(String type){
         return movieDao.getAllItemsOfType(type);
     }
+
+    public LiveData<List<FavMovie>> getAllItemsOfCollection(String name){
+        return movieDao.getAllFromCollection(name);
+    }
+
     private static class InsertAsyncTask extends AsyncTask<FavMovie, Void, Void>{
         private MovieDao movieDao;
         InsertAsyncTask(MovieDao movieDao){

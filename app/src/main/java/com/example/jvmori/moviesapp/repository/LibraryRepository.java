@@ -51,29 +51,7 @@ public class LibraryRepository
 
     public LiveData<List<LibraryItem>> getAllItems(){return libraryDao.getAllItems();}
 
-//    public static class InsertAsyncTask extends AsyncTask<LibraryItem, Void, Void>{
-//        private LibraryDao libraryDao;
-//        InsertAsyncTask(LibraryDao libraryDao){
-//            this.libraryDao = libraryDao;
-//        }
-//        @Override
-//        protected Void doInBackground(LibraryItem... libraryItems) {
-//            libraryDao.insert(libraryItems[0]);
-//            return null;
-//        }
-//    }
-//
-//    public static class DeleteAsyncTask extends AsyncTask<LibraryItem, Void, Void>{
-//        private LibraryDao libraryDao;
-//        DeleteAsyncTask(LibraryDao libraryDao){this.libraryDao = libraryDao;}
-//        @Override
-//        protected Void doInBackground(LibraryItem... libraryItems) {
-//            libraryDao.delete(libraryItems[0]);
-//            return null;
-//        }
-//    }
-
-    public static class CustomAsyncTask extends AsyncTask<LibraryItem, Void, Void>{
+    public static class CustomAsyncTask extends AsyncTask<LibraryItem, Void, Void> {
         OnAsyncTask callback;
         CustomAsyncTask(OnAsyncTask callback){
             this.callback = callback;

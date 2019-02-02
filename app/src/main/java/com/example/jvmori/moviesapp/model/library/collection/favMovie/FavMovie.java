@@ -17,16 +17,20 @@ public class FavMovie
     @ColumnInfo(name = "media_type")
     private String mediaType;
 
+    @ColumnInfo(name="collection")
+    private String collection;
+
     @ColumnInfo(name = "tmdbId")
     private String tmdbId;
 
     @TypeConverters(MovieTypeConverter.class)
     private MovieItem movie;
 
-    public FavMovie(String mediaType, String tmdbId, MovieItem movie) {
+    public FavMovie(String mediaType, String tmdbId, MovieItem movie, String collection) {
         this.mediaType = mediaType;
         this.tmdbId = tmdbId;
         this.movie = movie;
+        this.collection = collection;
     }
 
     public MovieItem getMovie() {
@@ -61,4 +65,11 @@ public class FavMovie
         this.tmdbId = tmdbId;
     }
 
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
 }

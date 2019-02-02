@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class SavedItemsAdapter extends FragmentPagerAdapter {
 
-    private String tabTitles[] = new String[] { "Favorites", "Watched", "To Watch"};
+    private String tabTitles[] = new String[] { "Favorites", "Watched", "To Watch", "To Watch"};
     private List<SavedItemsFragment> savedFragments;
 
     public SavedItemsAdapter(FragmentManager fm, List<SavedItemsFragment> savedFragments) {
