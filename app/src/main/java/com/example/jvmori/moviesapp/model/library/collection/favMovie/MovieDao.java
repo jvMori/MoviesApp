@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.model.favMovies;
+package com.example.jvmori.moviesapp.model.library.collection.favMovie;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import retrofit2.http.QueryMap;
 
 @Dao
 public interface MovieDao

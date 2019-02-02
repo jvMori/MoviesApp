@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.model.favMovies;
+package com.example.jvmori.moviesapp.model.library.collection.favMovie;
 
 import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.MovieTypeConverter;
