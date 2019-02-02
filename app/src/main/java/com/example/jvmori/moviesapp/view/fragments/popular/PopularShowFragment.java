@@ -21,7 +21,7 @@ public class PopularShowFragment extends PopularFragment {
         super.onViewCreated(view, savedInstanceState);
 
         SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
-        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, mediaType,null, new SetupMovieItemsAdapter.SetViewCallback() {
+        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, mediaType, new SetupMovieItemsAdapter.SetViewCallback() {
             @Override
             public void callback() {
                 setPopularMovieViewModel(mediaType);

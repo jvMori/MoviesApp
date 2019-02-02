@@ -24,7 +24,7 @@ public class FavItemsFragment extends SavedItemsFragment {
         super.onViewCreated(view, savedInstanceState);
 
         SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
-        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, null, new SetupMovieItemsAdapter.SetViewCallback() {
+        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, new SetupMovieItemsAdapter.SetViewCallback() {
             @Override
             public void callback() {
                 setFavMovieViewModel();

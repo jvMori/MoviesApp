@@ -28,7 +28,7 @@ public class LibraryItemsAdapter extends RecyclerView.Adapter<LibraryItemsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull LibraryViewHolder holder, int position) {
-        LibraryItem currentItem = libraryItems.get(position);
+        LibraryItem currentItem = libraryItems.get(holder.getAdapterPosition());
         holder.name.setText(currentItem.getNameOfCollection());
     }
 

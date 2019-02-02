@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
         popularItemsLayout.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
-        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, null, null);
+        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, null);
         movieItemAdapter = setupMovieItemsAdapter.getMovieItemAdapter();
 
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {

@@ -37,12 +37,12 @@ public class SetupMovieItemsAdapter
         favMovieViewModel = ViewModelProviders.of(fragment).get(FavMovieViewModel.class);
     }
 
-    public void setMovieItemAdapter(RecyclerView recyclerView, String mediaType,View view, final SetViewCallback setViewCallback){
-        setPopularMovieAdapter(recyclerView, mediaType, view);
+    public void setMovieItemAdapter(RecyclerView recyclerView, String mediaType, final SetViewCallback setViewCallback){
+        setPopularMovieAdapter(recyclerView, mediaType);
         setGenreViewModel(setViewCallback);
     }
 
-    private void setPopularMovieAdapter(RecyclerView recyclerView, final String mediaType, final View view){
+    private void setPopularMovieAdapter(RecyclerView recyclerView, final String mediaType){
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setHasFixedSize(true);
         movieItemAdapter = new MovieItemAdapter();
