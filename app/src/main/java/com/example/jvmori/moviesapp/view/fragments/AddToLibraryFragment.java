@@ -64,7 +64,7 @@ public class AddToLibraryFragment extends Fragment {
 
     private void setRecyclerView(){
         recyclerView = view.findViewById(R.id.libraryRecyclerView);
-        //recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
         adapter = new LibraryItemsAdapter();
