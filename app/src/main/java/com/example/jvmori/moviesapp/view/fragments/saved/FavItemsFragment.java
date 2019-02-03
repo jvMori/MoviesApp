@@ -53,6 +53,13 @@ public class FavItemsFragment extends SavedItemsFragment {
                 List<FavMovie> movies = favMovies;
             }
         });
+
+        favMovieViewModel.getAllItemsOfType("tv").observe(this, new Observer<List<FavMovie>>() {
+            @Override
+            public void onChanged(List<FavMovie> favMovies) {
+                List<FavMovie> tvShows = favMovies;
+            }
+        });
     }
 
     private void setMovieItems(List<FavMovie> favMovies){

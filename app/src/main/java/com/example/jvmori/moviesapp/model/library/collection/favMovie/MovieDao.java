@@ -29,7 +29,7 @@ public interface MovieDao
     @Query("SELECT * FROM movie_table WHERE collection LIKE :nameOfColl")
     LiveData<List<FavMovie>> getAllFromCollection(String nameOfColl);
 
-    @Query("SELECT * FROM movie_table WHERE media_type LIKE :type")
-    LiveData<List<FavMovie>> getAllItemsOfType(String type);
+    @Query("SELECT * FROM movie_table WHERE media_type LIKE :nameType")
+    LiveData<List<FavMovie>> getAllItemsOfType(String nameType);
 
 }

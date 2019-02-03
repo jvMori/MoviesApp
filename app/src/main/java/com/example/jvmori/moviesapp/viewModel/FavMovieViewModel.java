@@ -40,8 +40,8 @@ public class FavMovieViewModel extends AndroidViewModel {
         return allMovies;
     }
 
-    public LiveData<List<FavMovie>> getAllItemsOfType(String type){
-        return repository.getAllItemsOfType(type);
+    public LiveData<List<FavMovie>> getAllItemsOfType(String nameType){
+        return repository.getAllItemsOfType(nameType);
     }
 
     public LiveData<List<FavMovie>> getMovieFromCollection(String collection){

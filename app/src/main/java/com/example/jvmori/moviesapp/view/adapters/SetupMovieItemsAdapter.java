@@ -109,7 +109,7 @@ public class SetupMovieItemsAdapter
     private void addFavMovie(MovieItem movieItem, String mediaType) {
         if (mediaType != null)
             movieItem.setMediaType(mediaType);
-        favMovieViewModel.insert(new FavMovie(movieItem.getMediaType(), movieItem.getTmdbId(), movieItem, "Favorites"));
+        favMovieViewModel.insert(new FavMovie(mediaType, movieItem.getTmdbId(), movieItem, "Favorites"));
     }
 
 

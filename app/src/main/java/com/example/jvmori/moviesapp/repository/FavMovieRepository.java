@@ -44,32 +44,12 @@ public class FavMovieRepository
         return allMovies;
     }
 
-    public LiveData<List<FavMovie>> getAllItemsOfType(String type){
-        return movieDao.getAllItemsOfType(type);
+    public LiveData<List<FavMovie>> getAllItemsOfType(String nameType){
+        return movieDao.getAllItemsOfType(nameType);
     }
 
     public LiveData<List<FavMovie>> getAllItemsOfCollection(String name){
        return movieDao.getAllFromCollection(name);
-    }
-
-    public static class GetItemsAsyncTask extends AsyncTask<String, Void, LiveData<List<FavMovie>>>{
-        private MovieDao movieDao;
-        private LiveData<List<FavMovie>> result;
-        GetItemsAsyncTask(MovieDao movieDao, LiveData<List<FavMovie>> result){
-            this.movieDao = movieDao;
-            this.result =result;
-        }
-        @Override
-        protected LiveData<List<FavMovie>> doInBackground(String... strings) {
-            movieDao.getAllFromCollection(strings[0]);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(LiveData<List<FavMovie>> listLiveData) {
-            super.onPostExecute(listLiveData);
-            result = listLiveData;
-        }
     }
 
     private static class InsertAsyncTask extends AsyncTask<FavMovie, Void, Void>{
