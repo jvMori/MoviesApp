@@ -18,7 +18,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class FavItemsFragment extends SavedItemsFragment {
 
+    private String collectionName;
     private List<MovieItem> movieItems;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -37,20 +39,13 @@ public class FavItemsFragment extends SavedItemsFragment {
 
     private void setFavMovieViewModel(){
         FavMovieViewModel favMovieViewModel = ViewModelProviders.of(this).get(FavMovieViewModel.class);
-        favMovieViewModel.getAllMovies().observe(this, new Observer<List<FavMovie>>() {
+        favMovieViewModel.getMovieFromCollection(collectionName).observe(this, new Observer<List<FavMovie>>() {
             @Override
             public void onChanged(List<FavMovie> favMovies) {
                 setMovieItems(favMovies);
                 movieItemAdapter.setMovieItems(movieItems);
                 loadingScreen.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
-            }
-        });
-
-        favMovieViewModel.getMovieFromCollection("Favorites").observe(this, new Observer<List<FavMovie>>() {
-            @Override
-            public void onChanged(List<FavMovie> favMovies) {
-                List<FavMovie> movies = favMovies;
             }
         });
 
@@ -68,5 +63,7 @@ public class FavItemsFragment extends SavedItemsFragment {
             movieItems.add(fav.getMovie());
         }
     }
+
+    public void setCollectionName(String collectionName){this.collectionName = collectionName;}
 
 }

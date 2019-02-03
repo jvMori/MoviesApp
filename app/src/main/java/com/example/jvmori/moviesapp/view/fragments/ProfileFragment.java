@@ -79,7 +79,9 @@ public class ProfileFragment extends Fragment {
 
     private void setupView(List<LibraryItem> libraryItems){
         for (LibraryItem item:libraryItems) {
-            savedItems.add(new FavItemsFragment());
+            FavItemsFragment favFrag = new FavItemsFragment();
+            favFrag.setCollectionName(item.getNameOfCollection());
+            savedItems.add(favFrag);
         }
     }
 }
