@@ -6,8 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
@@ -18,9 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.library.collection.item.LibraryItem;
-import com.example.jvmori.moviesapp.view.adapters.PopularItemsAdapter;
 import com.example.jvmori.moviesapp.view.adapters.SavedItemsAdapter;
-import com.example.jvmori.moviesapp.view.fragments.saved.FavItemsFragment;
 import com.example.jvmori.moviesapp.view.fragments.saved.SavedItemsFragment;
 import com.example.jvmori.moviesapp.viewModel.LibraryViewModel;
 import com.google.android.material.tabs.TabLayout;
@@ -79,7 +75,7 @@ public class ProfileFragment extends Fragment {
 
     private void setupView(List<LibraryItem> libraryItems){
         for (LibraryItem item:libraryItems) {
-            FavItemsFragment favFrag = new FavItemsFragment();
+            SavedItemsFragment favFrag = new SavedItemsFragment();
             favFrag.setCollectionName(item.getNameOfCollection());
             savedItems.add(favFrag);
         }

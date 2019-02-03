@@ -1,38 +1,36 @@
 package com.example.jvmori.moviesapp.view.fragments.saved;
 
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
+import com.example.jvmori.moviesapp.R;
+import com.example.jvmori.moviesapp.model.library.collection.favMovie.FavMovie;
+import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
+import com.example.jvmori.moviesapp.view.adapters.SetupMovieItemsAdapter;
+import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-
-import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.genre.Genre;
-import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
-import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
-
-import java.util.List;
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SavedItemsFragment extends Fragment {
 
-    protected MovieItemAdapter movieItemAdapter;
+    private String collectionName;
+    private List<MovieItem> movieItems;
+    private MovieItemAdapter movieItemAdapter;
     private View view;
-    protected RecyclerView recyclerView;
-    protected RelativeLayout loadingScreen;
+    private RecyclerView recyclerView;
+    private RelativeLayout loadingScreen;
 
     public SavedItemsFragment() {
         // Required empty public constructor
@@ -47,5 +45,50 @@ public class SavedItemsFragment extends Fragment {
         loadingScreen = view.findViewById(R.id.loadingPanel);
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
+        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, null, new SetupMovieItemsAdapter.SetViewCallback() {
+            @Override
+            public void callback() {
+                setFavMovieViewModel();
+            }
+        });
+
+        movieItemAdapter = setupMovieItemsAdapter.getMovieItemAdapter();
+
+    }
+
+    private void setFavMovieViewModel(){
+        FavMovieViewModel favMovieViewModel = ViewModelProviders.of(this).get(FavMovieViewModel.class);
+        favMovieViewModel.getMovieFromCollection(collectionName).observe(this, new Observer<List<FavMovie>>() {
+            @Override
+            public void onChanged(List<FavMovie> favMovies) {
+                setMovieItems(favMovies);
+                movieItemAdapter.setMovieItems(movieItems);
+                loadingScreen.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        });
+
+        favMovieViewModel.getAllItemsOfType("tv").observe(this, new Observer<List<FavMovie>>() {
+            @Override
+            public void onChanged(List<FavMovie> favMovies) {
+                List<FavMovie> tvShows = favMovies;
+            }
+        });
+    }
+
+    private void setMovieItems(List<FavMovie> favMovies){
+        movieItems = new ArrayList<>();
+        for (FavMovie fav: favMovies) {
+            movieItems.add(fav.getMovie());
+        }
+    }
+
+    public void setCollectionName(String collectionName){this.collectionName = collectionName;}
 
 }
