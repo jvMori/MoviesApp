@@ -47,10 +47,10 @@ public class FavItemsFragment extends SavedItemsFragment {
             }
         });
 
-        favMovieViewModel.getAllItemsOfType("Favorites").observe(this, new Observer<List<FavMovie>>() {
+        favMovieViewModel.getMovieFromCollection("Favorites").observe(this, new Observer<List<FavMovie>>() {
             @Override
             public void onChanged(List<FavMovie> favMovies) {
-                List<FavMovie> favs = favMovies;
+                List<FavMovie> movies = favMovies;
             }
         });
     }

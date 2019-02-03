@@ -7,9 +7,13 @@ import com.example.jvmori.moviesapp.model.library.collection.favMovie.FavMovie;
 import com.example.jvmori.moviesapp.model.library.collection.favMovie.MovieDao;
 import com.example.jvmori.moviesapp.model.library.collection.favMovie.MovieDatabase;
 
+import java.security.acl.Owner;
 import java.util.List;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.Observer;
 
 public class FavMovieRepository
 {
@@ -45,7 +49,27 @@ public class FavMovieRepository
     }
 
     public LiveData<List<FavMovie>> getAllItemsOfCollection(String name){
-        return movieDao.getAllFromCollection(name);
+       return movieDao.getAllFromCollection(name);
+    }
+
+    public static class GetItemsAsyncTask extends AsyncTask<String, Void, LiveData<List<FavMovie>>>{
+        private MovieDao movieDao;
+        private LiveData<List<FavMovie>> result;
+        GetItemsAsyncTask(MovieDao movieDao, LiveData<List<FavMovie>> result){
+            this.movieDao = movieDao;
+            this.result =result;
+        }
+        @Override
+        protected LiveData<List<FavMovie>> doInBackground(String... strings) {
+            movieDao.getAllFromCollection(strings[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(LiveData<List<FavMovie>> listLiveData) {
+            super.onPostExecute(listLiveData);
+            result = listLiveData;
+        }
     }
 
     private static class InsertAsyncTask extends AsyncTask<FavMovie, Void, Void>{

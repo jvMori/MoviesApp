@@ -26,7 +26,7 @@ public interface MovieDao
     @Query("SELECT * FROM movie_table")
     LiveData<List<FavMovie>> getAllItems();
 
-    @Query("SELECT * FROM movie_table WHERE collection = :nameOfColl")
+    @Query("SELECT * FROM movie_table WHERE collection LIKE :nameOfColl")
     LiveData<List<FavMovie>> getAllFromCollection(String nameOfColl);
 
     @Query("SELECT * FROM movie_table WHERE media_type LIKE :type")
