@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class SavedItemsAdapter extends FragmentPagerAdapter {
 
-    private String tabTitles[] = new String[] { "Favorites", "Watched", "To Watch", "To Watch"};
     private List<SavedItemsFragment> savedFragments;
 
     public SavedItemsAdapter(FragmentManager fm, List<SavedItemsFragment> savedFragments) {
@@ -32,6 +31,6 @@ public class SavedItemsAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return tabTitles[position];
+        return savedFragments.get(position).getCollectionName();
     }
 }

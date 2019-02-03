@@ -32,6 +32,11 @@ public class SavedItemsFragment extends Fragment {
     private RecyclerView recyclerView;
     private RelativeLayout loadingScreen;
 
+
+    public String getCollectionName() {
+        return collectionName;
+    }
+
     public SavedItemsFragment() {
         // Required empty public constructor
     }
