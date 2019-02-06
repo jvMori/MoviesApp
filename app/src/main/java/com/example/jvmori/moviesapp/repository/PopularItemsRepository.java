@@ -35,7 +35,7 @@ public class PopularItemsRepository
         return allPopularMovies;
     }
 
-    public static void getRequest(String type, final OnDataDownloaded onDataDownloaded){
+    private static void getRequest(String type, final OnDataDownloaded onDataDownloaded){
         Map<String, String> parameters = new HashMap<>();
         parameters.put("sort_by", "popularity.desc");
 
