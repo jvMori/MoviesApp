@@ -6,6 +6,7 @@ import com.example.jvmori.moviesapp.model.movieDetails.Cast;
 import com.example.jvmori.moviesapp.model.movieDetails.CreditsJsonObj;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.TmdbApi;
+import com.example.jvmori.moviesapp.util.TmdbApiServiceCall;
 
 import java.util.List;
 
@@ -23,14 +24,8 @@ public class CastRepository
 
     public LiveData<List<Cast>> getAllCasts(String type, String movieId){
         allCasts = new MutableLiveData<>();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Consts.base_url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getCredits(type , movieId, Consts.api_key).enqueue(new Callback<CreditsJsonObj>() {
+        TmdbApi tmdbApi = TmdbApiServiceCall.init();
+        tmdbApi.getCredits(type , movieId).enqueue(new Callback<CreditsJsonObj>() {
             @Override
             public void onResponse(Call<CreditsJsonObj> call, Response<CreditsJsonObj> response) {
                 if(!response.isSuccessful())
@@ -38,7 +33,6 @@ public class CastRepository
                 if(response.body() != null)
                     allCasts.postValue(response.body().getCast());
             }
-
             @Override
             public void onFailure(Call<CreditsJsonObj> call, Throwable t) {
                 Log.i("Fail", "Failed to load casts");

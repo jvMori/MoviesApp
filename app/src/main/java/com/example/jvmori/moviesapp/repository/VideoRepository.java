@@ -4,6 +4,7 @@ import com.example.jvmori.moviesapp.model.video.Video;
 import com.example.jvmori.moviesapp.model.video.VideoJsonObj;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.TmdbApi;
+import com.example.jvmori.moviesapp.util.TmdbApiServiceCall;
 
 import java.util.List;
 
@@ -21,13 +22,8 @@ public class VideoRepository
 
     public LiveData<List<Video>> getVideos(String type, String id){
         videos = new MutableLiveData<>();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Consts.base_url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getVideos(type, id, Consts.api_key).enqueue(new Callback<VideoJsonObj>() {
+        TmdbApi tmdbApi = TmdbApiServiceCall.init();
+        tmdbApi.getVideos(type, id).enqueue(new Callback<VideoJsonObj>() {
             @Override
             public void onResponse(Call<VideoJsonObj> call, Response<VideoJsonObj> response) {
                 if (!response.isSuccessful())
@@ -35,13 +31,11 @@ public class VideoRepository
                 if (response.body() != null)
                     videos.postValue(response.body().getResults());
             }
-
             @Override
             public void onFailure(Call<VideoJsonObj> call, Throwable t) {
 
             }
         });
-
         return videos;
     }
 }

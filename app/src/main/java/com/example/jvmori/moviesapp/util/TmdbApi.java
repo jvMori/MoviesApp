@@ -27,19 +27,19 @@ public interface TmdbApi
     Call<MovieJsonObj> getPopular(@Path ("type") String type, @QueryMap Map<String, String> parameters);
 
     @GET("genre/movie/list")
-    Call<GenreJsonObj> getGenres(@Query("api_key") String api_key);
+    Call<GenreJsonObj> getGenres();
 
     @GET("{type}/{id}")
-    Call<MovieDetails> getDetails(@Path ("type") String type, @Path ("id") String movieId, @Query("api_key") String api_key);
+    Call<MovieDetails> getDetails(@Path ("type") String type, @Path ("id") String movieId);
 
     @GET("{type}/{id}/credits")
-    Call<CreditsJsonObj> getCredits (@Path ("type") String type, @Path ("id") String movieId, @Query("api_key") String api_key);
+    Call<CreditsJsonObj> getCredits (@Path ("type") String type, @Path ("id") String movieId);
 
     @GET("{type}/{id}/similar")
-    Call<MovieJsonObj> getSimilar(@Path ("type") String type,@Path ("id") String movieId, @Query("api_key") String api_key);
+    Call<MovieJsonObj> getSimilar(@Path ("type") String type,@Path ("id") String movieId);
 
     @GET("{type}/{id}/videos")
-    Call<VideoJsonObj> getVideos (@Path ("type") String type,@Path ("id") String movieId, @Query("api_key") String api_key);
+    Call<VideoJsonObj> getVideos (@Path ("type") String type,@Path ("id") String movieId);
 
     @GET("search/multi")
     Call<MovieJsonObj> getSearchedItem(@QueryMap Map<String, String> parameters);

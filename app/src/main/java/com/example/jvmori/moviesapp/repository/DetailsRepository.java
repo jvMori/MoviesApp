@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.TmdbApi;
+import com.example.jvmori.moviesapp.util.TmdbApiServiceCall;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -30,13 +31,8 @@ public class DetailsRepository
     }
 
     private void getRequest(String type, String id, final OnDataDownloaded onDataDownloaded){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Consts.base_url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getDetails(type, id, Consts.api_key).enqueue(new Callback<MovieDetails>() {
+        TmdbApi tmdbApi = TmdbApiServiceCall.init();
+        tmdbApi.getDetails(type, id).enqueue(new Callback<MovieDetails>() {
             @Override
             public void onResponse(Call<MovieDetails> call, Response<MovieDetails> response) {
                 if (!response.isSuccessful())

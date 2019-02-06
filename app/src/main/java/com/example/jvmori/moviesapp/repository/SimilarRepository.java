@@ -6,6 +6,7 @@ import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieJsonObj;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.TmdbApi;
+import com.example.jvmori.moviesapp.util.TmdbApiServiceCall;
 
 import java.util.List;
 import androidx.lifecycle.LiveData;
@@ -32,13 +33,9 @@ public class SimilarRepository
         return similarMovies;
     }
 
-    public static void getRequest(String type, String id, final OnDataDownloaded onDataDownloaded){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Consts.base_url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-        tmdbApi.getSimilar(type, id, Consts.api_key).enqueue(new Callback<MovieJsonObj>() {
+    private static void getRequest(String type, String id, final OnDataDownloaded onDataDownloaded){
+        TmdbApi tmdbApi = TmdbApiServiceCall.init();
+        tmdbApi.getSimilar(type, id).enqueue(new Callback<MovieJsonObj>() {
             @Override
             public void onResponse(Call<MovieJsonObj> call, Response<MovieJsonObj> response) {
                 if (!response.isSuccessful())
@@ -46,16 +43,13 @@ public class SimilarRepository
                 if(response.body() != null)
                     onDataDownloaded.callback(response.body().getResults());
             }
-
             @Override
             public void onFailure(Call<MovieJsonObj> call, Throwable t) {
                 Log.i("Fail", "Failed to download similar movies");
             }
         });
     }
-
     public interface OnDataDownloaded{
         void callback(List<MovieItem> response);
     }
-
 }
