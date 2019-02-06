@@ -6,6 +6,7 @@ import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.model.popularMovies.MovieJsonObj;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.TmdbApi;
+import com.example.jvmori.moviesapp.util.TmdbApiServiceCall;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,21 +32,14 @@ public class PopularItemsRepository
                 allPopularMovies.setValue(response);
             }
         });
-
         return allPopularMovies;
     }
 
     public static void getRequest(String type, final OnDataDownloaded onDataDownloaded){
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("api_key", Consts.api_key);
         parameters.put("sort_by", "popularity.desc");
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Consts.base_url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        TmdbApi tmdbApi = retrofit.create(TmdbApi.class);
-
+        TmdbApi tmdbApi = TmdbApiServiceCall.init();
         Call<MovieJsonObj> callApi = tmdbApi.getPopular(type, parameters);
         callApi.enqueue(new Callback<MovieJsonObj>() {
             @Override
@@ -56,14 +50,12 @@ public class PopularItemsRepository
                 assert response.body() != null;
                 onDataDownloaded.callback(response.body().getResults());
             }
-
             @Override
             public void onFailure(Call<MovieJsonObj> call, Throwable t) {
                 Log.i("ITEM", "Fail");
             }
         });
     }
-
     public interface OnDataDownloaded{
         void callback(List<MovieItem> response);
     }
