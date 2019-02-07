@@ -1,7 +1,13 @@
 package com.example.jvmori.moviesapp.util;
 
-import java.io.IOException;
+import android.content.Context;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -12,6 +18,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TmdbApiServiceCall
 {
+    private Context context;
+    private int cacheSize = 10 * 1024 * 1024; // 10 MB
+    //private File httpCacheDirectory = new File();
+    //Cache cache = new Cache(httpCacheDirectory,  cacheSize);
+
+    final static Interceptor networkInterceptor = new Interceptor() {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            CacheControl cacheControl = new CacheControl.Builder()
+                    .maxAge(60, TimeUnit.MINUTES)
+                    .build();
+
+            Request request = chain.request().newBuilder()
+                    .header("Cache-Control", cacheControl.toString())
+                    .build();
+            return chain.proceed(request);
+        }
+    };
+
     final static Interceptor interceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
