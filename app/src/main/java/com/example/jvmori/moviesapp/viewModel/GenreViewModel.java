@@ -24,8 +24,8 @@ public class GenreViewModel extends AndroidViewModel {
         genresRepository = new GenresRepository();
     }
 
-    public LiveData<List<Genre>> getData(){
-        allGenres.addSource(genresRepository.getGenres(), new Observer<List<Genre>>() {
+    public LiveData<List<Genre>> getData(String type){
+        allGenres.addSource(genresRepository.getGenres(type), new Observer<List<Genre>>() {
             @Override
             public void onChanged(List<Genre> genres) {
                 allGenres.postValue(genres);

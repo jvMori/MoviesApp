@@ -20,10 +20,10 @@ public class GenresRepository
 {
     private MutableLiveData<List<Genre>> allGenres;
 
-    public LiveData<List<Genre>> getGenres(){
+    public LiveData<List<Genre>> getGenres(final String type){
         allGenres = new MutableLiveData<>();
         TmdbApi tmdbApi = TmdbApiServiceCall.init();
-        Call<GenreJsonObj> callGenres = tmdbApi.getGenres();
+        Call<GenreJsonObj> callGenres = tmdbApi.getGenres(type);
         callGenres.enqueue(new Callback<GenreJsonObj>() {
             @Override
             public void onResponse(Call<GenreJsonObj> call, Response<GenreJsonObj> response) {

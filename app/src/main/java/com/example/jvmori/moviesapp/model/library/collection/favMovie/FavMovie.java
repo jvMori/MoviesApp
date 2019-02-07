@@ -17,10 +17,8 @@ public class FavMovie
     @ColumnInfo(name = "media_type")
     private String mediaType;
 
-    @ColumnInfo(name="collection")
     private String collection;
 
-    @ColumnInfo(name = "tmdbId")
     private String tmdbId;
 
     @TypeConverters(MovieTypeConverter.class)

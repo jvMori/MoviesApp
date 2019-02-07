@@ -26,8 +26,8 @@ public interface TmdbApi
     @GET("discover/{type}")
     Call<MovieJsonObj> getPopular(@Path ("type") String type, @QueryMap Map<String, String> parameters);
 
-    @GET("genre/movie/list")
-    Call<GenreJsonObj> getGenres();
+    @GET("genre/{type}/list")
+    Call<GenreJsonObj> getGenres(@Path ("type") String type);
 
     @GET("{type}/{id}")
     Call<MovieDetails> getDetails(@Path ("type") String type, @Path ("id") String movieId);

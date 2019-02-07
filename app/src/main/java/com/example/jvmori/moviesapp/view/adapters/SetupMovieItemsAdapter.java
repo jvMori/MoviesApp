@@ -39,7 +39,7 @@ public class SetupMovieItemsAdapter
 
     public void setMovieItemAdapter(RecyclerView recyclerView, String mediaType, final SetViewCallback setViewCallback){
         setPopularMovieAdapter(recyclerView, mediaType);
-        setGenreViewModel(setViewCallback);
+        setGenreViewModel(mediaType, setViewCallback);
     }
 
     private void setPopularMovieAdapter(RecyclerView recyclerView, final String mediaType){
@@ -88,9 +88,9 @@ public class SetupMovieItemsAdapter
         });
     }
 
-    private void setGenreViewModel(final SetViewCallback setViewCallback){
+    private void setGenreViewModel(final String mediaType, final SetViewCallback setViewCallback){
         GenreViewModel genreViewModel = ViewModelProviders.of(fragment).get(GenreViewModel.class);
-        genreViewModel.getData().observe(owner, new Observer<List<Genre>>() {
+        genreViewModel.getData(mediaType).observe(owner, new Observer<List<Genre>>() {
             @Override
             public void onChanged(List<Genre> genres) {
                 if (genres == null)
