@@ -1,6 +1,6 @@
 package com.example.jvmori.moviesapp.util;
 
-import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

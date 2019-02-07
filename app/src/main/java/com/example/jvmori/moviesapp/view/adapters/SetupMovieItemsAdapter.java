@@ -2,12 +2,11 @@ package com.example.jvmori.moviesapp.view.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.library.collection.favMovie.FavMovie;
-import com.example.jvmori.moviesapp.model.genre.Genre;
-import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
+import com.example.jvmori.moviesapp.model.network.genre.Genre;
+import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.fragments.HomeFragmentDirections;

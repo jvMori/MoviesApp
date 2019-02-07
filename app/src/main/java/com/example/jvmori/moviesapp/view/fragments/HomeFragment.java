@@ -1,7 +1,6 @@
 package com.example.jvmori.moviesapp.view.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,7 +9,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -20,14 +18,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.genre.Genre;
-import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
-import com.example.jvmori.moviesapp.util.Consts;
-import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
+import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.view.adapters.PopularItemsAdapter;
 import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 import com.example.jvmori.moviesapp.view.adapters.SetupMovieItemsAdapter;
-import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import com.example.jvmori.moviesapp.viewModel.SearchResultsViewModel;
 import com.google.android.material.tabs.TabLayout;
 

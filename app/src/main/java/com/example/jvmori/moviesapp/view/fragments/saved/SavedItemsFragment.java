@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.library.collection.favMovie.FavMovie;
-import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
+import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 import com.example.jvmori.moviesapp.view.adapters.SetupMovieItemsAdapter;
 import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;

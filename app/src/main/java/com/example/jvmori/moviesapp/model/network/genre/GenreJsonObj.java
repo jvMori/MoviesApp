@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.model.genre;
+package com.example.jvmori.moviesapp.model.network.genre;
 
 import com.google.gson.annotations.SerializedName;
 

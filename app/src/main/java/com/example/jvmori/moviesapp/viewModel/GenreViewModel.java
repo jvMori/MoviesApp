@@ -2,7 +2,7 @@ package com.example.jvmori.moviesapp.viewModel;
 
 import android.app.Application;
 
-import com.example.jvmori.moviesapp.model.genre.Genre;
+import com.example.jvmori.moviesapp.model.network.genre.Genre;
 import com.example.jvmori.moviesapp.repository.GenresRepository;
 
 import java.util.List;

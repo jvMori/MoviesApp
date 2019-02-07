@@ -1,4 +1,6 @@
-package com.example.jvmori.moviesapp.model.library.collection.favMovie;
+package com.example.jvmori.moviesapp.model;
+
+import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
 
 import java.util.List;
 

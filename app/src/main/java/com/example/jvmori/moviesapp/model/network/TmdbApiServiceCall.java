@@ -1,12 +1,12 @@
-package com.example.jvmori.moviesapp.util;
+package com.example.jvmori.moviesapp.model.network;
 
 import android.content.Context;
 
-import java.io.File;
+import com.example.jvmori.moviesapp.util.Consts;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;

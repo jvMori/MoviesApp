@@ -1,9 +1,9 @@
 package com.example.jvmori.moviesapp.repository;
 
-import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
-import com.example.jvmori.moviesapp.model.popularMovies.MovieJsonObj;
+import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.network.popularMovies.MovieJsonObj;
 import com.example.jvmori.moviesapp.util.Consts;
-import com.example.jvmori.moviesapp.util.TmdbApi;
+import com.example.jvmori.moviesapp.model.network.TmdbApi;
 
 import java.util.HashMap;
 import java.util.List;

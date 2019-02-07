@@ -1,6 +1,6 @@
 package com.example.jvmori.moviesapp.viewModel;
 import android.app.Application;
-import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
 import com.example.jvmori.moviesapp.repository.PopularItemsRepository;
 import java.util.List;
 import androidx.annotation.NonNull;

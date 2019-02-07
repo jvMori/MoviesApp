@@ -1,8 +1,8 @@
 package com.example.jvmori.moviesapp.model.movie;
 
-import com.example.jvmori.moviesapp.model.movieDetails.Cast;
-import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
-import com.example.jvmori.moviesapp.model.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.network.movieDetails.Cast;
+import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
+import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
 
 import java.util.List;
 

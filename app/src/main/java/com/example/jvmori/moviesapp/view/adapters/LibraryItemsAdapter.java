@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.library.collection.item.LibraryItem;
+import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 
 import java.util.ArrayList;
 import java.util.List;

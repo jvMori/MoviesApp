@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.movieDetails.Cast;
+import com.example.jvmori.moviesapp.model.network.movieDetails.Cast;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.LoadImage;
 

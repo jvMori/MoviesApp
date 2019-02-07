@@ -1,11 +1,10 @@
 package com.example.jvmori.moviesapp.repository;
 import android.util.Log;
 
-import com.example.jvmori.moviesapp.model.genre.Genre;
-import com.example.jvmori.moviesapp.model.genre.GenreJsonObj;
-import com.example.jvmori.moviesapp.util.Consts;
-import com.example.jvmori.moviesapp.util.TmdbApi;
-import com.example.jvmori.moviesapp.util.TmdbApiServiceCall;
+import com.example.jvmori.moviesapp.model.network.genre.Genre;
+import com.example.jvmori.moviesapp.model.network.genre.GenreJsonObj;
+import com.example.jvmori.moviesapp.model.network.TmdbApi;
+import com.example.jvmori.moviesapp.model.network.TmdbApiServiceCall;
 
 import java.util.List;
 import androidx.lifecycle.LiveData;
@@ -13,8 +12,6 @@ import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GenresRepository
 {

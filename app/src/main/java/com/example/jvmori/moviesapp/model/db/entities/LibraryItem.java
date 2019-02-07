@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.model.library.collection.item;
+package com.example.jvmori.moviesapp.model.db.entities;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

@@ -3,17 +3,13 @@ package com.example.jvmori.moviesapp.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.jvmori.moviesapp.model.library.collection.favMovie.FavMovie;
-import com.example.jvmori.moviesapp.model.library.collection.favMovie.MovieDao;
-import com.example.jvmori.moviesapp.model.library.collection.favMovie.MovieDatabase;
+import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
+import com.example.jvmori.moviesapp.model.MovieDao;
+import com.example.jvmori.moviesapp.model.MovieDatabase;
 
-import java.security.acl.Owner;
 import java.util.List;
 
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.Observer;
 
 public class FavMovieRepository
 {

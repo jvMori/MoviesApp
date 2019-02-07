@@ -1,24 +1,15 @@
-package com.example.jvmori.moviesapp.util;
-import com.example.jvmori.moviesapp.model.genre.GenreJsonObj;
-import com.example.jvmori.moviesapp.model.movieDetails.CreditsJsonObj;
-import com.example.jvmori.moviesapp.model.movieDetails.MovieDetails;
-import com.example.jvmori.moviesapp.model.popularMovies.MovieJsonObj;
-import com.example.jvmori.moviesapp.model.video.VideoJsonObj;
+package com.example.jvmori.moviesapp.model.network;
+import com.example.jvmori.moviesapp.model.network.genre.GenreJsonObj;
+import com.example.jvmori.moviesapp.model.network.movieDetails.CreditsJsonObj;
+import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
+import com.example.jvmori.moviesapp.model.network.popularMovies.MovieJsonObj;
+import com.example.jvmori.moviesapp.model.network.video.VideoJsonObj;
 
-import java.io.IOException;
 import java.util.Map;
 
-import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface TmdbApi

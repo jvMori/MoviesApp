@@ -3,9 +3,9 @@ package com.example.jvmori.moviesapp.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.jvmori.moviesapp.model.library.collection.item.LibraryDao;
-import com.example.jvmori.moviesapp.model.library.collection.item.LibraryDatabase;
-import com.example.jvmori.moviesapp.model.library.collection.item.LibraryItem;
+import com.example.jvmori.moviesapp.model.LibraryDao;
+import com.example.jvmori.moviesapp.model.LibraryDatabase;
+import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 
 import java.util.List;
 

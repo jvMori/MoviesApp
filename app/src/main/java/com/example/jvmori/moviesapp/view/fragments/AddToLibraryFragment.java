@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.library.collection.item.LibraryItem;
+import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 import com.example.jvmori.moviesapp.view.adapters.LibraryItemsAdapter;
 import com.example.jvmori.moviesapp.viewModel.LibraryViewModel;
 

@@ -2,7 +2,7 @@ package com.example.jvmori.moviesapp.viewModel;
 
 import android.app.Application;
 
-import com.example.jvmori.moviesapp.model.library.collection.item.LibraryItem;
+import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 import com.example.jvmori.moviesapp.repository.LibraryRepository;
 
 import java.util.List;
