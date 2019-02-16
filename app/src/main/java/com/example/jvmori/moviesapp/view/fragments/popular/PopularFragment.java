@@ -27,6 +27,7 @@ public class PopularFragment extends Fragment {
     private RelativeLayout loadingScreen;
     RecyclerView recyclerView;
     protected View modal;
+    private PopularItemsViewModel movieViewModel;
 
     public PopularFragment() {
         // Required empty public constructor
@@ -38,13 +39,13 @@ public class PopularFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_popular_item, container, false);
         loadingScreen = view.findViewById(R.id.loadingPanel);
         recyclerView = view.findViewById(R.id.movieRecyclerView);
+        movieViewModel = ViewModelProviders.of(this).get(PopularItemsViewModel.class);
         return view;
     }
 
 
     protected void setPopularMovieViewModel(String type){
-        PopularItemsViewModel movieViewModel = ViewModelProviders.of(this).get(PopularItemsViewModel.class);
-        movieViewModel.getAllPopularItems(type).observe(this, new Observer<List<MovieItem>>() {
+        movieViewModel.getAllPopularMovies(type).observe(this, new Observer<List<MovieItem>>() {
             @Override
             public void onChanged(List<MovieItem> movies) {
                 if (movies == null)
