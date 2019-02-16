@@ -5,8 +5,8 @@ import android.content.Intent;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
-import com.example.jvmori.moviesapp.model.network.genre.Genre;
-import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.network.response.Genre;
+import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.view.fragments.HomeFragmentDirections;

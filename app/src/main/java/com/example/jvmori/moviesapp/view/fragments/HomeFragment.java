@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.view.adapters.PopularItemsAdapter;
 import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 import com.example.jvmori.moviesapp.view.adapters.SetupMovieItemsAdapter;

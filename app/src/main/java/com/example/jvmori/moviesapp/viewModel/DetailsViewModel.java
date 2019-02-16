@@ -2,7 +2,7 @@ package com.example.jvmori.moviesapp.viewModel;
 
 import android.app.Application;
 
-import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
+import com.example.jvmori.moviesapp.model.network.response.MovieDetails;
 import com.example.jvmori.moviesapp.repository.MovieRepository;
 
 import androidx.annotation.NonNull;

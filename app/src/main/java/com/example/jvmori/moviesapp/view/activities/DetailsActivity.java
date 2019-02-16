@@ -13,12 +13,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.network.genre.Genre;
+import com.example.jvmori.moviesapp.model.network.response.Genre;
 import com.example.jvmori.moviesapp.model.movie.Movie;
-import com.example.jvmori.moviesapp.model.network.movieDetails.Cast;
-import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
-import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
-import com.example.jvmori.moviesapp.model.network.video.Video;
+import com.example.jvmori.moviesapp.model.network.response.Cast;
+import com.example.jvmori.moviesapp.model.network.response.MovieDetails;
+import com.example.jvmori.moviesapp.model.network.response.MovieItem;
+import com.example.jvmori.moviesapp.model.network.response.Video;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.util.LoadImage;
 import com.example.jvmori.moviesapp.view.adapters.CastAdapter;

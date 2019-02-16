@@ -2,16 +2,15 @@ package com.example.jvmori.moviesapp.model.network;
 
 import android.util.Log;
 
-import com.example.jvmori.moviesapp.model.network.genre.Genre;
-import com.example.jvmori.moviesapp.model.network.genre.GenreJsonObj;
-import com.example.jvmori.moviesapp.model.network.movieDetails.Cast;
-import com.example.jvmori.moviesapp.model.network.movieDetails.CreditsJsonObj;
-import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
-import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
-import com.example.jvmori.moviesapp.model.network.popularMovies.MovieJsonObj;
-import com.example.jvmori.moviesapp.model.network.video.Video;
-import com.example.jvmori.moviesapp.model.network.video.VideoJsonObj;
-import com.example.jvmori.moviesapp.util.Consts;
+import com.example.jvmori.moviesapp.model.network.response.Genre;
+import com.example.jvmori.moviesapp.model.network.response.GenreJsonObj;
+import com.example.jvmori.moviesapp.model.network.response.Cast;
+import com.example.jvmori.moviesapp.model.network.response.CreditsJsonObj;
+import com.example.jvmori.moviesapp.model.network.response.MovieDetails;
+import com.example.jvmori.moviesapp.model.network.response.MovieItem;
+import com.example.jvmori.moviesapp.model.network.response.MovieJsonObj;
+import com.example.jvmori.moviesapp.model.network.response.Video;
+import com.example.jvmori.moviesapp.model.network.response.VideoJsonObj;
 
 import java.util.HashMap;
 import java.util.List;

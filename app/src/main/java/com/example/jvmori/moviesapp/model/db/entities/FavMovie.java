@@ -1,11 +1,9 @@
 package com.example.jvmori.moviesapp.model.db.entities;
 
-import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
-import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.util.MovieTypeConverter;
 
 import androidx.room.ColumnInfo;
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;

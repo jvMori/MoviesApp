@@ -1,9 +1,9 @@
 package com.example.jvmori.moviesapp.model.network;
-import com.example.jvmori.moviesapp.model.network.genre.GenreJsonObj;
-import com.example.jvmori.moviesapp.model.network.movieDetails.CreditsJsonObj;
-import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
-import com.example.jvmori.moviesapp.model.network.popularMovies.MovieJsonObj;
-import com.example.jvmori.moviesapp.model.network.video.VideoJsonObj;
+import com.example.jvmori.moviesapp.model.network.response.GenreJsonObj;
+import com.example.jvmori.moviesapp.model.network.response.CreditsJsonObj;
+import com.example.jvmori.moviesapp.model.network.response.MovieDetails;
+import com.example.jvmori.moviesapp.model.network.response.MovieJsonObj;
+import com.example.jvmori.moviesapp.model.network.response.VideoJsonObj;
 
 import java.util.Map;
 
