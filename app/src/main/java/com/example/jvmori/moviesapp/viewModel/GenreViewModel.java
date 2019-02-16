@@ -3,34 +3,24 @@ package com.example.jvmori.moviesapp.viewModel;
 import android.app.Application;
 
 import com.example.jvmori.moviesapp.model.network.genre.Genre;
-import com.example.jvmori.moviesapp.repository.GenresRepository;
+import com.example.jvmori.moviesapp.repository.MovieRepository;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.Observer;
 
 public class GenreViewModel extends AndroidViewModel {
 
-    private MediatorLiveData<List<Genre>> allGenres;
-    private GenresRepository genresRepository;
+    private MovieRepository repository;
 
     public GenreViewModel(@NonNull Application application) {
         super(application);
-        allGenres = new MediatorLiveData<>();
-        genresRepository = new GenresRepository();
+        repository = MovieRepository.getInstance(application);
     }
 
     public LiveData<List<Genre>> getData(String type){
-        allGenres.addSource(genresRepository.getGenres(type), new Observer<List<Genre>>() {
-            @Override
-            public void onChanged(List<Genre> genres) {
-                allGenres.postValue(genres);
-            }
-        });
-        return allGenres;
+        return repository.getAllGenres(type);
     }
 }

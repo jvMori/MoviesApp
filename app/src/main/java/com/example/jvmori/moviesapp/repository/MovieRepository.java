@@ -7,8 +7,11 @@ import com.example.jvmori.moviesapp.model.db.MovieDao;
 import com.example.jvmori.moviesapp.model.db.MovieDatabase;
 import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
 import com.example.jvmori.moviesapp.model.network.MovieNetworkDataSource;
+import com.example.jvmori.moviesapp.model.network.genre.Genre;
+import com.example.jvmori.moviesapp.model.network.movieDetails.Cast;
 import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
+import com.example.jvmori.moviesapp.model.network.video.Video;
 
 import java.util.List;
 
@@ -41,6 +44,26 @@ public class MovieRepository
 
     public LiveData<MovieDetails> getItemDetails(String type, String id){
         return movieNetworkDataSource.getItemDetails(type, id);
+    }
+
+    public LiveData<List<Cast>> getAllCast(String type, String movieId){
+        return movieNetworkDataSource.getAllCasts(type, movieId);
+    }
+
+    public LiveData<List<Genre>> getAllGenres(String type){
+        return movieNetworkDataSource.getGenres(type);
+    }
+
+    public LiveData<List<MovieItem>> getSearchedResults(String query){
+        return movieNetworkDataSource.getSearchResults(query);
+    }
+
+    public LiveData<List<MovieItem>> getSimilar(String type, String id){
+       return movieNetworkDataSource.getSimilar(type, id);
+    }
+
+    public LiveData<List<Video>> getAllVideos(String type, String id){
+        return movieNetworkDataSource.getVideos(type, id);
     }
 
     public void insert(FavMovie favMovie){
