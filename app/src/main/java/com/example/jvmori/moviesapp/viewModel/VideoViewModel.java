@@ -10,7 +10,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
 public class VideoViewModel extends AndroidViewModel {
     private MovieRepository repository;
