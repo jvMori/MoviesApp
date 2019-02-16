@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.model;
+package com.example.jvmori.moviesapp.model.db;
 
 import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 

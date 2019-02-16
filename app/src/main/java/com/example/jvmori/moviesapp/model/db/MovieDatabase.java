@@ -1,4 +1,4 @@
-package com.example.jvmori.moviesapp.model;
+package com.example.jvmori.moviesapp.model.db;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {FavMovie.class}, version = 1, exportSchema = false)
+@Database(entities = {FavMovie.class}, version = 2, exportSchema = false)
 public abstract class MovieDatabase extends RoomDatabase {
 
     public static MovieDatabase instance;

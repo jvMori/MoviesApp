@@ -4,8 +4,8 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
-import com.example.jvmori.moviesapp.model.MovieDao;
-import com.example.jvmori.moviesapp.model.MovieDatabase;
+import com.example.jvmori.moviesapp.model.db.MovieDao;
+import com.example.jvmori.moviesapp.model.db.MovieDatabase;
 
 import java.util.List;
 

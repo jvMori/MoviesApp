@@ -3,8 +3,8 @@ package com.example.jvmori.moviesapp.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.jvmori.moviesapp.model.LibraryDao;
-import com.example.jvmori.moviesapp.model.LibraryDatabase;
+import com.example.jvmori.moviesapp.model.db.LibraryDao;
+import com.example.jvmori.moviesapp.model.db.LibraryDatabase;
 import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 
 import java.util.List;
