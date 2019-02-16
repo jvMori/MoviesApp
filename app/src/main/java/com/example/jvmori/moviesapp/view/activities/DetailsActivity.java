@@ -77,7 +77,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void setMovieDetailsViewModel(String type, String movieId){
         DetailsViewModel movieDetailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
-        movieDetailsViewModel.getMovieDetails(type, movieId).observe(this, new Observer<MovieDetails>() {
+        movieDetailsViewModel.getItemDetails(type, movieId).observe(this, new Observer<MovieDetails>() {
             @Override
             public void onChanged(MovieDetails movieDetails) {
                 movie.setMovieDetails(movieDetails);

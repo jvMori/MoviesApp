@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.jvmori.moviesapp.model.db.MovieDao;
 import com.example.jvmori.moviesapp.model.db.MovieDatabase;
 import com.example.jvmori.moviesapp.model.network.MovieNetworkDataSource;
+import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
 import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
 
 import java.util.List;
@@ -34,5 +35,9 @@ public class MovieRepository
 
     public LiveData<List<MovieItem>> getAllPopular(String type){
         return movieNetworkDataSource.getAllPopular(type);
+    }
+
+    public LiveData<MovieDetails> getItemDetails(String type, String id){
+        return movieNetworkDataSource.getItemDetails(type, id);
     }
 }
