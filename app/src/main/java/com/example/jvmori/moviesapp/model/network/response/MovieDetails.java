@@ -1,6 +1,6 @@
-package com.example.jvmori.moviesapp.model.network.movieDetails;
+package com.example.jvmori.moviesapp.model.network.response;
 
-import com.example.jvmori.moviesapp.model.network.genre.Genre;
+import com.example.jvmori.moviesapp.model.network.response.Genre;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

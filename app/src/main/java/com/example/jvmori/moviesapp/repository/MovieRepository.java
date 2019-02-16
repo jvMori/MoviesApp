@@ -3,15 +3,17 @@ package com.example.jvmori.moviesapp.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import com.example.jvmori.moviesapp.model.db.LibraryDao;
 import com.example.jvmori.moviesapp.model.db.MovieDao;
 import com.example.jvmori.moviesapp.model.db.MovieDatabase;
 import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
+import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 import com.example.jvmori.moviesapp.model.network.MovieNetworkDataSource;
-import com.example.jvmori.moviesapp.model.network.genre.Genre;
-import com.example.jvmori.moviesapp.model.network.movieDetails.Cast;
-import com.example.jvmori.moviesapp.model.network.movieDetails.MovieDetails;
-import com.example.jvmori.moviesapp.model.network.popularMovies.MovieItem;
-import com.example.jvmori.moviesapp.model.network.video.Video;
+import com.example.jvmori.moviesapp.model.network.response.Genre;
+import com.example.jvmori.moviesapp.model.network.response.Cast;
+import com.example.jvmori.moviesapp.model.network.response.MovieDetails;
+import com.example.jvmori.moviesapp.model.network.response.MovieItem;
+import com.example.jvmori.moviesapp.model.network.response.Video;
 
 import java.util.List;
 
@@ -23,9 +25,11 @@ public class MovieRepository
     private static MovieRepository instance;
     private MovieNetworkDataSource movieNetworkDataSource;
     private MovieDao movieDao;
+    private LibraryDao libraryDao;
 
     private MovieRepository(Application application){
         movieDao = MovieDatabase.getInstance(application).movieDao();
+        libraryDao = MovieDatabase.getInstance(application).libraryDao();
         movieNetworkDataSource = new MovieNetworkDataSource();
     }
 
@@ -91,7 +95,50 @@ public class MovieRepository
     public LiveData<List<FavMovie>> getAllItemsOfCollection(String name){
         return movieDao.getAllFromCollection(name);
     }
+    public void insert(LibraryItem libraryItem){
+        new CustomAsyncTask(new OnAsyncTask() {
+            @Override
+            public void onAsyncTask(LibraryItem libraryItem) {
+                libraryDao.insert(libraryItem);
+            }
+        }).execute(libraryItem);
+    }
 
+    public void delete(LibraryItem libraryItem){
+        new CustomAsyncTask(new OnAsyncTask() {
+            @Override
+            public void onAsyncTask(LibraryItem libraryItem) {
+                libraryDao.delete(libraryItem);
+            }
+        }).execute(libraryItem);
+    }
+
+    public void update(LibraryItem libraryItem){
+        new CustomAsyncTask(new OnAsyncTask() {
+            @Override
+            public void onAsyncTask(LibraryItem libraryItem) {
+                libraryDao.update(libraryItem);
+            }
+        }).execute(libraryItem);
+    }
+
+    public LiveData<List<LibraryItem>> getAllColections(){return libraryDao.getAllItems();}
+
+    public static class CustomAsyncTask extends AsyncTask<LibraryItem, Void, Void> {
+        OnAsyncTask callback;
+        CustomAsyncTask(OnAsyncTask callback){
+            this.callback = callback;
+        }
+        @Override
+        protected Void doInBackground(LibraryItem... libraryItems) {
+            callback.onAsyncTask(libraryItems[0]);
+            return null;
+        }
+    }
+
+    public interface OnAsyncTask {
+        void onAsyncTask(LibraryItem libraryItem);
+    }
     private static class InsertAsyncTask extends AsyncTask<FavMovie, Void, Void> {
         private MovieDao movieDao;
         InsertAsyncTask(MovieDao movieDao){
