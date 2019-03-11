@@ -82,7 +82,6 @@ public class SetupMovieItemsAdapter
                 HomeFragmentDirections.AddToLibraryAction action = HomeFragmentDirections.addToLibraryAction();
                 action.setMovieId(movieId);
                 Navigation.findNavController(activity, R.id.my_nav_host_fragment).navigate(action);
-
             }
         });
     }
