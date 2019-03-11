@@ -210,9 +210,6 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
             if (halfStar != starsCount && i == halfStar - 1) {
                 imageView.setImageResource(R.drawable.ic_star_half);
             }
-//            else {
-//                imageView.setImageResource(R.drawable.ic_star_border);
-//            }
         }
     }
 
