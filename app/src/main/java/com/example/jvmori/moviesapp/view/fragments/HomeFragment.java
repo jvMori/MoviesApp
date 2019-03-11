@@ -36,9 +36,6 @@ public class HomeFragment extends Fragment {
     private PopularItemsAdapter popularItemsAdapter;
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private SearchView searchView;
-    private MovieItemAdapter movieItemAdapter;
-    private RecyclerView recyclerView;
     private LinearLayout popularItemsLayout;
 
     public HomeFragment() {
@@ -52,8 +49,6 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager = view.findViewById(R.id.popularItemViewPager);
         tabLayout = view.findViewById(R.id.tabLayout);
-        searchView = view.findViewById(R.id.searchView);
-        recyclerView = view.findViewById(R.id.searchRecyclerView);
         popularItemsLayout = view.findViewById(R.id.popularLayout);
         return view;
     }
@@ -65,61 +60,6 @@ public class HomeFragment extends Fragment {
         viewPager.setAdapter(popularItemsAdapter);
         tabLayout.setupWithViewPager(viewPager);
         popularItemsLayout.setVisibility(View.VISIBLE);
-        recyclerView.setVisibility(View.GONE);
-        SetupMovieItemsAdapter setupMovieItemsAdapter = new SetupMovieItemsAdapter(this.getActivity(), this, this);
-        setupMovieItemsAdapter.setMovieItemAdapter(recyclerView, "movie", null);
-        movieItemAdapter = setupMovieItemsAdapter.getMovieItemAdapter();
 
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b){
-                    popularItemsLayout.setVisibility(View.GONE);
-                    recyclerView.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                if (query != null && query.length() > 1){
-                    searchTitles(query);
-                }
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (newText!= null && newText.length() > 1){
-                    searchTitles(newText);
-                }
-                return true;
-            }
-        });
-
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                popularItemsLayout.setVisibility(View.VISIBLE);
-                recyclerView.setVisibility(View.GONE);
-                return false;
-            }
-        });
     }
-
-    private void searchTitles(String query){
-        if (query != null)
-            createSearchViewModel(query);
-    }
-
-    private void createSearchViewModel(String query){
-        SearchResultsViewModel viewModel = ViewModelProviders.of(this).get(SearchResultsViewModel.class);
-        viewModel.getResults(query).observe(this, new Observer<List<MovieItem>>() {
-            @Override
-            public void onChanged(List<MovieItem> movieItems) {
-                movieItemAdapter.setMovieItems( movieItems);
-            }
-        });
-    }
-
 }
