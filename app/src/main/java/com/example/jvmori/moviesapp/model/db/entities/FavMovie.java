@@ -4,6 +4,7 @@ import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.util.MovieTypeConverter;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
@@ -12,10 +13,13 @@ import androidx.room.TypeConverters;
 public class FavMovie
 {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int movieId;
 
     @ColumnInfo(name = "media_type")
     private String mediaType;
+
+    @Embedded
+    private LibraryItem libraryItem;
 
     private String collection;
 
@@ -39,20 +43,12 @@ public class FavMovie
         this.movie = movie;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getMediaType() {
         return mediaType;
     }
 
     public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTmdbId() {
@@ -69,5 +65,21 @@ public class FavMovie
 
     public void setCollection(String collection) {
         this.collection = collection;
+    }
+
+    public LibraryItem getLibraryItem() {
+        return libraryItem;
+    }
+
+    public void setLibraryItem(LibraryItem libraryItem) {
+        this.libraryItem = libraryItem;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 }

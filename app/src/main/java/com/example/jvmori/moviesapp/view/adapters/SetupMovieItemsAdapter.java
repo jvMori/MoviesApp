@@ -2,6 +2,7 @@ package com.example.jvmori.moviesapp.view.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
@@ -78,10 +79,12 @@ public class SetupMovieItemsAdapter
 
         movieItemAdapter.setOnAddClickedListener(new MovieItemAdapter.OnAddClickedListener() {
             @Override
-            public void callback(String movieId) {
-                HomeFragmentDirections.AddToLibraryAction action = HomeFragmentDirections.addToLibraryAction();
-                action.setMovieId(movieId);
-                Navigation.findNavController(activity, R.id.my_nav_host_fragment).navigate(action);
+            public void callback(MovieItem movieItem) {
+                //HomeFragmentDirections.AddToLibraryAction action = HomeFragmentDirections.addToLibraryAction();
+                //action.setMovieId(movieItem);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("movieItem", movieItem);
+                Navigation.findNavController(activity, R.id.my_nav_host_fragment).navigate(R.id.addToLibraryAction, bundle);
             }
         });
     }

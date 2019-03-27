@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class LibraryItem
 {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int itemId;
 
     @ColumnInfo(name = "name_of_item")
     private String nameOfCollection;
@@ -17,13 +17,6 @@ public class LibraryItem
         this.nameOfCollection = nameOfCollection;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNameOfCollection() {
         return nameOfCollection;
@@ -31,5 +24,13 @@ public class LibraryItem
 
     public void setNameOfCollection(String nameOfCollection) {
         this.nameOfCollection = nameOfCollection;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 }

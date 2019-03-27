@@ -80,14 +80,14 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     if (onAddClickedListener != null && position != RecyclerView.NO_POSITION)
-                        onAddClickedListener.callback(movieItems.get(position).getTmdbId());
+                        onAddClickedListener.callback(movieItems.get(position));
                 }
             });
         }
     }
 
     public interface OnAddClickedListener {
-        void callback(String movieId);
+        void callback(MovieItem movieItem);
     }
 
     public void setOnAddClickedListener(OnAddClickedListener onAddClickedListener){this.onAddClickedListener = onAddClickedListener;}

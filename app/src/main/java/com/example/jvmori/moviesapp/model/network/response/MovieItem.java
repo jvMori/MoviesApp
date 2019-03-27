@@ -1,10 +1,13 @@
 package com.example.jvmori.moviesapp.model.network.response;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import androidx.room.Entity;
 
-public class MovieItem
+public class MovieItem implements Parcelable
 {
     @SerializedName("id")
     private String tmdbId;
@@ -29,6 +32,46 @@ public class MovieItem
 
     @SerializedName(("vote_count"))
     private String reviews;
+
+    protected MovieItem(Parcel in) {
+        tmdbId = in.readString();
+        mediaType = in.readString();
+        title = in.readString();
+        poster = in.readString();
+        year = in.readString();
+        rating = in.readString();
+        categories = in.createStringArrayList();
+        reviews = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(tmdbId);
+        dest.writeString(mediaType);
+        dest.writeString(title);
+        dest.writeString(poster);
+        dest.writeString(year);
+        dest.writeString(rating);
+        dest.writeStringList(categories);
+        dest.writeString(reviews);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<MovieItem> CREATOR = new Creator<MovieItem>() {
+        @Override
+        public MovieItem createFromParcel(Parcel in) {
+            return new MovieItem(in);
+        }
+
+        @Override
+        public MovieItem[] newArray(int size) {
+            return new MovieItem[size];
+        }
+    };
 
     public String getTmdbId() {
         return tmdbId;

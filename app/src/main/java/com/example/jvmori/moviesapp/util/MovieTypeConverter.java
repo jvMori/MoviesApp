@@ -14,10 +14,6 @@ public class MovieTypeConverter
 
     @TypeConverter
     public static MovieItem stringToMovie(String data) {
-        if (data == null) {
-            new MovieItem();
-        }
-
         Type listType = new TypeToken<MovieItem>() {}.getType();
         return gson.fromJson(data, listType);
     }
