@@ -80,8 +80,6 @@ public class SetupMovieItemsAdapter
         movieItemAdapter.setOnAddClickedListener(new MovieItemAdapter.OnAddClickedListener() {
             @Override
             public void callback(MovieItem movieItem) {
-                //HomeFragmentDirections.AddToLibraryAction action = HomeFragmentDirections.addToLibraryAction();
-                //action.setMovieId(movieItem);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("movieItem", movieItem);
                 Navigation.findNavController(activity, R.id.my_nav_host_fragment).navigate(R.id.addToLibraryAction, bundle);

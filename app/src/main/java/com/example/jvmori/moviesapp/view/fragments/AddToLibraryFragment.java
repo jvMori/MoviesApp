@@ -11,12 +11,14 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
+import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.view.adapters.LibraryItemsAdapter;
 import com.example.jvmori.moviesapp.viewModel.LibraryViewModel;
 
@@ -30,6 +32,7 @@ public class AddToLibraryFragment extends Fragment {
     private RecyclerView recyclerView;
     private LibraryItemsAdapter adapter;
     private View view;
+    private MovieItem movieItem;
 
     public AddToLibraryFragment() {
         // Required empty public constructor
@@ -50,6 +53,8 @@ public class AddToLibraryFragment extends Fragment {
         setRecyclerView();
         createView();
 
+        assert getArguments() != null;
+        movieItem = getArguments().getParcelable("movieItem");
     }
 
     private void createView(){
