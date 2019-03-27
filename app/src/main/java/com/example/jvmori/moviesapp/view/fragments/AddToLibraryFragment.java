@@ -17,9 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jvmori.moviesapp.R;
+import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
 import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.view.adapters.LibraryItemsAdapter;
+import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 import com.example.jvmori.moviesapp.viewModel.LibraryViewModel;
 
 import java.util.List;
@@ -27,12 +29,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddToLibraryFragment extends Fragment {
+public class AddToLibraryFragment extends Fragment implements LibraryItemsAdapter.IOnClickListener {
 
     private RecyclerView recyclerView;
     private LibraryItemsAdapter adapter;
     private View view;
     private MovieItem movieItem;
+    private LibraryItemsAdapter.IOnClickListener iOnClickListener;
+    private FavMovieViewModel favMovieViewModel;
 
     public AddToLibraryFragment() {
         // Required empty public constructor
@@ -52,6 +56,8 @@ public class AddToLibraryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setRecyclerView();
         createView();
+        iOnClickListener = this;
+        favMovieViewModel = ViewModelProviders.of(this).get(FavMovieViewModel.class);
 
         assert getArguments() != null;
         movieItem = getArguments().getParcelable("movieItem");
@@ -63,6 +69,7 @@ public class AddToLibraryFragment extends Fragment {
             @Override
             public void onChanged(List<LibraryItem> libraryItems) {
                 adapter.setLibraryItems(libraryItems);
+                adapter.setiOnClickListener(iOnClickListener);
             }
         });
     }
@@ -74,5 +81,16 @@ public class AddToLibraryFragment extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
         adapter = new LibraryItemsAdapter();
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onLibraryItemClicked(LibraryItem libraryItem) {
+        FavMovie favMovie = new FavMovie(
+                movieItem.getMediaType(),
+                movieItem.getTmdbId(),
+                movieItem,
+                libraryItem.getNameOfCollection());
+
+        favMovieViewModel.insert(favMovie);
     }
 }

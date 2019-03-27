@@ -14,9 +14,9 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class LibraryItemsAdapter extends RecyclerView.Adapter<LibraryItemsAdapter.LibraryViewHolder>
-{
-    private List<LibraryItem> libraryItems =  new ArrayList<>();
+public class LibraryItemsAdapter extends RecyclerView.Adapter<LibraryItemsAdapter.LibraryViewHolder> {
+    private List<LibraryItem> libraryItems = new ArrayList<>();
+    private IOnClickListener iOnClickListener;
     View view;
 
     @NonNull
@@ -28,8 +28,8 @@ public class LibraryItemsAdapter extends RecyclerView.Adapter<LibraryItemsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull LibraryViewHolder holder, int position) {
-        LibraryItem currentItem = libraryItems.get(holder.getAdapterPosition());
-        holder.name.setText(currentItem.getNameOfCollection());
+        LibraryItem currentItem = libraryItems.get(position);
+        holder.bind(currentItem);
     }
 
     @Override
@@ -37,17 +37,33 @@ public class LibraryItemsAdapter extends RecyclerView.Adapter<LibraryItemsAdapte
         return libraryItems.size();
     }
 
-    public class LibraryViewHolder extends RecyclerView.ViewHolder{
+    public void setiOnClickListener(IOnClickListener iOnClickListener) {
+        this.iOnClickListener = iOnClickListener;
+    }
+
+    public class LibraryViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
-        public LibraryViewHolder(@NonNull View itemView) {
+
+        LibraryViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.itemName);
         }
+        void bind(LibraryItem currentItem){
+            name.setText(currentItem.getNameOfCollection());
+            itemView.setOnClickListener(v -> {
+                if (iOnClickListener != null)
+                    iOnClickListener.onLibraryItemClicked(currentItem);
+            });
+        }
     }
 
-    public void setLibraryItems(List<LibraryItem> libraryItems){
+    public void setLibraryItems(List<LibraryItem> libraryItems) {
         this.libraryItems = libraryItems;
         notifyDataSetChanged();
     }
 
+
+    public interface IOnClickListener {
+        void onLibraryItemClicked(LibraryItem libraryItem);
+    }
 }
