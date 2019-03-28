@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.network.response.MovieItem;
+import com.example.jvmori.moviesapp.model.db.entities.MovieItem;
 import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 import com.example.jvmori.moviesapp.view.adapters.SetupMovieItemsAdapter;
 import com.example.jvmori.moviesapp.viewModel.SearchResultsViewModel;

@@ -2,7 +2,7 @@ package com.example.jvmori.moviesapp.model.movie;
 
 import com.example.jvmori.moviesapp.model.network.response.Cast;
 import com.example.jvmori.moviesapp.model.network.response.MovieDetails;
-import com.example.jvmori.moviesapp.model.network.response.MovieItem;
+import com.example.jvmori.moviesapp.model.db.entities.MovieItem;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 import com.example.jvmori.moviesapp.model.network.response.Genre;
-import com.example.jvmori.moviesapp.model.network.response.MovieItem;
+import com.example.jvmori.moviesapp.model.db.entities.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
 import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;

@@ -1,6 +1,6 @@
 package com.example.jvmori.moviesapp.model.db;
 
-import com.example.jvmori.moviesapp.model.network.response.MovieItem;
+import com.example.jvmori.moviesapp.model.db.entities.MovieItem;
 
 import java.util.List;
 
