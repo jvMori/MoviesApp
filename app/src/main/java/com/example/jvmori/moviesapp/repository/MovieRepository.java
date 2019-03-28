@@ -11,7 +11,7 @@ import com.example.jvmori.moviesapp.model.network.MovieNetworkDataSource;
 import com.example.jvmori.moviesapp.model.network.response.Genre;
 import com.example.jvmori.moviesapp.model.network.response.Cast;
 import com.example.jvmori.moviesapp.model.network.response.MovieDetails;
-import com.example.jvmori.moviesapp.model.network.response.MovieItem;
+import com.example.jvmori.moviesapp.model.db.entities.MovieItem;
 import com.example.jvmori.moviesapp.model.network.response.Video;
 
 import java.util.List;

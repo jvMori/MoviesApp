@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
-import com.example.jvmori.moviesapp.model.network.response.MovieItem;
+import com.example.jvmori.moviesapp.model.db.entities.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 
 import androidx.annotation.NonNull;

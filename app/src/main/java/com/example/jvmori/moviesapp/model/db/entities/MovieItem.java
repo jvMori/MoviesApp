@@ -1,8 +1,7 @@
-package com.example.jvmori.moviesapp.model.network.response;
+package com.example.jvmori.moviesapp.model.db.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 import com.example.jvmori.moviesapp.util.ListStringTypeConverter;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 @Entity(tableName = "movie_table", primaryKeys = {"tmdbId", "nameOfCollection" })
