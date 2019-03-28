@@ -1,5 +1,6 @@
 package com.example.jvmori.moviesapp.view.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +79,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
         return new PopularMovieHolder(item);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PopularMovieHolder holder, int position) {
         MovieItem currentItem = movieItems.get(position);
@@ -87,7 +89,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
 
         holder.title.setText(currentItem.getTitle());
         holder.year.setText(currentItem.getYear());
-        holder.rating.setText(currentItem.getRating());
+        holder.rating.setText(Double.toString(currentItem.getRating()));
         holder.reviews.setText(reviews);
         holder.categories.setText(categories.toString());
         holder.poster.setClipToOutline(true);
@@ -152,9 +154,9 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
         }
     }
 
-    public static void setStars(float rating, LinearLayout starsLayout) {
+    public static void setStars(double rating, LinearLayout starsLayout) {
         int maxNumberOfStars = starsLayout.getChildCount();
-        float ratingFromPercentage = rating * maxNumberOfStars / 100;
+        double ratingFromPercentage = rating * maxNumberOfStars / 100;
         double starsCount = Math.floor(ratingFromPercentage);
         double halfStar = Math.round(ratingFromPercentage);
 

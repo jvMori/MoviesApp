@@ -37,7 +37,7 @@ public class MovieItem implements Parcelable
     private String year;
 
     @SerializedName(("vote_average"))
-    private int rating;
+    private double rating;
 
     @SerializedName(("genre_ids"))
     @TypeConverters(ListStringTypeConverter.class)
@@ -68,7 +68,7 @@ public class MovieItem implements Parcelable
         dest.writeString(title);
         dest.writeString(poster);
         dest.writeString(year);
-        dest.writeInt(rating);
+        dest.writeDouble(rating);
         dest.writeStringList(categories);
         dest.writeString(reviews);
     }
@@ -106,7 +106,7 @@ public class MovieItem implements Parcelable
         return year;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating * 10;
     }
 
@@ -134,7 +134,7 @@ public class MovieItem implements Parcelable
         this.year = year;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 

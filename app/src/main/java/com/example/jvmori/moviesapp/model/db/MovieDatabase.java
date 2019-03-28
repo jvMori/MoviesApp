@@ -13,7 +13,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {MovieItem.class, LibraryItem.class}, version = 7, exportSchema = false)
+@Database(entities = {MovieItem.class, LibraryItem.class}, version = 8, exportSchema = false)
 public abstract class MovieDatabase extends RoomDatabase {
 
     public static MovieDatabase instance;
