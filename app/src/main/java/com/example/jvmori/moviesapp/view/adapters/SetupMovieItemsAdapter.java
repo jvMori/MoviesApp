@@ -111,7 +111,6 @@ public class SetupMovieItemsAdapter
         favMovieViewModel.insert(new FavMovie(mediaType, movieItem.getTmdbId(), movieItem, "Favorite"));
     }
 
-
     public MovieItemAdapter getMovieItemAdapter() {
         return movieItemAdapter;
     }

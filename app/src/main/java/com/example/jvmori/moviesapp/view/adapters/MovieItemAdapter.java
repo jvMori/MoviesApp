@@ -28,10 +28,8 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
     private OnItemClickedListener onItemClickedListener;
     private OnLikeClickedListener onLikeClickedListener;
     private OnAddClickedListener onAddClickedListener;
-    private ConstraintLayout layoutItem;
-    private RelativeLayout likeView;
-    List<FavMovie> favMovies;
-    View item;
+    private List<FavMovie> favMovies;
+    private View item;
 
     public class PopularMovieHolder extends RecyclerView.ViewHolder {
         TextView title, year, rating, reviews, categories;
@@ -48,89 +46,33 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
             poster = itemView.findViewById(R.id.icon);
             starsLayout = itemView.findViewById(R.id.layoutStars);
             likeBtn = itemView.findViewById(R.id.heart);
-            layoutItem = itemView.findViewById(R.id.itemView);
             addBtn = itemView.findViewById(R.id.addBtn);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (onItemClickedListener != null && position != RecyclerView.NO_POSITION)
-                        onItemClickedListener.onItemClicked(movieItems.get(position));
+            itemView.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (onItemClickedListener != null && position != RecyclerView.NO_POSITION)
+                    onItemClickedListener.onItemClicked(movieItems.get(position));
+            });
+
+            likeBtn.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (onLikeClickedListener != null && position != RecyclerView.NO_POSITION) {
+                    boolean fav = checkIfIsFav(movieItems.get(position), favMovies);
+                    handleLikeBtn(fav, likeBtn);
+                    if (!fav)
+                        onLikeClickedListener.addCallback(movieItems.get(position));
+                    else
+                        onLikeClickedListener.removeCallback(movieItems.get(position));
                 }
             });
 
-            likeBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (onLikeClickedListener != null && position != RecyclerView.NO_POSITION) {
-                        boolean fav = checkIfIsFav(movieItems.get(position), favMovies);
-                        handleLikeBtn(fav, likeBtn);
-                        if (!fav)
-                            onLikeClickedListener.addCallback(movieItems.get(position));
-                        else
-                            onLikeClickedListener.removeCallback(movieItems.get(position));
-                    }
-                }
-            });
-
-            addBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (onAddClickedListener != null && position != RecyclerView.NO_POSITION)
-                        onAddClickedListener.callback(movieItems.get(position));
-                }
+            addBtn.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (onAddClickedListener != null && position != RecyclerView.NO_POSITION)
+                    onAddClickedListener.callback(movieItems.get(position));
             });
         }
     }
-
-    public interface OnAddClickedListener {
-        void callback(MovieItem movieItem);
-    }
-
-    public void setOnAddClickedListener(OnAddClickedListener onAddClickedListener){this.onAddClickedListener = onAddClickedListener;}
-
-    private boolean checkIfIsFav(MovieItem movieItem, List<FavMovie> favMovies) {
-        for (FavMovie fav : favMovies) {
-            if (movieItem.getTmdbId().equals(fav.getMovie().getTmdbId()))
-                return true;
-        }
-        return false;
-    }
-
-    private void handleLikeBtn(boolean liked, ImageView likeBtn) {
-        liked = !liked;
-        setLikeImage(liked, likeBtn);
-    }
-
-    private void setLikeImage(boolean liked, ImageView likeBtn) {
-        if (liked)
-            likeBtn.setImageResource(R.drawable.ic_favorite_full);
-        else
-            likeBtn.setImageResource(R.drawable.ic_favorite_empty);
-    }
-
-
-    public interface OnLikeClickedListener {
-        void addCallback(MovieItem movieItem);
-
-        void removeCallback(MovieItem movieItem);
-    }
-
-    public void setOnLikeClickedListener(OnLikeClickedListener onLikeClickedListener) {
-        this.onLikeClickedListener = onLikeClickedListener;
-    }
-
-    public interface OnItemClickedListener {
-        void onItemClicked(MovieItem movieItem);
-    }
-
-    public void setOnItemClickedListener(OnItemClickedListener onItemClickedListener) {
-        this.onItemClickedListener = onItemClickedListener;
-    }
-
 
     @NonNull
     @Override
@@ -153,10 +95,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
         holder.categories.setText(categories.toString());
         holder.poster.setClipToOutline(true);
         LoadImage.loadImage(holder.poster, Consts.base_poster_url + currentItem.getPoster());
-        float rating = 0;
-        if (currentItem.getRating() != null)
-            rating = Float.parseFloat(currentItem.getRating()) * 10;
-        setStars(rating, holder.starsLayout);
+        setStars(currentItem.getRating(), holder.starsLayout);
         boolean fav = checkIfIsFav(movieItems.get(position), favMovies);
         setLikeImage(fav, holder.likeBtn);
     }
@@ -177,6 +116,26 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
 
     public void setFavMovies(List<FavMovie> favMovies) {
         this.favMovies = favMovies;
+    }
+
+    private boolean checkIfIsFav(MovieItem movieItem, List<FavMovie> favMovies) {
+        for (FavMovie fav : favMovies) {
+            if (movieItem.getTmdbId().equals(fav.getMovie().getTmdbId()))
+                return true;
+        }
+        return false;
+    }
+
+    private void handleLikeBtn(boolean liked, ImageView likeBtn) {
+        liked = !liked;
+        setLikeImage(liked, likeBtn);
+    }
+
+    private void setLikeImage(boolean liked, ImageView likeBtn) {
+        if (liked)
+            likeBtn.setImageResource(R.drawable.ic_favorite_full);
+        else
+            likeBtn.setImageResource(R.drawable.ic_favorite_empty);
     }
 
     private void categoryTxtSetup(MovieItem currentItem, StringBuilder categories) {
@@ -211,6 +170,30 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
                 imageView.setImageResource(R.drawable.ic_star_half);
             }
         }
+    }
+
+    public interface OnAddClickedListener {
+        void callback(MovieItem movieItem);
+    }
+
+    public void setOnAddClickedListener(OnAddClickedListener onAddClickedListener){this.onAddClickedListener = onAddClickedListener;}
+
+    public interface OnLikeClickedListener {
+        void addCallback(MovieItem movieItem);
+
+        void removeCallback(MovieItem movieItem);
+    }
+
+    public void setOnLikeClickedListener(OnLikeClickedListener onLikeClickedListener) {
+        this.onLikeClickedListener = onLikeClickedListener;
+    }
+
+    public interface OnItemClickedListener {
+        void onItemClicked(MovieItem movieItem);
+    }
+
+    public void setOnItemClickedListener(OnItemClickedListener onItemClickedListener) {
+        this.onItemClickedListener = onItemClickedListener;
     }
 
     private static void setParamsAndAddToView(ImageView imageView, LinearLayout starsLayout) {
