@@ -4,9 +4,13 @@ import com.example.jvmori.moviesapp.model.db.entities.MovieItem;
 import com.example.jvmori.moviesapp.repository.MovieRepository;
 
 import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+import io.reactivex.Observable;
 
 
 public class PopularItemsViewModel extends AndroidViewModel {
@@ -20,6 +24,10 @@ public class PopularItemsViewModel extends AndroidViewModel {
 
     public LiveData<List<MovieItem>> getAllPopularMovies(String type) {
         return movieRepository.getAllPopular(type);
+    }
+
+    private void addMediaType(MovieItem movieItem, String type){
+        movieItem.setMediaType(type);
     }
 
 }

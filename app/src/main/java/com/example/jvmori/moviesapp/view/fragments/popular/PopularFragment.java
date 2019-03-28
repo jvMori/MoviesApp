@@ -50,6 +50,10 @@ public class PopularFragment extends Fragment {
             public void onChanged(List<MovieItem> movies) {
                 if (movies == null)
                     return;
+
+                for (MovieItem item: movies) {
+                    item.setMediaType(type);
+                }
                 movieItemAdapter.setMovieItems(movies);
                 loadingScreen.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
