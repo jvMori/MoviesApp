@@ -1,6 +1,7 @@
 package com.example.jvmori.moviesapp.view.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.jvmori.moviesapp.R;
 import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
@@ -35,6 +37,7 @@ public class AddToLibraryFragment extends Fragment implements LibraryItemsAdapte
     private MovieItem movieItem;
     private LibraryItemsAdapter.IOnClickListener iOnClickListener;
     private FavMovieViewModel favMovieViewModel;
+    private Context context;
 
     public AddToLibraryFragment() {
         // Required empty public constructor
@@ -52,6 +55,7 @@ public class AddToLibraryFragment extends Fragment implements LibraryItemsAdapte
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        context = view.getContext();
         setRecyclerView();
         createView();
         iOnClickListener = this;
@@ -85,5 +89,6 @@ public class AddToLibraryFragment extends Fragment implements LibraryItemsAdapte
     public void onLibraryItemClicked(LibraryItem libraryItem) {
         favMovieViewModel.setCollectionToMovieItem(libraryItem, movieItem);
         favMovieViewModel.insert(movieItem);
+        Toast.makeText(context, "Added to collection", Toast.LENGTH_SHORT).show();
     }
 }
