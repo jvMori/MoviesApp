@@ -1,5 +1,6 @@
 package com.example.jvmori.moviesapp.model.db.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -10,7 +11,8 @@ public class LibraryItem
     @PrimaryKey(autoGenerate = true)
     private int itemId;
 
-    private String nameOfCollection;
+    @NonNull
+    private String nameOfCollection = "";
 
     public LibraryItem(String nameOfCollection) {
         this.nameOfCollection = nameOfCollection;

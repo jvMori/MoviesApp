@@ -13,15 +13,15 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-@Entity(tableName = "movie_table")
+@Entity(tableName = "movie_table", primaryKeys = {"tmdbId", "nameOfCollection" })
 public class MovieItem implements Parcelable
 {
     @SerializedName("id")
-    @PrimaryKey
     @NonNull
     private String tmdbId = "0";
 
     @Embedded
+    @NonNull
     private LibraryItem libraryItem;
 
     @SerializedName("media_type")
