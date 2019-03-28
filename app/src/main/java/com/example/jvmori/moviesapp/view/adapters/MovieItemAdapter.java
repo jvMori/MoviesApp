@@ -5,11 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
 import com.example.jvmori.moviesapp.model.network.response.Genre;
 import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
@@ -19,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.PopularMovieHolder> {
@@ -28,7 +25,7 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
     private OnItemClickedListener onItemClickedListener;
     private OnLikeClickedListener onLikeClickedListener;
     private OnAddClickedListener onAddClickedListener;
-    private List<FavMovie> favMovies;
+    private List<MovieItem> favMovies;
     private View item;
 
     public class PopularMovieHolder extends RecyclerView.ViewHolder {
@@ -114,13 +111,13 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
         notifyDataSetChanged();
     }
 
-    public void setFavMovies(List<FavMovie> favMovies) {
+    public void setFavMovies(List<MovieItem> favMovies) {
         this.favMovies = favMovies;
     }
 
-    private boolean checkIfIsFav(MovieItem movieItem, List<FavMovie> favMovies) {
-        for (FavMovie fav : favMovies) {
-            if (movieItem.getTmdbId().equals(fav.getMovie().getTmdbId()))
+    private boolean checkIfIsFav(MovieItem movieItem, List<MovieItem> favMovies) {
+        for (MovieItem fav : favMovies) {
+            if (movieItem.getTmdbId().equals(fav.getTmdbId()))
                 return true;
         }
         return false;

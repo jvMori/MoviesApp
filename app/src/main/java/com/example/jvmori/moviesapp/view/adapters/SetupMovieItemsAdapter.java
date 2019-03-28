@@ -5,12 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
+import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 import com.example.jvmori.moviesapp.model.network.response.Genre;
 import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 import com.example.jvmori.moviesapp.view.activities.DetailsActivity;
-import com.example.jvmori.moviesapp.view.fragments.HomeFragmentDirections;
 import com.example.jvmori.moviesapp.viewModel.FavMovieViewModel;
 import com.example.jvmori.moviesapp.viewModel.GenreViewModel;
 import java.util.List;
@@ -38,37 +37,30 @@ public class SetupMovieItemsAdapter
     }
 
     public void setMovieItemAdapter(RecyclerView recyclerView, String mediaType, final SetViewCallback setViewCallback){
-        setPopularMovieAdapter(recyclerView, mediaType);
+        setPopularMovieAdapter(recyclerView);
         setGenreViewModel(mediaType, setViewCallback);
     }
 
-    private void setPopularMovieAdapter(RecyclerView recyclerView, final String mediaType){
+    private void setPopularMovieAdapter(RecyclerView recyclerView){
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setHasFixedSize(true);
         movieItemAdapter = new MovieItemAdapter();
         recyclerView.setAdapter(movieItemAdapter);
-        favMovieViewModel.getAllMovies().observe(owner, new Observer<List<FavMovie>>() {
-            @Override
-            public void onChanged(List<FavMovie> favMovies) {
-                movieItemAdapter.setFavMovies(favMovies);
-            }
-        });
+        favMovieViewModel.getAllMovies().observe(owner,result ->
+                movieItemAdapter.setFavMovies(result)
+        );
 
-        movieItemAdapter.setOnItemClickedListener(new MovieItemAdapter.OnItemClickedListener() {
-            @Override
-            public void onItemClicked(MovieItem movieItem) {
-                Intent intent = new Intent(activity, DetailsActivity.class);
-                intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
-                String type = movieItem.getMediaType() != null ? movieItem.getMediaType() : mediaType;
-                intent.putExtra(Consts.type_parameter, type);
-                activity.startActivity(intent);
-            }
+        movieItemAdapter.setOnItemClickedListener(movieItem -> {
+            Intent intent = new Intent(activity, DetailsActivity.class);
+            intent.putExtra(Consts.id_parameter, movieItem.getTmdbId());
+            intent.putExtra(Consts.type_parameter,  movieItem.getMediaType());
+            activity.startActivity(intent);
         });
 
         movieItemAdapter.setOnLikeClickedListener(new MovieItemAdapter.OnLikeClickedListener() {
             @Override
             public void addCallback(MovieItem movieItem) {
-                addFavMovie(movieItem, mediaType);
+                addFavMovie(movieItem);
             }
 
             @Override
@@ -77,13 +69,10 @@ public class SetupMovieItemsAdapter
             }
         });
 
-        movieItemAdapter.setOnAddClickedListener(new MovieItemAdapter.OnAddClickedListener() {
-            @Override
-            public void callback(MovieItem movieItem) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("movieItem", movieItem);
-                Navigation.findNavController(activity, R.id.my_nav_host_fragment).navigate(R.id.addToLibraryAction, bundle);
-            }
+        movieItemAdapter.setOnAddClickedListener(movieItem -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("movieItem", movieItem);
+            Navigation.findNavController(activity, R.id.my_nav_host_fragment).navigate(R.id.addToLibraryAction, bundle);
         });
     }
 
@@ -105,10 +94,9 @@ public class SetupMovieItemsAdapter
         void callback();
     }
 
-    private void addFavMovie(MovieItem movieItem, String mediaType) {
-        if (mediaType != null)
-            movieItem.setMediaType(mediaType);
-        favMovieViewModel.insert(new FavMovie(mediaType, movieItem.getTmdbId(), movieItem, "Favorite"));
+    private void addFavMovie(MovieItem movieItem) {
+        favMovieViewModel.setCollectionToMovieItem(new LibraryItem("Favorite"), movieItem);
+        favMovieViewModel.insert(movieItem);
     }
 
     public MovieItemAdapter getMovieItemAdapter() {

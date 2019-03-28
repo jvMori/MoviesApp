@@ -10,7 +10,6 @@ public class LibraryItem
     @PrimaryKey(autoGenerate = true)
     private int itemId;
 
-    @ColumnInfo(name = "name_of_item")
     private String nameOfCollection;
 
     public LibraryItem(String nameOfCollection) {

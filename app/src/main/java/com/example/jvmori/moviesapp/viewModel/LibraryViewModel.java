@@ -21,6 +21,6 @@ public class LibraryViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<LibraryItem>> getAllItems(){
-       return repository.getAllColections();
+       return repository.getAllCollections();
     }
 }

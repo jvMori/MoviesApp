@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
 import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.view.adapters.MovieItemAdapter;
 import com.example.jvmori.moviesapp.view.adapters.SetupMovieItemsAdapter;
@@ -69,9 +68,9 @@ public class SavedItemsFragment extends Fragment {
 
     private void setFavMovieViewModel(){
         FavMovieViewModel favMovieViewModel = ViewModelProviders.of(this).get(FavMovieViewModel.class);
-        favMovieViewModel.getMovieFromCollection(collectionName).observe(this, new Observer<List<FavMovie>>() {
+        favMovieViewModel.getMovieFromCollection(collectionName).observe(this, new Observer<List<MovieItem>>() {
             @Override
-            public void onChanged(List<FavMovie> favMovies) {
+            public void onChanged(List<MovieItem> favMovies) {
                 setMovieItems(favMovies);
                 movieItemAdapter.setMovieItems(movieItems);
                 loadingScreen.setVisibility(View.GONE);
@@ -79,19 +78,17 @@ public class SavedItemsFragment extends Fragment {
             }
         });
 
-        favMovieViewModel.getAllItemsOfType("tv").observe(this, new Observer<List<FavMovie>>() {
+        favMovieViewModel.getAllItemsOfType("tv").observe(this, new Observer<List<MovieItem>>() {
             @Override
-            public void onChanged(List<FavMovie> favMovies) {
-                List<FavMovie> tvShows = favMovies;
+            public void onChanged(List<MovieItem> favMovies) {
+                List<MovieItem> tvShows = favMovies;
             }
         });
     }
 
-    private void setMovieItems(List<FavMovie> favMovies){
+    private void setMovieItems(List<MovieItem> favMovies){
         movieItems = new ArrayList<>();
-        for (FavMovie fav: favMovies) {
-            movieItems.add(fav.getMovie());
-        }
+        movieItems.addAll(favMovies);
     }
 
     public void setCollectionName(String collectionName){this.collectionName = collectionName;}

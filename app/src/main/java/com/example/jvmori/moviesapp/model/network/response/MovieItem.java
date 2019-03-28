@@ -2,15 +2,27 @@ package com.example.jvmori.moviesapp.model.network.response;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
+import com.example.jvmori.moviesapp.util.ListStringTypeConverter;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
+@Entity(tableName = "movie_table")
 public class MovieItem implements Parcelable
 {
     @SerializedName("id")
-    private String tmdbId;
+    @PrimaryKey
+    @NonNull
+    private String tmdbId = "0";
+
+    @Embedded
+    private LibraryItem libraryItem;
 
     @SerializedName("media_type")
     private String mediaType;
@@ -28,10 +40,15 @@ public class MovieItem implements Parcelable
     private int rating;
 
     @SerializedName(("genre_ids"))
+    @TypeConverters(ListStringTypeConverter.class)
     private List<String> categories;
 
     @SerializedName(("vote_count"))
     private String reviews;
+
+    public MovieItem(){
+
+    }
 
     protected MovieItem(Parcel in) {
         tmdbId = in.readString();
@@ -135,5 +152,13 @@ public class MovieItem implements Parcelable
 
     public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
+    }
+
+    public LibraryItem getLibraryItem() {
+        return libraryItem;
+    }
+
+    public void setLibraryItem(LibraryItem libraryItem) {
+        this.libraryItem = libraryItem;
     }
 }

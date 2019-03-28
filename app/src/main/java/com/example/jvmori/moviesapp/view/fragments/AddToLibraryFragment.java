@@ -11,13 +11,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jvmori.moviesapp.R;
-import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
 import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
 import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.view.adapters.LibraryItemsAdapter;
@@ -85,12 +83,7 @@ public class AddToLibraryFragment extends Fragment implements LibraryItemsAdapte
 
     @Override
     public void onLibraryItemClicked(LibraryItem libraryItem) {
-        FavMovie favMovie = new FavMovie(
-                movieItem.getMediaType(),
-                movieItem.getTmdbId(),
-                movieItem,
-                libraryItem.getNameOfCollection());
-
-        favMovieViewModel.insert(favMovie);
+        favMovieViewModel.setCollectionToMovieItem(libraryItem, movieItem);
+        favMovieViewModel.insert(movieItem);
     }
 }

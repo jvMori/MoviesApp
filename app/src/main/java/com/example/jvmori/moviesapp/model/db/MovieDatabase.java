@@ -3,8 +3,8 @@ package com.example.jvmori.moviesapp.model.db;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.example.jvmori.moviesapp.model.db.entities.FavMovie;
 import com.example.jvmori.moviesapp.model.db.entities.LibraryItem;
+import com.example.jvmori.moviesapp.model.network.response.MovieItem;
 import com.example.jvmori.moviesapp.util.Consts;
 
 import androidx.annotation.NonNull;
@@ -13,7 +13,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {FavMovie.class, LibraryItem.class}, version = 6, exportSchema = false)
+@Database(entities = {MovieItem.class, LibraryItem.class}, version = 7, exportSchema = false)
 public abstract class MovieDatabase extends RoomDatabase {
 
     public static MovieDatabase instance;
