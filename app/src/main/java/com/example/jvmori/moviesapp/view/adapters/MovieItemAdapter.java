@@ -119,7 +119,8 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
 
     private boolean checkIfIsFav(MovieItem movieItem, List<MovieItem> favMovies) {
         for (MovieItem fav : favMovies) {
-            if (movieItem.getTmdbId().equals(fav.getTmdbId()))
+            if (movieItem.getTmdbId().equals(fav.getTmdbId()) &&
+                    fav.getLibraryItem().getNameOfCollection().equals(Consts.libraryItems.get(0)))
                 return true;
         }
         return false;
@@ -175,7 +176,9 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
         void callback(MovieItem movieItem);
     }
 
-    public void setOnAddClickedListener(OnAddClickedListener onAddClickedListener){this.onAddClickedListener = onAddClickedListener;}
+    public void setOnAddClickedListener(OnAddClickedListener onAddClickedListener) {
+        this.onAddClickedListener = onAddClickedListener;
+    }
 
     public interface OnLikeClickedListener {
         void addCallback(MovieItem movieItem);
