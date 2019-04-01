@@ -105,7 +105,7 @@ public class MovieItem implements Parcelable
     }
 
     public double getRating() {
-        return rating * 10;
+        return rating;
     }
 
     public List<String> getCategories() {
