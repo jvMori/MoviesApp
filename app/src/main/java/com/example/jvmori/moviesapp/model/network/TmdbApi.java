@@ -7,6 +7,7 @@ import com.example.jvmori.moviesapp.model.network.response.VideoJsonObj;
 
 import java.util.Map;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -15,7 +16,7 @@ import retrofit2.http.QueryMap;
 public interface TmdbApi
 {
     @GET("discover/{type}")
-    Call<MovieJsonObj> getPopular(@Path ("type") String type, @QueryMap Map<String, String> parameters);
+    Observable<MovieJsonObj> getPopular(@Path ("type") String type, @QueryMap Map<String, String> parameters);
 
     @GET("genre/{type}/list")
     Call<GenreJsonObj> getGenres(@Path ("type") String type);

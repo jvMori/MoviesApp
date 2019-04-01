@@ -11,6 +11,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 @Dao
 public interface MovieDao
@@ -35,5 +36,8 @@ public interface MovieDao
 
     @Query("SELECT * FROM movie_table WHERE mediaType LIKE :nameType")
     LiveData<List<MovieItem>> getAllItemsOfType(String nameType);
+
+    @Query("SELECt * from movie_table WHERE tmdbId LIKE:movieId ")
+    Single<MovieItem> getMovieById(String movieId);
 
 }

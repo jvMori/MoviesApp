@@ -13,12 +13,16 @@ import com.example.jvmori.moviesapp.model.network.response.Cast;
 import com.example.jvmori.moviesapp.model.network.response.MovieDetails;
 import com.example.jvmori.moviesapp.model.db.entities.MovieItem;
 import com.example.jvmori.moviesapp.model.network.response.Video;
+import com.example.jvmori.moviesapp.util.Consts;
 
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class MovieRepository {
@@ -43,8 +47,16 @@ public class MovieRepository {
         return instance;
     }
 
-    public LiveData<List<MovieItem>> getAllPopular(String type) {
-        return movieNetworkDataSource.getAllPopular(type);
+    public Observable<List<MovieItem>> getAllPopular(String type) {
+        return movieNetworkDataSource.getPopularItems(type)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<MovieItem> getSaved(MovieItem movieItem){
+        return movieDao.getMovieById(movieItem.getTmdbId())
+                .observeOn(Schedulers.io())
+                .doOnSuccess(item-> movieItem.setLibraryItem(new LibraryItem(Consts.libraryItems.get(0))));
     }
 
     public LiveData<MovieDetails> getItemDetails(String type, String id) {

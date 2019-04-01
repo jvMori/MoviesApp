@@ -197,12 +197,4 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.Popu
     public void setOnItemClickedListener(OnItemClickedListener onItemClickedListener) {
         this.onItemClickedListener = onItemClickedListener;
     }
-
-    private static void setParamsAndAddToView(ImageView imageView, LinearLayout starsLayout) {
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(70, 70);
-        lp.setMarginEnd(3);
-        imageView.setLayoutParams(lp);
-        starsLayout.addView(imageView);
-    }
-
 }
